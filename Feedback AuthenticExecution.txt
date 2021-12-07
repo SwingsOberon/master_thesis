@@ -1,0 +1,13 @@
+Feedback AuthenticExecution
+
+- It was confusing for me that 'make event_manager_trustzone ' had to be executed from the 'env' directory while the build phase finished in the 'build' directory of the 'optee' directory which is initialised as optee_os.git.
+
+- When the event manager has been started it is not entirely clear how to interact with it.
+
+- When deploying the reactive tool using REACTIVE-TOOLS the description file cannot be found, I assume it has to do with the way I describe the path but after trying countless possibilities I don't know what to try anymore.
+
+---------------------------------------------------------------
+
+- The command "sudo docker run --rm -it --network host -v $(pwd):/usr/src/app gianlu33/reactive-tools:latest bash" was only clear during/after the demo because I didn't find it anywhere in the README's and don't know how I should have figured it out.
+
+

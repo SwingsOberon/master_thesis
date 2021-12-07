@@ -1,0 +1,109 @@
+Instruction to create a bootable SD card for the Pinephone with OPTEE and Mobian linux on it, based on the following webpage: https://mquaresma.github.io/pine/a64/2020/04/11/Setting-up-OPTEE-and-Linux-for-the-Pine-A64.html
+
++ terminal commands to be executed
+- comments on commands, actions which are not commands or specifications of version, ...
+
+SETUP
+
+    - create new directory for the pinephone build referred to as PinePhoneDir, I tried to do it within the OPTEE directory in which the OPTEE project from git was cloned because lots of directories look like they are the same but this didn't work out well. 
+
+TOOLING
+
+    + export CROSS_COMPILE="ccache aarch64-linux-gnu-" 
+        - path to aarch binaries mentioned on the webpage was not used because I didn't fully understand it and it seems like it wasn't necessary.
+
+ARM TF-A
+
+    + git clone https://review.trustedfirmware.org/TF-A/trusted-firmware-a
+    + cd trusted-firmware-a
+    + git checkout v2.2
+        - v2.2 works
+        - v2.6 TODO customize LOG_LEVEL or BL31_SIZE to avoid the image from exceeding its limits.
+    + make PLAT=sun50i_a64 SPD=opteed DEBUG=1 bl31
+    + export BL31=$(pwd)/build/sun50i_a64/debug/bl31.bin
+
+OPTEE OS
+
+    + git clone https://github.com/OP-TEE/optee_os.git -b 3.15.0
+        - 3.15.0 is the latest major stable version at this moment
+    + cd optee_os
+    + make CFG_ARM64_CORE=y \ CFG_TEE_LOGLEVEL=4 \ CFG_TEE_CORE_LOG_LEVEL=4 \ CROSS_COMPILE31="ccache arm-linux-gnueabihf-" \ CROSS_COMPILE64="ccache aarch64-linux-gnu-" \ DEBUG=1 \ PLATFORM=sunxi-sun50i_a64
+    + export TEE=$(pwd)/out/arm-plat-sunxi/core/tee-pager_v2.bin
+
+OPTEE CLIENT
+    
+    + git clone https://github.com/OP-TEE/optee_client -b 3.15.0
+        - 3.15.0 is the latest major stable version at this moment and corresponds with the version of optee_os
+    + cd optee_client
+    + make
+    + cd out/export
+        - [tar -cfv optee_client.tar.gz usr] mentioned in the webpage is redundant, this seems to be done automatically.
+
+U-BOOT
+
+    + git clone https://gitlab.denx.de/u-boot/u-boot.git
+    + cd u-boot
+    + git checkout v2021.10
+        - v2021.10 is the latest major stable version at this moment
+    - The mainline U-Boot image doesn't load OPTEE, thus a patch script from the webpage needs to be put in board/sunxi/mksunxi_fit_atf.sh
+    + make pine64_plus_defconfig
+    + make
+        - Image 'main-section' is missing external blobs and is non-functional: scp can be ignored, scp is optional (Make sure no other blobs are missing because that could be a problem)
+    + export PATH=$PATH:$(pwd)/tools/
+
+LINUX
+
+    + git clone https://gitlab.com/mobian1/devices/sunxi64-linux.git
+    + git checkout v5.15
+        - v5.15 is the latest stable version
+    + make menuconfig
+        - under Device Drivers -> Graphics support -> ARM devices one can find [Kimodo driver] or something I set this to Module because I couldn't find Mali but it worked I think.
+    - Replace the DT source for the Pine A64 in arch/arm/boot/dts with the one mentioned on the webpage
+    + make ARCH=arm64 defconfig
+    + make ARCH=arm64 -j2 Image
+    + make ARCH=arm64 -j2 dtbs
+    + make -j2 ARCH=arm64 modules
+    + make -j2 ARCH=arm64 INSTALL_MOD_PATH=modules modules modules_install
+
+PARTITIONING THE SD-CARD
+
+    + sudo sfdisk -l
+        - to find out the name of the SD-CARD (/dev/sde in my case, further referred to as /dev/sdX)
+    + sudo dd if=/dev/zero of=/dev/sdX bs=1M count=1
+    + sudo blockdev --rereadpt /dev/sdX
+    + cat <<EOT | sudo sfdisk /dev/sdX
+        4G,8G,c
+        ,,L
+        EOT
+        - make the partitions large enough so the rich image fits in (4G and 10G) for instance, in the webpage 2M and 32M were used but this didn't work for a full linux distribution.
+    + sudo dd if=PinePhoneDir/u-boot/u-boot-sunxi-with-spl.bin of=/dev/sdx bs=1k seek=8
+        - flash the SPL, U-Boot plus TF-A and OP-TEE onto the SD card. It may look like there is not enough space but 2048 sectors has the size of 1MB, the binary has a size of +-800KB with an offset of 8KB so it fits within the first 1MB.
+        - TODO figure out how to get this step to work, phone doesn't boot if this is executed but it does work without it, probably optee isn't properly booted in that case though.
+    + sudo mkfs.vfat /dev/sdX1
+    + sudo mkfs.ext4 /dev/sdX2
+
+
+U-BOOT CONFIG
+
+    + sudo mount /dev/sdX1 /mnt
+        - /mnt is used as mount point, any other location can be used too but /mnt will be referred to as the mounting point.
+    + cd /mnt
+    + sudo vim boot.cmd
+        - insert the code from the webpage into the file, other file editing programs than vim can be used too, but I'm used to this one
+    + sudo cp PinePhoneDir/sunxi64-linux/arch/arm64/boot/Image /mnt
+    + sudo cp PinePhoneDir/sunxi64-linux/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dtb /mnt
+    + sudo mkimage -C none -A arm64 -T script -d boot.cmd boot.scr
+
+ROOTFS
+
+    + sudo mount /dev/sdX2 /mnt
+    + sudo debootstrap --foreign --arch arm64 buster /mnt http://deb.debian.org/debian/
+        - to install a debian base system on the root partition (don't use stable as distro, for some reason it doesn't work with debootstrap through qemu)
+    + sudo cp -r PinePhoneDir/optee_client/out/export/usr /mnt
+    + sudo cp -r PinePhoneDir/sunxi64-linux/modules/lib /mnt
+    + sudo cp /usr/bin/qemu-aarch64-static /mnt/usr/bin
+        - to be able to execute qemu on the arm file system
+    + sudo chroot /mnt /usr/bin/qemu-aarch64-static /bin/sh -i
+    + /debootstrap/debootstrap --second-stage
+        - this needs to be executed while chrooted into the system, don't exit the chroot and try this in your host filesystem.
+

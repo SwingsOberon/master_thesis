@@ -1,0 +1,127 @@
+\documentclass[]{beamer}
+\usetheme{KUL}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{ulem}
+\usepackage{todonotes}
+\usepackage{siunitx}
+\newcommand\itemS{\item[\textbf{\S}]}
+\definecolor{darkgreen}{rgb}{0,0.598,0.199}
+\usepackage{times} % set font on times new roman
+\usepackage{eurosym} % package for Euro sign
+\usepackage{lineno}   % package for line numbering
+\usepackage{hyperref} % this is for url links
+\usepackage{subcaption}  % this package enables one to put several figures next to each other
+\usepackage{textcomp}
+\usepackage{setspace}
+\usepackage{gensymb}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix, arrows, graphs}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{calc}
+\usepackage{amsmath}
+\usepackage{adjustbox}
+
+
+\title{Thesis}
+\subtitle{Building A Secure and Open \\ IoT Platform with ARM TrustZone}
+\author{Oberon Swings}
+\institute{KU Leuven}
+\date{\today}
+
+\newenvironment{code}{\fontfamily{ccr}\selectfont}{\par}
+
+\begin{document}
+
+{
+		\setbeamertemplate{headline}{} %define local, empty header for title page
+		\setbeamertemplate{footline}{ref image: https://developer.arm.com/ip-products/security-ip/trustzone} %define local, empty footer for title page
+		\maketitle
+	}
+	\addtocounter{framenumber}{-1} % We don't count the title page
+	
+\iftrue
+% Table of Contents
+\begin{frame}{Outline}
+	\hfill	{\large \parbox{.961\textwidth}{\tableofcontents[hideothersubsections]}}
+\end{frame}
+\fi
+
+\section{Secure Open Platform}
+
+\begin{frame}{Goals}
+Goals of an open platform
+\end{frame}
+
+\begin{frame}{Problems}
+Security is hard to guarantee in this setting
+\end{frame}
+
+\begin{frame}{Security}
+Security goals of an open platform
+\end{frame}
+
+\section{ARM TrustZone}
+
+\begin{frame}{Trusted Execution Environment}
+What is a Trusted Execution Environment, difference between SEE and TEE
+\end{frame}
+
+\begin{frame}{Secure and normal world}
+How the hardware enforces security
+\end{frame}
+
+\begin{frame}{Root of Trust}
+Root of trust is needed to achieve these goals
+\end{frame}
+
+\section{PinePhone}
+
+\begin{frame}{Hardware}
+Available hardware and support
+\end{frame}
+
+\begin{frame}{Application}
+Open platform for mobile computing
+\end{frame}
+
+\begin{frame}{OP-TEE}
+Open Portable Trusted Execution Environment on PinePhone
+\end{frame}
+
+\section{Research}
+
+\begin{frame}{Research Question(s)}
+Can the PinePhone be turned into a secure open IoT platform?
+\begin{itemize}
+\item What ARM TrustZone features does OP-TEE make availablee when being ported onto a PinePhone?
+\item Is it feasible to secure boot the PinePhone and in this way achieve a root of trust?
+\item Can the I/O of the PinePhone be secured using OP-TEE and ARM TrustZone?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hypothesis}
+OP-TEE can be ported onto a PinePhone and will atleast enable secure boot and secure I/O.
+Booting process will be slowed down but not to an unpleasant extent.
+I/O will be slower due to switching between worlds, but I/O always suffers from OS overhead so the added overhead should be minimal.
+\end{frame}
+
+\section{Progress}
+
+\begin{frame}{Past}
+Qemu emulator on laptop to play around with OP-TEE and secure applications.
+\end{frame}
+
+\begin{frame}{Present}
+Booting the PinePhone with OP-TEE
+\end{frame}
+
+\begin{frame}{Future}
+Tweaking the booting process to use secure boot
+Writing secure application to make use of secure I/O,...
+\end{frame}
+
+
+\end{document}
