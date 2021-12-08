@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\raggedright
+
+\begin{document}
+
+\section{Implementing a ARM-based Secure Boot Scheme for the Isolated Execution Environment}
+
+\subsection{Introduction}
+
+All the secure isolation based applications are based on the assumption of a secure execution environment. However, the isolation environment created by TrustZone is not a complete secure environment. It is possible that the device is attacked during start-up process. If the attacker modifies the system image in the external memory and obtains system privileges, the security of applications in the attacked system will be unknown.
+
+\subsection{Design and Implementation}
+
+The execution environment of TrustZone is an isolated execution environment rather than trusted. In order to build a truly trusted execution environment, secure boot is adopted through structuring root of struct and trust chain which ensures the device boot is secure.
+
+\paragraph{Boot sequence}
+
+\begin{enumerate}
+\item Device Power On
+\item BootROM
+\item First Stage BootLoader (FSBL)
+\item U-boot
+\item OP-TEE Kernel
+\item Linux Kernel
+\item  System Running
+\end{enumerate}
+
+\paragraph{Building Root of Trust}
+
+The BootROM performs RAS authentication, AES decryption and HMAC authentication in sequence to check FSBL for tampering or being attacked. The keys for these algorithms during secure boot are saved in eFuse arrays on the board. After device is power-on or reset, the on-chip BootROM begins to perform CRC for its own integrity, it loads the FSBL into memory and compares the SHA signature of the boot image with the stored hash value. If all authentications have passed, the control will be turned over to the decrypted FSBL.
+
+\paragraph{The trust chain}
+
+The device could build a trust chain through validation of each stage, and it ensures that the execution environment is trusted. At each boot stage, the image of the next stage should be verified. This way the entire trust chain is being built, if verification of every stage is succesfull the device is booted up securely.
+
+\end{document}

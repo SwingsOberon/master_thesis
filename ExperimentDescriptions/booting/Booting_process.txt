@@ -6,28 +6,26 @@ Instruction to create a bootable SD card for the Pinephone with OPTEE and Mobian
 SETUP
 
     - create new directory for the pinephone build referred to as PinePhoneDir, I tried to do it within the OPTEE directory in which the OPTEE project from git was cloned because lots of directories look like they are the same but this didn't work out well. 
-
-TOOLING
-
-    + export CROSS_COMPILE="ccache aarch64-linux-gnu-" 
-        - path to aarch binaries mentioned on the webpage was not used because I didn't fully understand it and it seems like it wasn't necessary.
+    - install aarch64-linux-gnu (if not present yet) and make sure the aarch64-linux-gnu-gcc is up to date 
+    - download or1k-linux-musl-cross.tgz from https://musl.cc/#binaries and extract it. 
+        - the toolchain can be downloaded from other sources but the version of the file or1k-linux-musl-gcc inside the /usr/bin folder can't be too old because then the compilation will fail due to unrecognised options
+    - copy the folders inside or1k-linux-musl-cross to /usr to be able to use the toolchain
 
 ARM TF-A
 
-    + git clone https://review.trustedfirmware.org/TF-A/trusted-firmware-a
-    + cd trusted-firmware-a
-    + git checkout v2.2
-        - v2.2 works
-        - v2.6 TODO customize LOG_LEVEL or BL31_SIZE to avoid the image from exceeding its limits.
-    + make PLAT=sun50i_a64 SPD=opteed DEBUG=1 bl31
-    + export BL31=$(pwd)/build/sun50i_a64/debug/bl31.bin
+    + git clone https://github.com/crust-firmware/arm-trusted-firmware/ -b v2.4
+    + cd arm-trusted-firmware
+    + export CROSS_COMPILE=aarch64-linux-gnu-
+    + make PLAT=sun50i_a64 SPD=opteed bl31
+    + export BL31=$(pwd)/build/sun50i_a64/release/bl31.bin
 
 OPTEE OS
 
     + git clone https://github.com/OP-TEE/optee_os.git -b 3.15.0
         - 3.15.0 is the latest major stable version at this moment
     + cd optee_os
-    + make CFG_ARM64_CORE=y \ CFG_TEE_LOGLEVEL=4 \ CFG_TEE_CORE_LOG_LEVEL=4 \ CROSS_COMPILE31="ccache arm-linux-gnueabihf-" \ CROSS_COMPILE64="ccache aarch64-linux-gnu-" \ DEBUG=1 \ PLATFORM=sunxi-sun50i_a64
+    + make CFG_ARM64_CORE=y \ CFG_TEE_LOGLEVEL=4 \ CFG_TEE_CORE_LOG_LEVEL=4 \ CROSS_COMPILE32="ccache arm-linux-gnueabihf-" \ CROSS_COMPILE64="ccache aarch64-linux-gnu-" \ PLATFORM=sunxi-sun50i_a64
+        - TIME: +- 1 minute
     + export TEE=$(pwd)/out/arm-plat-sunxi/core/tee-pager_v2.bin
 
 OPTEE CLIENT
@@ -36,34 +34,47 @@ OPTEE CLIENT
         - 3.15.0 is the latest major stable version at this moment and corresponds with the version of optee_os
     + cd optee_client
     + make
-    + cd out/export
         - [tar -cfv optee_client.tar.gz usr] mentioned in the webpage is redundant, this seems to be done automatically.
+
+CRUST
+
+    + git clone https://github.com/crust-firmware/crust -b v0.5
+    + cd crust
+    + export CROSS_COMPILE=or1k-linux-musl-
+    + make pinephone_defconfig
+    + make scp
+    + export SCP=$(pwd)/build/scp/scp.bin
 
 U-BOOT
 
-    + git clone https://gitlab.denx.de/u-boot/u-boot.git
+    + git clone https://gitlab.com/pine64-org/u-boot.git -b crust
+        - TIME: +- 1 minute
     + cd u-boot
-    + git checkout v2021.10
-        - v2021.10 is the latest major stable version at this moment
     - The mainline U-Boot image doesn't load OPTEE, thus a patch script from the webpage needs to be put in board/sunxi/mksunxi_fit_atf.sh
-    + make pine64_plus_defconfig
+    + export CROSS_COMPILE=aarch64-linux-gnu-
+    + make pinephone_defconfig
     + make
-        - Image 'main-section' is missing external blobs and is non-functional: scp can be ignored, scp is optional (Make sure no other blobs are missing because that could be a problem)
+        - TIME: +- 3 minutes
     + export PATH=$PATH:$(pwd)/tools/
 
 LINUX
 
-    + git clone https://gitlab.com/mobian1/devices/sunxi64-linux.git
-    + git checkout v5.15
+    + git clone https://gitlab.com/mobian1/devices/sunxi64-linux.git -b v5.15
         - v5.15 is the latest stable version
+        - TIME: +- 5 minutes
+    + cd sunxi64-linux
+    + export ARCH=arm64
     + make menuconfig
-        - under Device Drivers -> Graphics support -> ARM devices one can find [Kimodo driver] or something I set this to Module because I couldn't find Mali but it worked I think.
+        - under Device Drivers -> Graphics support -> ARM devices one can find [ARM Mali Display Processor], set this to Module
     - Replace the DT source for the Pine A64 in arch/arm/boot/dts with the one mentioned on the webpage
-    + make ARCH=arm64 defconfig
-    + make ARCH=arm64 -j2 Image
-    + make ARCH=arm64 -j2 dtbs
-    + make -j2 ARCH=arm64 modules
-    + make -j2 ARCH=arm64 INSTALL_MOD_PATH=modules modules modules_install
+    + make defconfig
+    + make Image
+        - TIME: +- 30 minutes
+        - TODO: test -j8 option for speedup, normaly not mentioning -j should allow maximal amount of processes but still seems slow, webpage uses -j2 (on the modules make it didn't seem to make a difference)
+    + make dtbs
+    + make modules
+        - TIME: +- 15 minutes
+    + make INSTALL_MOD_PATH=modules modules modules_install
 
 PARTITIONING THE SD-CARD
 
@@ -75,8 +86,8 @@ PARTITIONING THE SD-CARD
         4G,8G,c
         ,,L
         EOT
-        - make the partitions large enough so the rich image fits in (4G and 10G) for instance, in the webpage 2M and 32M were used but this didn't work for a full linux distribution.
-    + sudo dd if=PinePhoneDir/u-boot/u-boot-sunxi-with-spl.bin of=/dev/sdx bs=1k seek=8
+        - make the partitions large enough so the rich image fits in (4G and 8G) for instance, in the webpage 2M and 32M were used but this didn't work for a full linux distribution.
+    + sudo dd if=PinePhoneDir/u-boot/u-boot-sunxi-with-spl.bin of=/dev/sdx bs=1K seek=8
         - flash the SPL, U-Boot plus TF-A and OP-TEE onto the SD card. It may look like there is not enough space but 2048 sectors has the size of 1MB, the binary has a size of +-800KB with an offset of 8KB so it fits within the first 1MB.
         - TODO figure out how to get this step to work, phone doesn't boot if this is executed but it does work without it, probably optee isn't properly booted in that case though.
     + sudo mkfs.vfat /dev/sdX1
@@ -89,21 +100,29 @@ U-BOOT CONFIG
         - /mnt is used as mount point, any other location can be used too but /mnt will be referred to as the mounting point.
     + cd /mnt
     + sudo vim boot.cmd
-        - insert the code from the webpage into the file, other file editing programs than vim can be used too, but I'm used to this one
+        - insert the code from the the textfile in the ExperimentDescriptions/boot directory into the file, other file editing programs than vim can be used too, but I'm used to this one
     + sudo cp PinePhoneDir/sunxi64-linux/arch/arm64/boot/Image /mnt
-    + sudo cp PinePhoneDir/sunxi64-linux/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dtb /mnt
+    + sudo cp PinePhoneDir/sunxi64-linux/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dtb /mnt
     + sudo mkimage -C none -A arm64 -T script -d boot.cmd boot.scr
+    + cd
+    + sudo umount /dev/sde1
 
 ROOTFS
 
     + sudo mount /dev/sdX2 /mnt
-    + sudo debootstrap --foreign --arch arm64 buster /mnt http://deb.debian.org/debian/
-        - to install a debian base system on the root partition (don't use stable as distro, for some reason it doesn't work with debootstrap through qemu)
     + sudo cp -r PinePhoneDir/optee_client/out/export/usr /mnt
     + sudo cp -r PinePhoneDir/sunxi64-linux/modules/lib /mnt
+    + sudo debootstrap --foreign --arch arm64 buster /mnt http://deb.debian.org/debian/
+        - TIME: +- 1 minute
+        - to install a debian base system on the root partition (don't use stable as distro, for some reason it doesn't work with debootstrap through qemu) (buster might not work with debian, so bullseye is probably better. TODO: bullseye was not able to --second-stage properly)
     + sudo cp /usr/bin/qemu-aarch64-static /mnt/usr/bin
         - to be able to execute qemu on the arm file system
     + sudo chroot /mnt /usr/bin/qemu-aarch64-static /bin/sh -i
     + /debootstrap/debootstrap --second-stage
+        - TIME: +- 3 minutes
         - this needs to be executed while chrooted into the system, don't exit the chroot and try this in your host filesystem.
+    + exit
+        - to exit out of the chroot environment
+    + sudo umount /dev/sde2
+
 

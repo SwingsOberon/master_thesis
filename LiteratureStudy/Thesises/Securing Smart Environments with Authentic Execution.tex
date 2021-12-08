@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\raggedright
+
+\begin{document}
+
+\section{Securing Smart Environments with Authentic Execution}
+
+\subsection{Introduction}
+
+The ultimate goal is to provide confidentiality, integrity and authenticity guarantees of \begin{itemize}
+\item the execution of every component of an application
+\item the communication between two different components
+\item the interaction between a component and an I/O device
+\end{itemize} 
+Basing on these security requirements, a framework called Authentic Execution was proposed, to provide strong assurance of the secure execution of a distributed, event-driven application. The Authentic Execution concepts can be applied to a generic TEE; however, the implementation provided only includes support for Sancus, an embedded TEE that extends the TI MSP430 CPU, limiting the applicability of the framework in a real scenario. Therefore, this Master’s Thesis aims to remove this limitation by providing the Authentic Execution framework support for SGX, a TEE included in recent Intel processors.
+
+\subsection{Background and related work}
+
+\subsubsection{Trusted Computing}
+
+Trusted Computing is based on the following key concepts \begin{itemize}
+\item Endorsement Key
+\item Memory Curtaining
+\item Secure IO
+\item Sealed Storage
+\item Remote Attestation
+\item Trusted Third Party
+\end{itemize}
+
+\subsubsection{Trusted Execution Environments}
+
+Sancus consists of \begin{itemize}
+\item Infrastructure \begin{itemize}
+\item Nodes
+\item Software Provider
+\item Software Modules
+\end{itemize}
+\item Isolation and Memory Access Control
+\item Remote Attestation
+\item Secure I/O
+\end{itemize}
+
+Intel SGX consists of \begin{itemize}
+\item Isolation
+\item Enclave Identities
+\item Local Attestation
+\item Remote Attestation
+\item Data Sealing
+\end{itemize}
+
+\subsubsection{Smart Farming}
+
+Smart Farming Technologies are divided into three main categories \begin{itemize}
+\item Data Acquisition Technologies
+\item Data Analysis and Evaluation Technologies
+\item Precision Application Technologies
+\end{itemize}
+
+There are various security concerns for SFTs \begin{itemize}
+\item Threats to Confidentiality
+\item Threats to Integrity
+\item Threats to Availability
+\end{itemize}
+
+\subsection{Problem Statement}
+
+\subsubsection{System Model}
+
+The System Model describes a distributed, event-driven application. An event-driven application, is an application that reacts to external inputs, called events. A key component of the application is the Event Manager (EM), which is responsible for receiving and processing external events, as well as executing the logic associated to them. After an event is received, a function (called handler) is executed; handlers can be associated to a specific event both at compile time and at runtime. Then, after the code is executed, the application returns back to a waiting state, until a new event arrives.
+\medskip
+
+The main limitation of this model is that there are no availability guarantees: for instance, if the EMs are controlled by the attacker, they might drop all the events they receive. Finally, two important aspects need to be emphasised: firstly, that the system is heterogeneous, meaning that the Software Modules (SMs) might be developed for different architectures, according to their functionality. The second significant aspect is that the Deployer is not necessarily the owner of the infrastructure.
+
+\subsubsection{Attacker Model}
+
+Attackers have the following capabilities \begin{itemize}
+\item Software Manipulation (EMs, OS and can add software)
+\item Communication Network (Sniffing, Modification and MitM)
+\item Cryptographic (Dolev-Yao model)
+\end{itemize}
+Attacks against the hardware are out of scope and side-channel attacks are not considered because although important protection against them is orthogonal and complementary to the methods discussed here.
+
+\subsection{Design and Implementation}
+
+\subsubsection{Extending the Authentic Execution Implementation}
+
+The most important extensions are \begin{itemize}
+\item Support for Intel SGX
+\item Many-to-many Relationships (instead of one-to-one connections between input and output)
+\item Periodic Events (in the EventManager)
+\end{itemize}
+
+\subsubsection{Application-level protocol}
+
+The protocol consists of the following messages \begin{itemize}
+\item Command
+\item Result
+\item Connect
+\item Call
+\item Remote Output
+\item Load
+\item Ping
+\item RegisterEntrypoint
+\end{itemize}
+
+\subsubsection{Authentic Execution in SGX}
+
+The Software Modules are written in rust because it provides \begin{itemize}
+\item Performance
+\item Reliability (Memory Safety,...)
+\item Productivity (Easy to learn)
+\end{itemize}
+
+\subsubsection{AuthenticExecution in Sancus}
+
+The main changes that were made are the ability to support many-to-many connections and the use of the nonce in the payload to verify whether the message has been processed already or not to avoid availability attacks by replaying messages.
+
+\subsubsection{Deploying the System}
+
+The reactive tools module is used to easily deploy the system.
+
+
+
+
+\end{document}
