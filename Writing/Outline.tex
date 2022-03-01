@@ -1,0 +1,35 @@
+\documentclass{report}
+
+\usepackage{hyperref}
+\usepackage{subfiles} % Best loaded last in the preamble
+
+\raggedright
+
+\title{Thesis: Outline}
+\author{Oberon Swings}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\thispagestyle{empty}
+\end{titlepage}
+
+\pagenumbering{Roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\subfile{Chapters/Introduction}
+
+\subfile{Chapters/Background}
+
+\subfile{Chapters/Method}
+
+\subfile{Chapters/Experiments}
+
+\subfile{Chapters/Conclusion}
+
+
+
+\end{document}

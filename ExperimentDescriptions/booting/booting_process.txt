@@ -114,7 +114,9 @@ ROOTFS
     + sudo cp -r PinePhoneDir/sunxi64-linux/modules/lib /mnt
     + sudo debootstrap --foreign --arch arm64 buster /mnt http://deb.debian.org/debian/
         - TIME: +- 1 minute
-        - to install a debian base system on the root partition (don't use stable as distro, for some reason it doesn't work with debootstrap through qemu) (buster might not work with debian, so bullseye is probably better. TODO: bullseye was not able to --second-stage properly)
+        - to install a debian base system on the root partition 
+        - TODO: buster might not work with debian, so bullseye is probably better (Do note that the debos provided in Debian 10 (Buster) is not new enough (it will error out with "Unknown action: recipe"), the one in Debian Bullseye works.) https://gitlab.com/mobian1/mobian-recipes/-/blob/master/README.md 
+        - TODO: bullseye was not able to --second-stage properly (Failure trying to run:  /sbin/ldconfig)
     + sudo cp /usr/bin/qemu-aarch64-static /mnt/usr/bin
         - to be able to execute qemu on the arm file system
     + sudo chroot /mnt /usr/bin/qemu-aarch64-static /bin/sh -i

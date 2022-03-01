@@ -1,0 +1,35 @@
+\documentclass{report}
+
+\raggedright
+
+\begin{document}
+
+\chapter{Method}
+
+The main goal of this work is to achieve a secure open platform on the hardware.
+
+\section{System Model}
+
+The system model describes an open platform with no or minimal trust among stakeholders.
+
+\section{Attacker Model}
+
+The attacker has physical access, can launch OS/firmware and software attacks. The Trusted Platform Module is assumed to be tamper resistent.
+
+\section{Booting Process}
+
+The secure boot makes sure that the device starts in a secure, trusted and known state.
+
+\section{OP-TEE integration}
+
+OP-TEE is the TEE framework used in this thesis and is integrated with the linux distribution that is booted on the hardware.
+
+\section{Secure Applications}
+
+Secure applications make use of the TEE capabilities of ARM TrustZone with the help of OP-TEE. These secure applications make use of the secure world execution for sensitive tasks.
+
+\section{Security Properties}
+
+The secure boot process makes sure that TrustZone works as intended which should give confidence in the belief that secure execution of secure applications is guaranteed.
+
+\end{document}

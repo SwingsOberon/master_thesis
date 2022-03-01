@@ -1,0 +1,35 @@
+
+
+December:       Getting the booting process for OP-TEE on the PinePhone right
+
+Januari:        Blok (neglectible progress)
+
+02/14-02/27:    Secure boot PinePhone 
+
+02/28-03/13:    Secure application for secure I/O
+                Prepare for second presentation
+                Write thesis structure 
+
+03/14-03/27:    Experiment to find out which features are enabled by OP-TEE [What would you need to convince user that PinePhone/other devices are secure?]
+                Make secure application into usable proof of concept
+                Write implementation
+                Write introduction & background (key words, high level overview, not too detailed yet)
+
+03/28-04/10:    Execute final experiments
+                Represent results in clear charts, tables, ...
+                Write methods & results
+
+04/11-04/24:    Write introduction & background
+                Write discussion & conclusions (including comprehensive security analysis)
+
+04/25-05/08:    Rewrite unsatisfactory parts
+
+05/09-05/22:    Have mentors take a look at the content of writing
+                Request friends/family for review reading
+                Rewrite based on reviews and own insight
+
+05/22-06/05:    Hand in?
+
+
+
+

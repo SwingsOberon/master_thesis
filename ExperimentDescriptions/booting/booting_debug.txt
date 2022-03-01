@@ -1,0 +1,14 @@
+Show debug on terminal 
++ sudo minicom -D /dev/ttyUSB0
+
+Store debug in file
++ sudo minicom -D /dev/ttyUSB0 -C /home/oberon/Documents/Studies/Thesis/ExperimentDescription/booting/booting_debug_log.txt
+
+Show debug on terminal 
++ sudo screen -L /dev/ttyUSB0 115200
+
+Store debug in file
++ sudo screen -Logfile /dev/ttyUSB0 115200
+
+See what port the USB is connected to 
++ dmesg | grep tty
