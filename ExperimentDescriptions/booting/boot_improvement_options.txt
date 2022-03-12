@@ -1,1 +1,3 @@
 1   U-boot doesn't provide sufficient debug data, tried to add config_log=y into the .config file in the u-boot folder but this changed after rebuilding. Maybe it can be tried to add "#define CONFIG_LOG 1" to the u-boot.cfg file instead and see whether that works.
+
+2   If the linux distro would have trouble interacting with OP-TEE this one can be used https://github.com/linaro-swg/optee_benchmark, it is the same one used in qemu_v8
