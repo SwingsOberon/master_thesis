@@ -16,20 +16,17 @@ The system model describes an open platform with no or minimal trust among stake
 
 The attacker has physical access, can launch OS/firmware and software attacks. The Trusted Platform Module is assumed to be tamper resistent.
 
-\section{Booting Process}
+\section{Solution}
 
-The secure boot makes sure that the device starts in a secure, trusted and known state.
+Ideally the device is started with secure boot, this makes sure the SW is started from a known secure state. 
+\medskip
 
-\section{OP-TEE integration}
+During operation the user should be able to attest whether their device is still in a secure state.
+\medskip
 
-OP-TEE is the TEE framework used in this thesis and is integrated with the linux distribution that is booted on the hardware.
+This can be done using a TA that makes measurements on their device and reports back to them.
+\medskip
 
-\section{Secure Applications}
-
-Secure applications make use of the TEE capabilities of ARM TrustZone with the help of OP-TEE. These secure applications make use of the secure world execution for sensitive tasks.
-
-\section{Security Properties}
-
-The secure boot process makes sure that TrustZone works as intended which should give confidence in the belief that secure execution of secure applications is guaranteed.
+These measurements are checking the integrity of the code section of the running applications and OS.
 
 \end{document}

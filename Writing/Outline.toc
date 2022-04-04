@@ -8,17 +8,20 @@
 \contentsline {section}{\numberline {2.3}ARM TrustZone}{2}{section.2.3}% 
 \contentsline {section}{\numberline {2.4}Chain of Trust}{2}{section.2.4}% 
 \contentsline {section}{\numberline {2.5}Secure Boot}{3}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Remote Attestation}{3}{section.2.6}% 
 \contentsline {chapter}{\numberline {3}Method}{4}{chapter.3}% 
 \contentsline {section}{\numberline {3.1}System Model}{4}{section.3.1}% 
 \contentsline {section}{\numberline {3.2}Attacker Model}{4}{section.3.2}% 
-\contentsline {section}{\numberline {3.3}Booting Process}{4}{section.3.3}% 
-\contentsline {section}{\numberline {3.4}OP-TEE integration}{4}{section.3.4}% 
-\contentsline {section}{\numberline {3.5}Secure Applications}{4}{section.3.5}% 
-\contentsline {section}{\numberline {3.6}Security Properties}{5}{section.3.6}% 
-\contentsline {chapter}{\numberline {4}Experiments}{6}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Secure Boot}{6}{section.4.1}% 
-\contentsline {section}{\numberline {4.2}Secure Application}{6}{section.4.2}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{7}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Contributions}{7}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}Limitations and Challenges}{7}{section.5.2}% 
-\contentsline {section}{\numberline {5.3}Future Work}{7}{section.5.3}% 
+\contentsline {section}{\numberline {3.3}Solution}{4}{section.3.3}% 
+\contentsline {chapter}{\numberline {4}Implementation}{5}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Secure Boot}{5}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Attestation TA}{5}{section.4.2}% 
+\contentsline {chapter}{\numberline {5}Experiments}{6}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Performance}{6}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Performance Evaluation}{6}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Security Properties}{6}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Security Evaluation}{6}{section.5.4}% 
+\contentsline {chapter}{\numberline {6}Conclusion}{7}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Contributions}{7}{section.6.1}% 
+\contentsline {section}{\numberline {6.2}Future Improvements}{7}{section.6.2}% 
+\contentsline {chapter}{\numberline {7}Discussion}{8}{chapter.7}% 

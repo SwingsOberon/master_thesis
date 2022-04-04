@@ -1,0 +1,57 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-1bac5bef778f4813b636.json",
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "optee_example_attest",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "optee_example_attest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-optee_example_attest-Debug-33abea4831acb90c28df.json",
+					"name" : "optee_example_attest",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/oberon/Documents/Studies/Thesis/Experiments/attestation/cmake-build-debug",
+		"source" : "/home/oberon/Documents/Studies/Thesis/Experiments/attestation"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

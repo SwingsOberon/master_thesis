@@ -1,0 +1,6 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Hybrid booting}{6}{0}{2}
+\beamer@sectionintoc {3}{Process integrity measurement}{10}{0}{3}
+\beamer@sectionintoc {4}{Evaluation \& security analysis}{14}{0}{4}
+\beamer@sectionintoc {5}{Relevance for thesis}{16}{0}{5}

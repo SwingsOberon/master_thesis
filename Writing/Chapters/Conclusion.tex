@@ -11,13 +11,15 @@ To achieve secure execution on the PinePhone some requirements need to be met. O
 \section{Contributions}
 
 A detailed process of how to make secure boot happen on a PinePhone using OP-TEE. Besides integrating OP-TEE with the linux operating system of the PinePhone also showing how a secure application can be run from within this setup.
+\medskip
 
-\section{Limitations and Challenges}
+An open source implementation of attestation on the PinePhone which allows the Secure World to attest the Normal World and increase the security guarantees thereof.
 
-To be discovered.
+\section{Future Improvements}
 
-\section{Future Work}
+To allow the user to attest their device it is important that Trusted I/O is used to inform the user about the outcome of the attestation process.
+\medskip
 
-The secure application used in this thesis is only a proof of concept not really exploring very interesting features, a more realistic or challenging example can be created to discover weak points or further improvements in the system. With secure boot dealt with and ARM improving hardware support for virtualization it could be interesting to research virtualization on open platforms like the PinePhone.
+The attestation application can be seen as one module that can be accompanied with a variety of different modules to increase the amount of checks that can be executed to check more possible attacks/ vulnerabilities.
 
 \end{document}
