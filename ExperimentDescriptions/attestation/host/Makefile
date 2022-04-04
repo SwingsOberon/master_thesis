@@ -8,7 +8,7 @@ READELF ?= $(CROSS_COMPILE)readelf
 
 OBJS = main.o
 
-CFLAGS += -Wall -I../ta/include -I./include -I../../../../linux/include
+CFLAGS += -Wall -I../ta/include -I./include -I../../../../linux/include -I../../../../linux/arch/arm64/include -I../../../../linux/arch/arm64/include/generated -I../../../../linux/arch/arm64/include/uapi
 CFLAGS += -I$(TEEC_EXPORT)/include
 LDADD += -lteec -L$(TEEC_EXPORT)/lib
 

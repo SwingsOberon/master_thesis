@@ -3,7 +3,7 @@
 //
 
 #include "kern.h"
-#include "../../../../linux/include/linux/pid.h"
+#include <linux/pid.h>
 
 
 void get_init_task(struct task_struct **t){

@@ -76,14 +76,14 @@ build cmake_object_order_depends_target_optee_example_attest: phony || CMakeFile
 build CMakeFiles/optee_example_attest.dir/host/main.o: C_COMPILER__optee_example_attest_Debug /home/oberon/qemu_v8/optee_examples/attestation/host/main.c || cmake_object_order_depends_target_optee_example_attest
   DEP_FILE = CMakeFiles/optee_example_attest.dir/host/main.o.d
   FLAGS = -g
-  INCLUDES = -I/home/oberon/qemu_v8/optee_examples/attestation/ta/include -I/home/oberon/qemu_v8/optee_examples/attestation/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/include
+  INCLUDES = -I/home/oberon/qemu_v8/optee_examples/attestation/ta/include -I/home/oberon/qemu_v8/optee_examples/attestation/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/arch/arm64/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/arch/arm64/include/generated -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/arch/arm64/include/uapi
   OBJECT_DIR = CMakeFiles/optee_example_attest.dir
   OBJECT_FILE_DIR = CMakeFiles/optee_example_attest.dir/host
 
 build CMakeFiles/optee_example_attest.dir/host/kern.o: C_COMPILER__optee_example_attest_Debug /home/oberon/qemu_v8/optee_examples/attestation/host/kern.c || cmake_object_order_depends_target_optee_example_attest
   DEP_FILE = CMakeFiles/optee_example_attest.dir/host/kern.o.d
   FLAGS = -g
-  INCLUDES = -I/home/oberon/qemu_v8/optee_examples/attestation/ta/include -I/home/oberon/qemu_v8/optee_examples/attestation/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/include
+  INCLUDES = -I/home/oberon/qemu_v8/optee_examples/attestation/ta/include -I/home/oberon/qemu_v8/optee_examples/attestation/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/arch/arm64/include -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/arch/arm64/include/generated -I/home/oberon/qemu_v8/optee_examples/attestation/../../linux/arch/arm64/include/uapi
   OBJECT_DIR = CMakeFiles/optee_example_attest.dir
   OBJECT_FILE_DIR = CMakeFiles/optee_example_attest.dir/host
 

@@ -2,7 +2,7 @@
 // Created by oberon on 01/04/2022.
 //
 
-#include "../../../../linux/include/linux/sched.h"
+#include <linux/sched.h>
 
 #ifndef OPTEE_EXAMPLE_ATTEST_KERN_H
 #define OPTEE_EXAMPLE_ATTEST_KERN_H
