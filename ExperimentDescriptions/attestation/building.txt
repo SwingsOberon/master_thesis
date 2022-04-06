@@ -1,0 +1,4 @@
+- clone the git repo
+- cd into attestation/include/linux
+- make defconfig ARCH=arm64 
+- make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-

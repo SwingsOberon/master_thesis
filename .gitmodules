@@ -1,0 +1,3 @@
+[submodule "attestation/include/linux"]
+	path = attestation/include/linux
+	url = https://github.com/linaro-swg/linux
