@@ -6,14 +6,25 @@
 
 \chapter{Implementation}
 
-\section{Secure Boot}
-
-It was tried to setup a booting sequence in which the Secure World is booted first and boots the NW OS from this trusted base. This is the first step towards implementing a secure boot sequence to assure that the device starts from a known secure state.
-\medskip
-
-OP-TEE is the TEE framework used in this thesis and is integrated with the linux distribution that is booted on the hardware.
-
 \section{Attestation TA}
+
+\begin{itemize}
+\item Trusted Application \begin{itemize}
+\item Hash NW memory pages
+\item Store reference values in secure memory
+\item Make comparison and notify user 
+\end{itemize}
+\item NW OS interaction \begin{itemize}
+\item Retrieve address of memory page
+\item Translate into physical address
+\item Provide datastructures to TA
+\end{itemize}
+\item Extensions \begin{itemize}
+\item Notify user using trusted IO
+\item Decrease dependency on NW OS
+\item Attest more than just code pages (data structures, invariants,...)
+\end{itemize}
+\end{itemize}
 
 The attestation is mainly implemented in a Trusted Application. This is done to allow the Secure World to store measurements in the secure memory and have access to the Normal World memory. Ideally the TA doesn't need to rely on the NW OS (Linux) for the memory addresses but this is the starting point for the implementation.
 

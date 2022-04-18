@@ -8,29 +8,97 @@
 
 The smartphone that will be used is a PinePhone which is equiped with ARM TrustZone, it also comes with a component which can be used as Root of Trust to make secure boot possible. 
 
-\section{PinePhone}
+\section{Remote Attestation}
 
-The PinePhone is an open source smartphone which supports Linux as operating system which adds to it's openness.
+\begin{itemize}
+\item Goal \begin{itemize}
+\item Verify integrity
+\end{itemize}
+\item How it works \begin{itemize}
+\item Verifier
+\item Prover
+\item Proof
+\end{itemize}
+\item Assumptions \begin{itemize}
+\item Trusted third party
+\item Secure keys
+\end{itemize}
+\end{itemize}
+
+Remote attestation allows a device to prove to an external verifier that the software running on it is not tampered with. This attestation can go a lot further than this by for instance also checking the data structures on the device to make sure these are logical.
 
 \section{Trusted Execution Environment}
+
+\begin{itemize}
+\item Execution \begin{itemize}
+\item Isolation
+\item Authentic code
+\item Runtime integrity
+\item Strict interfaces
+\end{itemize} 
+\item Trust \begin{itemize}
+\item Static
+\item Dynamic
+\end{itemize}
+\item Security \begin{itemize}
+\item Data separation
+\item Sanitization
+\item Control of information flow
+\item Fault isolation
+\end{itemize}
+\end{itemize}
 
 A Trusted Execution Environment is a secure, integrity-protected processing environment, consisting of memory and storage capabilities.
 
 \section{ARM TrustZone}
 
+\begin{itemize}
+\item Normal World \begin{itemize}
+\item Rich OS
+\end{itemize}
+\item Secure World \begin{itemize}
+\item Trusted Kernel
+\item NS-bit
+\item Secure Configuration Register
+\end{itemize}
+\item Peripherals \begin{itemize}
+\item TZ Address Space Controller
+\item TZ Protection Controller (interrupts)
+\end{itemize}
+\end{itemize}
+
 ARM TrustZone is ARM's implementation of a TEE. This is achieved by having a secure and normal world in the System on Chip.
 
-\section{Chain of Trust}
+\section{PinePhone}
 
-To trust an application, the environment in which this application runs also needs to be trusted which often translates to the operating system, bootloader, hardware,...
+\begin{itemize}
+\item Open source \begin{itemize}
+\item
+\end{itemize}
+\item Linux \begin{itemize}
+\item
+\end{itemize}
+\item ARM TrustZone \begin{itemize}
+\item
+\end{itemize}
+\end{itemize}
 
-\section{Secure Boot}
+The PinePhone is an open source smartphone which supports Linux as operating system which adds to it's openness.
 
-Secure boot is a booting process in which a Root of Trust is used to make sure that the code used for booting is not tampered with.
+\section{Secure boot, trusted boot and remote attestation for ARM TrustZone-based IoT Nodes}
 
-\section{Remote Attestation}
-
-Remote attestation allows a device to prove to an external verifier that the software running on it is not tampered with. This attestation can go a lot further than this by for instance also checking the data structures on the device to make sure these are logical.
-
+\begin{itemize}
+\item Solution \begin{itemize}
+\item Overview
+\end{itemize}
+\item Trusted Boot \begin{itemize}
+\item Trusted load phase
+\item Attestation during boot
+\end{itemize}
+\item Remote attestation \begin{itemize}
+\item Trusted execution time
+\item Pagebased approach
+\end{itemize}
+\end{itemize}
 
 \end{document}

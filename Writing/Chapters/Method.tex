@@ -8,15 +8,76 @@
 
 The main goal of this work is to achieve a secure open platform on the hardware.
 
+\section{Detailed Problem}
+
+\begin{itemize}
+\item Lots of functionality \begin{itemize}
+\item Sensitive data
+\item Mobile computing
+\end{itemize}
+\item Performance driven \begin{itemize}
+\item All resources to functionality
+\item Little room for security
+\item Extensive security measures needed
+\end{itemize}
+\item Hardware security solution \begin{itemize}
+\item Security embedded in hardware
+\item Better for performance
+\item Correct implementation required
+\end{itemize}
+\end{itemize}
+
 \section{System Model}
+
+\begin{itemize}
+\item Open platform \begin{itemize}
+\item Multiple software providers
+\item Platform owned by user
+\end{itemize}
+\item Secure software execution \begin{itemize}
+\item Software isolation
+\item Secure data storage
+\end{itemize}
+\end{itemize}
 
 The system model describes an open platform with no or minimal trust among stakeholders.
 
 \section{Attacker Model}
 
+\begin{itemize}
+\item Physical access \begin{itemize}
+\item Threats
+\item Vulnerabilities
+\end{itemize}
+\item OS/Firmware attacks \begin{itemize}
+\item Threats
+\item Vulnerabilities
+\end{itemize}
+\item Software attacks \begin{itemize}
+\item Threats
+\item Vulnerabilities
+\end{itemize}
+\end{itemize}
+
 The attacker has physical access, can launch OS/firmware and software attacks. The Trusted Platform Module is assumed to be tamper resistent.
 
 \section{Solution}
+
+\begin{itemize}
+\item Secure boot \begin{itemize}
+\item Root of Trust
+\item Chain of Trust
+\item Secure starting point
+\end{itemize}
+\item User attestation \begin{itemize}
+\item Integrity (control flow, data structures, ...)
+\item Authenticity (code, ...)
+\end{itemize}
+\item Trust \begin{itemize}
+\item Execution
+\item Data protection
+\end{itemize}
+\end{itemize}
 
 Ideally the device is started with secure boot, this makes sure the SW is started from a known secure state. 
 \medskip

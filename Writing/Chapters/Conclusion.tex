@@ -8,14 +8,43 @@
 
 To achieve secure execution on the PinePhone some requirements need to be met. One of these requirements is that a chain of trust is achieved which is done using secure boot in this case.
 
-\section{Contributions}
+\section{Related work}
 
-A detailed process of how to make secure boot happen on a PinePhone using OP-TEE. Besides integrating OP-TEE with the linux operating system of the PinePhone also showing how a secure application can be run from within this setup.
-\medskip
+\begin{itemize}
+\item Secure boot, Trusted boot and remote attestation for ARM TrustZone-based IoT Nodes
+\item DAA-TZ: An Efficient DAA Scheme for Mobile Devices Using ARM TrustZone
+\item SecTEE: A Software-based Approach to Secure Enclave Architecture Using TEE
+\item TZ-MRAS: A Remote Attestation Scheme for the Mobile Terminal Based on ARM TrustZone
+\item TrustShadow: Secure Execution of Unmodified Applications with ARM TrustZone
+\end{itemize}
 
-An open source implementation of attestation on the PinePhone which allows the Secure World to attest the Normal World and increase the security guarantees thereof.
+\section{Comparison of Approaches}
+
+\begin{itemize}
+\item Effectiveness \begin{itemize}
+\item Reached goal
+\item Defends most variety of attacks
+\item Stronges security guarantees
+\end{itemize}
+\item Assumptions \begin{itemize}
+\item Least assumptions
+\item Most realistic
+\end{itemize}
+\end{itemize}
 
 \section{Future Improvements}
+
+\begin{itemize}
+\item Best approach \begin{itemize}
+\item Overview
+\item Reasoning
+\end{itemize}
+\item Weaknesses
+\item Possible improvements \begin{itemize}
+\item inspiration from Lightweight and Flexible Trust Assessment Modules for the Internet of Things
+\end{itemize}
+\item Different solutions
+\end{itemize}
 
 To allow the user to attest their device it is important that Trusted I/O is used to inform the user about the outcome of the attestation process.
 \medskip

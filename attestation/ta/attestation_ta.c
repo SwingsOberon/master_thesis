@@ -424,16 +424,16 @@ TEE_Result TA_InvokeCommandEntryPoint(void __unused *sess_ctx,
 				      uint32_t param_types, TEE_Param params[4])
 {
 	switch (cmd_id) {
-	case TA_ATTEST_CMD_REGISTER_SHARED_KEY:
+	case TA_ATTESTATION_CMD_REGISTER_SHARED_KEY:
 		return register_shared_key(param_types, params);
 
 	/*case TA_ATTEST_CMD_GET_HOTP:
 		return get_hotp(param_types, params);*/
 
-    case TA_ATTEST_CMD_INITIALIZE:
+    case TA_ATTESTATION_CMD_INITIALIZE:
         return initialize(param_types, params);
 
-    case TA_ATTEST_CMD_ATTEST:
+    case TA_ATTESTATION_CMD_ATTEST:
         return attest(param_types, params);
 
 	default:

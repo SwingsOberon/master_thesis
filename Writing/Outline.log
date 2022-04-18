@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  4 APR 2022 12:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  18 APR 2022 21:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -195,6 +195,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 2.
+
+Overfull \hbox (18.61069pt too wide) in paragraph at lines 10--10
+ [][] [][]\OT1/cmr/m/n/10 Secure boot, trusted boot and re-mote at-tes-ta-tion 
+for ARM TrustZone- 
+ []
+
 )
 \tf@toc=\write4
 \openout4 = `Outline.toc'.
@@ -203,38 +209,44 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ] (./Chapters/Introduction.tex
 Chapter 1.
-) (./Chapters/Background.texpdfTeX warning (ext4): destination with the same id
-entifier (name{page.1}) has been already used, duplicate ignored
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.7 \chapter
-            {Background} [1
+l.42 
+      [1
 
-]
+]) (./Chapters/Background.tex [2]
 Chapter 2.
-[2
+[3
 
-]) (./Chapters/Method.tex [3]
+] [4]) (./Chapters/Method.tex [5]
 Chapter 3.
-) (./Chapters/Implementation.tex [4
+[6
 
-]
+] [7]) (./Chapters/Implementation.tex [8]
 Chapter 4.
-) (./Chapters/Experiments.tex [5
+) (./Chapters/Experiments.tex [9
 
 ]
 Chapter 5.
-) (./Chapters/Conclusion.tex [6
+) (./Chapters/Conclusion.tex [10
 
 ]
 Chapter 6.
-) (./Chapters/Discussion.tex [7
+[11
 
-]
+]) (./Chapters/Discussion.tex [12]
 Chapter 7.
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 39.
- [8
+ [13
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 39.
@@ -242,26 +254,27 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 39.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 39.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 39.
 Package rerunfilecheck Info: File `Outline.out' has not changed.
-(rerunfilecheck)             Checksum: F7B0D7973F7E67A3E498FFA5C33746F2;1549.
+(rerunfilecheck)             Checksum: A68DA4D9187F46C22A6823E131328446;1634.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 39.
  ) 
 Here is how much of TeX's memory you used:
- 4364 strings out of 492615
- 65485 string characters out of 6131391
- 154397 words of memory out of 5000000
- 8230 multiletter control sequences out of 15000+600000
+ 4386 strings out of 492615
+ 65811 string characters out of 6131391
+ 155397 words of memory out of 5000000
+ 8244 multiletter control sequences out of 15000+600000
  8800 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,29p,464b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,6n,29p,464b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on Outline.pdf (10 pages, 84428 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on Outline.pdf (15 pages, 99250 bytes).
 PDF statistics:
- 217 PDF objects out of 1000 (max. 8388607)
- 198 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
+ 245 PDF objects out of 1000 (max. 8388607)
+ 219 compressed objects within 3 object streams
+ 43 named destinations out of 1000 (max. 500000)
  217 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -6,14 +6,14 @@
  */
 
 #include <err.h>
-#include <stdio.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <string.h>
 
 #include <dirent.h>
 
 /* OP-TEE TEE client API (built by optee_client) */
 #include "tee_client_api.h"
-#include "kern.h"
+#include "virt_to_phys_user.h"
 
 /* For the UUID (found in the TA's h-file(s)) */
 #include <attestation_ta.h>
@@ -41,57 +41,6 @@ struct test_value rfc4226_test_values[] = {
 	{ 9, 520489 }
 };
 
-void getProcPages(uint64_t *startadress, size_t *size){
-    fprintf(stdout, "getprocpages started\n");
-    char proc[255];
-    char buff[255];
-    char pagestart[13];
-    char pageend[13];
-    FILE *fp;
-
-    //Find the first PID in the /proc folder and put the path to the page file (maps) in the proc variable
-    DIR *d;
-    struct dirent *dir;
-    fprintf(stdout, "opendir(/proc)\n");
-    d = opendir("/proc");
-    if (d) {
-        fprintf(stdout, "readdir\n");
-        while ((dir = readdir(d)) != NULL) {
-            fprintf(stdout, "%s\n", dir->d_name);
-            if (isdigit(dir->d_name[0]) && strtol(dir->d_name, NULL, 10) > 100) {
-                strcpy(proc, "/proc/");
-                strcat(proc, dir->d_name);
-                strcat(proc, "/maps");
-                break;
-            }
-            fprintf(stdout, "endwhile\n");
-        }
-        closedir(d);
-    }
-    fprintf(stdout, "proc = %s\n", proc);
-
-    //Find the first executable page from the proc
-    fp = fopen(proc, "r");
-    bool found = false;
-    while (!found) {
-        fgets(buff, 255, (FILE*)fp);
-        fprintf(stdout, "%s", buff);
-        if (buff[28] == 'x') {
-            found = true;
-            strncpy(pagestart, buff, 12);
-            pagestart[12] = '\0';
-            strncpy(pageend, &buff[13], 12);
-            pageend[12] = '\0';
-            *startadress = (uint64_t ) strtol(pagestart, NULL, 16);
-            *size = strtol(pageend, NULL, 16) - strtol(pagestart, NULL, 16);
-            fprintf(stdout, "pagestart = %s\n", pagestart);
-            fprintf(stdout, "pageend = %s\n", pageend);
-            fprintf(stdout, "startadress = %ld\n", *startadress);
-            fprintf(stdout, "size = %ld\n", *size);
-        }
-    }
-}
-
 int main(void)
 {
 	TEEC_Context ctx;
@@ -100,9 +49,7 @@ int main(void)
 	TEEC_Session sess;
 	TEEC_UUID uuid = TA_ATTESTATION_UUID;
 
-	size_t i;
 	uint32_t err_origin;
-	uint32_t hotp_value;
 
 	/*
 	 * Shared key K ("12345678901234567890"), this is the key used in
@@ -169,21 +116,17 @@ int main(void)
 		}
 	}*/
 
-    struct task_struct *task;
-    get_init_task(&task);
     //TODO: make function which checks whether a certain memref has already been initialized or not and test it before executing the initialize command.
+
+    pid_t pid = get_proc_pid();
+    uintptr_t vaddr = get_proc_vaddr();
+    uintptr_t paddr;
+    virt_to_phys_user(&paddr, pid, vaddr);
     op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT, TEEC_NONE, TEEC_NONE, TEEC_NONE);
-    uint64_t pagestart;
-    size_t size;
-    fprintf(stdout, "getProcPages called \n");
-    getProcPages(&pagestart, &size);
-    fprintf(stdout, "getProcPages ended\n");
-    fprintf(stdout, "pagestart = %lu\n", pagestart);
-    fprintf(stdout, "size = %lu\n", size);
     //op.params[0].tmpref.buffer = (void *) pagestart; //TODO: put memory pages of a program here.
     //op.params[0].tmpref.size = size;
-    op.params[0].tmpref.buffer = task; //TODO: put memory pages of a program here.
-    op.params[0].tmpref.size = sizeof(&task);
+    op.params[0].tmpref.buffer = paddr; //TODO: put memory pages of a program here.
+    op.params[0].tmpref.size = sizeof(&paddr);
     fprintf(stdout, "TEEC_InvokeCommand(TA_ATTESTATION_CMD_INITIALIZE)\n");
     res = TEEC_InvokeCommand(&sess, TA_ATTESTATION_CMD_INITIALIZE, &op, &err_origin);
     if (res != TEEC_SUCCESS) {
