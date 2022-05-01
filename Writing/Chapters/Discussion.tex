@@ -6,31 +6,57 @@
 
 \chapter{Discussion}
 
-\begin{itemize}
-\item Solution overview \begin{itemize}
-\item Reproduction
-\item Thorough understanding paper solution
-\item Extensions
-\end{itemize}
-\item Shortcomings \begin{itemize}
-\item Unaccounted for attacker possibilities
-\item Unaccomplished desired guarantees
-\end{itemize}
-\item Positives \begin{itemize}
-\item Open source code
-\item Thorough comparison
-\end{itemize}
-\end{itemize}
+\section{Related work}
 
-Currently only the code in the textsection is being attested which is far from enough to trust the execution of a device.
-\medskip
+\paragraph*{Secure boot, Trusted boot and remote attestation for ARM TrustZone-based IoT Nodes}
+is the paper on which the implementation and experiments are based.
 
-The datastructures of the applications running in the NW or the OS should also be taken into account.
-\medskip
+\paragraph*{DAA-TZ: An Efficient DAA Scheme for Mobile Devices Using ARM TrustZone}
+implements Direct Anonymous Attestation on a mobile ARM TrustZone device.
 
-The state of the memory could be restricted to always comply with certain invariants that can be checked.
-\medskip
+\paragraph*{SecTEE: A Software-based Approach to Secure Enclave Architecture Using TEE}
+implements enclaves on a CPU with ARM TrustZone technology. 
 
-Check whether the method applied is sufficient to protect against the attacker model and if not explain why.
+\paragraph*{TZ-MRAS: A Remote Attestation Scheme for the Mobile Terminal Based on ARM TrustZone}
+uses ARM TrustZone to protect the attestation service on the mobile device from being tampered with.
+
+\paragraph*{TrustShadow: Secure Execution of Unmodified Applications with ARM TrustZone}
+utilizes the functionality of the secure world to shield applications from untrusted OSes.
+
+\section{Comparison of Approaches}
+
+\subsection*{Effectiveness}
+
+\paragraph*{The goal}
+of these papers are all a little different but it is important to evaluate which ones actually realized their goal and how this compares to the goal set out by this thesis.
+
+\paragraph*{Most variety of attacks}
+that the solution defends against is a clear measure on how effective the solution is in the field.
+
+\paragraph*{The strongest security guarantees}
+that were made and achieved also indicate how well the solution works.
+
+\subsection*{Assumptions}
+
+\paragraph*{The least assumptions}
+that were made by the authors of the paper the more widely applicable the solution is because there is enormous hetergeneity among devices and assumptions put restrictions on the devices for which the paper is usefull.
+
+\paragraph*{The most realistic assumptions}
+are of course also important to look at, if the assumptions are not realistic they are not practical to adhere to and the solution will be worthless if it can't be applied to the real world.
+
+\section{Future Improvements}
+
+\subsection*{Weaknesses}
+
+\paragraph*{Rich OS dependency}
+is very undesirable, it is thus important to look at different solutions that achieve similar outcomes to avoid this aspect of the current solution.
+
+\paragraph*{Uncomplete attestation}
+introduces a fake sense of security because not all possible attacks are checked, for instance modified data structures that influence the control flow of a program. (inspiration from Lightweight and Flexible Trust Assessment Modules for the Internet of Things)
+
+\subsection*{Additional features}
+
+\paragraph*{•}
+Based on the related work papers some additional features could be stated or solutions could be combined to achieve protection against a wider variety of attacks.
 
 \end{document}

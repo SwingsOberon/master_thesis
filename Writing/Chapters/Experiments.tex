@@ -6,24 +6,47 @@
 
 \chapter{Experiments}
 
-These experiments are based on a proof of concept of the attestation application.
-
 \section{Performance}
 
-The TA responsible for the attestation of the NW will be executed in a variety of circumstances and the execution time for measuring and attesting will be taken into account. 
+\subsection*{Reproduction}
+
+\paragraph*{Trusted boot}
+is based on the attestation of the normal world before giving it control. In the paper they talk about 107 MB of filesystem image that is being measured so this could be a valuable starting point to compare their performance with the performance achieved in this thesis.
+
+\paragraph*{Overhead}
+is measured in the paper by executing system services from the linux kernel and running this experiment with and without the attestation.
+
+\subsection*{Additional}
+
+\paragraph*{Attestation time}
+should be measured for a program with a certain size to be able to evaluate how often this attestation should be executed to have a balance between performance overhead and security assurance.
 
 \section{Performance Evaluation}
 
-The performance should give an insight on how often these measurements can be executed to avoid too much overhead but still be able to have good security measures.
+\paragraph*{Comparison}
+between the performance achieved in the paper and the performance measured in this thesis is important to be able to interpret the results correctly.
+
+\paragraph*{Balance}
+between performance overhead and security assurance depends on the usecase but in the context of the smartphone some statements could be made.
 
 \section{Security Properties}
 
-The secure boot process makes sure that TrustZone works as intended which should give confidence in the belief that secure execution of trusted applications is guaranteed.
-\medskip
+\paragraph*{Integrity of the measurement execution}
+is of utmost importance when it comes to attestation, in remote attestation this is achieved because of a hardened server but here the trusted execution environment needs to take care of this.
 
-With secure execution of TAs guaranteed the Secure World can give similar guarantees as a remote attestation server would give. This implies that the attestation can happen on the device itself while still having strong confidence about the validity.
+\paragraph*{Secure storage of results}
+is also important, first of all to make sure the reference values are not tampered with and second of all to correctly react to results that indicate a violation.
 
 \section{Security Evaluation}
+
+\paragraph*{Security guarantees}
+that can be made are the integrity of the measurement execution and the security of the results that are being stored. These are achieved due to secure boot enabling the trusted execution environment but are key assumptions in the field of remote attestation.
+
+\paragraph*{Shortcomings}
+in terms of security are the OS/firmware attacks because the solution still relies on the rich OS rather heavily.
+
+\paragraph*{Extensions}
+in terms of additional aspects of the system that can be attested are necessary to protect against software attacks.
 
 
 \end{document}

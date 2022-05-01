@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  18 APR 2022 20:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  26 APR 2022 21:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -39,33 +39,238 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 
 Chapter 1.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 14.
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+
+LaTeX Warning: Citation `CokerGeorge2011Pora' on page 1 undefined on input line
+ 14.
+
+
+! LaTeX Error: Environment displayquote undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 ...testation as follows: \begin{displayquote}
+                                                   "Attestation is the activ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: \begin{document} ended by \end{displayquote}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 ...h supports that claim." \end{displayquote}
+                                                   Making a claim in this co...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Citation `YuAimin2008BAti' on page 2 undefined on input line 27.
+
+
+
+LaTeX Warning: Citation `JaegerTrent2006Ppim' on page 2 undefined on input line
+ 27.
+
+
+LaTeX Warning: Citation `DuanJialiang2020IMBo' on page 2 undefined on input lin
+e 27.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \unhbox 
+l.27 ...liang2020IMBo} \cite{KucabMichał2021Raai}
+                                                  . According to \cite{AlamM...
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+
+LaTeX Warning: Citation `KucabMicha\unhbox \voidb@x \bgroup \@xxxii l\egroup 20
+21Raai' on page 2 undefined on input line 27.
+
+
+LaTeX Warning: Citation `AlamMasoom2012Aoer' on page 2 undefined on input line 
+27.
+
+
+LaTeX Warning: Citation `GuLiang2008Raop' on page 2 undefined on input line 30.
+
+
+
+LaTeX Warning: Citation `QinYu2020RRIP' on page 2 undefined on input line 30.
+
+
+LaTeX Warning: Citation `AliToqeer2017Daio' on page 2 undefined on input line 3
+0.
+
+
+LaTeX Warning: Citation `StelteB2010Timi' on page 2 undefined on input line 30.
+
+
+
+LaTeX Warning: Citation `BaHaihe2017RMAf' on page 2 undefined on input line 30.
+
+
+
+LaTeX Warning: Citation `AlamMasoom2008Mba' on page 2 undefined on input line 3
+3.
+
+
+LaTeX Warning: Citation `AlamMasoom2012Aoer' on page 2 undefined on input line 
+33.
+
+
+LaTeX Warning: Citation `MuhlbergJanTobias2016LaFT' on page 2 undefined on inpu
+t line 33.
+
+
+LaTeX Warning: Citation `SabtMohamed2015TEEW' on page 2 undefined on input line
+ 40.
+
+
+! LaTeX Error: Environment displayquote undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40 ...SabtMohamed2015TEEW}: \begin{displayquote}
+                                                   "Trusted Execution Enviro...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: \begin{document} ended by \end{displayquote}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.41 \end{displayquote}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[2]
+
+LaTeX Warning: Citation `MATSUMOTOTsutomu2021SCUa' on page 3 undefined on input
+ line 52.
+
+
+LaTeX Warning: Citation `FotiadisGeorgios2021RAfS' on page 3 undefined on input
+ line 52.
+
+
+LaTeX Warning: Citation `2006Tpmb' on page 3 undefined on input line 52.
+
+
+LaTeX Warning: Citation `ZhaoShijun2021RoRo' on page 3 undefined on input line 
+52.
+
+
+LaTeX Warning: Citation `VanBulckJo2019AToT' on page 3 undefined on input line 
+55.
+
+
+LaTeX Warning: Citation `GuoPengfei2021RoAT' on page 3 undefined on input line 
+55.
+
+
+LaTeX Warning: Citation `KhalidFatima2020HITS' on page 3 undefined on input lin
+e 55.
+
+
+LaTeX Warning: Citation `Machiry2017BOOMERANGET' on page 3 undefined on input l
+ine 55.
+
+[3]
+
+LaTeX Warning: Citation `PintoSandro2019DATA' on page 4 undefined on input line
+ 65.
+
+
+LaTeX Warning: Citation `LentzMatthew2018SATM' on page 4 undefined on input lin
+e 65.
+
+
+LaTeX Warning: Citation `EskandarianSaba2018FPUS' on page 4 undefined on input 
+line 65.
+
+
+LaTeX Warning: Citation `ChangRui2017Mapm' on page 4 undefined on input line 65
+.
+
+
+LaTeX Warning: Citation `FerraiuoloAndrew2017KUvt' on page 4 undefined on input
+ line 65.
+
+[4]
+
+LaTeX Warning: Citation `PintoSandro2019DATA' on page 5 undefined on input line
+ 85.
+
+
+LaTeX Warning: Citation `PinePhone' on page 5 undefined on input line 88.
+
+
+LaTeX Warning: Citation `OP-TEE' on page 5 undefined on input line 93.
+
+[5]
+
+LaTeX Warning: Citation `LingZhen2021Sbtb' on page 6 undefined on input line 95
+.
+
+[6]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 122.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 14.
- [1
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 122.
+ [7]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 136.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 136.
+ [8] [9]
+(./Background.aux)
 
+LaTeX Warning: There were undefined references.
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] (./Background.aux)
  ) 
 Here is how much of TeX's memory you used:
- 246 strings out of 492615
- 2794 string characters out of 6131391
+ 255 strings out of 492615
+ 2927 string characters out of 6131391
  64959 words of memory out of 5000000
- 4238 multiletter control sequences out of 15000+600000
- 5466 words of font info for 20 fonts, out of 8000000 for 9000
+ 4246 multiletter control sequences out of 15000+600000
+ 6417 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,4n,19p,282b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 23i,4n,26p,1043b,115s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Background.pdf (3 pages, 52724 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Background.pdf (9 pages, 102986 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 58 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

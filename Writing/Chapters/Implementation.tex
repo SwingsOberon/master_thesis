@@ -8,24 +8,37 @@
 
 \section{Attestation TA}
 
-\begin{itemize}
-\item Trusted Application \begin{itemize}
-\item Hash NW memory pages
-\item Store reference values in secure memory
-\item Make comparison and notify user 
-\end{itemize}
-\item NW OS interaction \begin{itemize}
-\item Retrieve address of memory page
-\item Translate into physical address
-\item Provide datastructures to TA
-\end{itemize}
-\item Extensions \begin{itemize}
-\item Notify user using trusted IO
-\item Decrease dependency on NW OS
-\item Attest more than just code pages (data structures, invariants,...)
-\end{itemize}
-\end{itemize}
+\subsection*{Trusted application}
 
-The attestation is mainly implemented in a Trusted Application. This is done to allow the Secure World to store measurements in the secure memory and have access to the Normal World memory. Ideally the TA doesn't need to rely on the NW OS (Linux) for the memory addresses but this is the starting point for the implementation.
+\paragraph*{Hashing}
+the memory pages of the text section of a program is the very first step the TA does when attesting a program.
+
+\paragraph*{Storing reference values}
+needs to be done when the device is in a known secure state, the memory pages will be hashed and these hashes are stored for later comparison.
+
+\paragraph*{Comparing}
+the hash of a memory page with its reference value is the actual attesting step, from this comparison it should be clear whether the integrity of the memory page has been violated.
+
+\paragraph*{Notifying}
+the user is the final step to inform them about the problem to allow them to take action, this could be rebooting to ensure a secure known state again or ask for help from a specialist.
+
+\subsection*{NW OS dependencies}
+
+\paragraph*{Retrieving address}
+needs to be done from within the NW OS at the moment, this is because the datastructures that contain this information are owned by the NW OS.
+
+\paragraph*{Translating address}
+is another functionality for which the rich OS is used, this is also due to the fact that these translations are easily determined from the NW OS datastructures.
+
+\subsection*{Extensions}
+
+\paragraph*{Trusted IO}
+could be used to inform the user of the problem (which program has been tampered with for instance), it could also take on a more coarse grained form that an led licht signals the user that some piece of software has failed the attestation which is easier but less usefull.
+
+\paragraph*{Becoming independent}
+from the rich OS in the normal world seems like a very important step because otherwise OS/Firmware attacks are still a threat.
+
+\paragraph*{Detailed attestation}
+is necessary, lots of software attacks are based on the used datastructures and don't impact the text section of code of programs.
 
 \end{document}

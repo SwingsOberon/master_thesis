@@ -6,64 +6,72 @@
 
 \chapter{Introduction}
 
-\begin{itemize}
-\item Smartphones everywhere \begin{itemize}
-\item Everyone has one
-\item Interchangeable with PC
-\end{itemize}
-\item Sensitive data \begin{itemize}
-\item Lots of traffic
-\item Personal data stored
-\end{itemize}
-\item Comparable to IoT \begin{itemize}
-\item Hardware similarities
-\item Security features (lot less than PC)
-\end{itemize}
-\end{itemize}
+\subsection*{Smartphones}
 
-Smartphones are everywhere, being used for more and more sensitive data. Hacking into these devices should be made as hard as hacking into someone's personal computer because for many those two have become interchangeable.
+\paragraph*{Everyone} 
+is assumed to have a smartphone of their own because it has become an essential gadget for our day to day lives.
+
+\paragraph*{Everywhere}
+these smartphones can be spotted, people use them at home, on the bus or even at work.
+
+\paragraph*{Personal Computers}
+seem less and less important to some people because all their needs can be fullfilled with a smartphone. 
+
+\subsection*{Sensitive data}
+
+\paragraph*{Making connections}
+that is what these smartphone devices are good at but it is important to keep in mind that there are certain security implications with every connection that is made.
+
+\paragraph*{Personal data}
+is what drives the interactions with the smartphone. People use them to do online banking, send mails or even consult health related reports.
+
+\subsection*{Related to IoT}
+
+\paragraph*{Hardware similarities}
+between smartphones and IoT devices are more prominent than one might expect. This is due to the fact that smartphones actually stem from IoT devices and not from personal computers.
+
+\paragraph*{Security features}
+for IoT devices is a hot research topic, this is because not many solutions or standards that are present today are found to be adequate in terms of protection against the existing threats.
 
 \section{Problem statement}
 
-\begin{itemize}
-\item IoT security \begin{itemize}
-\item Minimize overhead
-\end{itemize}
-\item PC functionality \begin{itemize}
-\item Banking, e-Health and mails
-\end{itemize}
-\item Missmatch \begin{itemize}
-\item Sensitive data requires good security
-\item Functionality is pushed but security lags behind
-\end{itemize}
-\end{itemize}
+\subsection*{IoT security}
 
-The hardware in smartphones is comparable to that of IoT devices, it is more powerfull in many occasions but the design principles are often the same. The problem with this is that IoT devices are not very secure, smartphones are in that sense lagging behind on security compared to how they are used (banking, health and identification applications).
+\paragraph*{Performance}
+is the main focus when IoT devices are designed, they only have a small number of tasks but these need to be executed as fast or as energy efficient as possible.
+
+\paragraph*{Dynamic and distributed} 
+groups of devices form an IoT network, this implies that the security of this network is as strong as the weakest link in the chain (which can be very weak in the IoT environment).
+
+\subsection*{Progressive functionality}
+
+\paragraph*{Banking, e-Health and mails}
+are applications most people trust their smartphone with, even though personal computers weren't even trusted with these kinds of functionality a few decades ago.
+
+\subsection*{Missmatch}
+
+\paragraph*{Progressive functionality}
+is what smartphones have been bringing for their users and is what makes that the industry keeps growing every year.
+
+\paragraph*{Lagging or lacking security}
+is the downside of this push for better functionality because it is very hard to make certain functionality secure but companies want to be the first to bring their products to the market.
 
 \section{Contributions}
 
-\begin{itemize}
-\item Reproduction of paper \begin{itemize}
-\item Replicated solution as closely as possible
-\item Evaluation about results compared to original
-\end{itemize}
-\item Open source code (proof of concept) \begin{itemize}
-\item Enable easier reproduction/verification in the future
-\end{itemize}
-\item Extra experiment measurements \begin{itemize}
-\item Comparable experiments (to be able to compare)
-\item More elaborate experiments (to allow better decision making)
-\end{itemize}
-\item Comparison with similar solutions \begin{itemize}
-\item Overview of comparable papers (pros and cons)
-\item Weak points and strenghts of the reproduced paper compared to the others
-\end{itemize}
-\end{itemize}
+\paragraph*{Reproduction of existing work}
+is the first goal of this thesis, the solution of the paper is replicated as closely as possible (no source code available). The experiments in the paper are redone to be able to make a comparison between the original and the implementation discussed here.
 
-Major producers of smartphone chips are adding hardware support for security (Intel SGX, ARM TrustZone). The focus of this thesis lies in using ARM TrustZone to achieve a secure open platform from a smartphone equiped with ARM TrustZone.
+\paragraph*{Open source code}
+is very important in the field of computer science because it allows other researchers to reproduce the experiments and review the work that has been done in a detailed manner.
+
+\paragraph*{Extra experiment measurements}
+are executed to expand on their work and give a more complete picture of the solution.
+
+\paragraph*{Comparison with similar solutions}
+is of course also important to evaluate whether this way of trying to solve the problem is in the right direction or whether different solutions have achieved more promising results.
 
 \section{Outline}
 
-In the next chapter more background information about among other things ARM TrustZone and Remote Attestation will be given. In the third chapter the methods secure applications will be explained. In the fourth chapter the goal and outcome of the experiments will be made clear. The final chapter will conclude this thesis informing the reader about limitations of this work and possible future directions of research.
+In the next chapter more background information about among other things Remote Attestation and ARM TrustZone will be given. In the third chapter the methods to solve the problem will be explained. In chapter four the implementation of the attestation program are elaborated upon. In the fifth chapter the goal and outcome of the experiments will be made clear. The sixth chapter will conclude this thesis informing the reader about related work and future improvements. The final chapter will discuss the completed work.
 
 \end{document}

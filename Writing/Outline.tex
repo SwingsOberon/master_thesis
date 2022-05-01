@@ -1,7 +1,11 @@
 \documentclass{report}
 
+\usepackage{csquotes}
 \usepackage{hyperref}
 \usepackage{subfiles} % Best loaded last in the preamble
+
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{bibfile.bib}
 
 \raggedright
 
@@ -30,9 +34,12 @@
 
 \subfile{Chapters/Experiments}
 
+\subfile{Chapters/Discussion}
+
 \subfile{Chapters/Conclusion}
 
-\subfile{Chapters/Discussion}
+\printbibliography
+
 
 
 

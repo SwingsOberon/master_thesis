@@ -6,49 +6,28 @@
 
 \chapter{Conclusion}
 
-To achieve secure execution on the PinePhone some requirements need to be met. One of these requirements is that a chain of trust is achieved which is done using secure boot in this case.
+\subsection*{Solution overview}
 
-\section{Related work}
+\paragraph*{Reproduction}
+of the solution provided in the paper is the starting point of this thesis.
 
-\begin{itemize}
-\item Secure boot, Trusted boot and remote attestation for ARM TrustZone-based IoT Nodes
-\item DAA-TZ: An Efficient DAA Scheme for Mobile Devices Using ARM TrustZone
-\item SecTEE: A Software-based Approach to Secure Enclave Architecture Using TEE
-\item TZ-MRAS: A Remote Attestation Scheme for the Mobile Terminal Based on ARM TrustZone
-\item TrustShadow: Secure Execution of Unmodified Applications with ARM TrustZone
-\end{itemize}
+\paragraph*{Extensions}
+on this reproduced solution are necessary because the original solution does not achieve all goals.
 
-\section{Comparison of Approaches}
+\subsection*{Shortcomings}
 
-\begin{itemize}
-\item Effectiveness \begin{itemize}
-\item Reached goal
-\item Defends most variety of attacks
-\item Stronges security guarantees
-\end{itemize}
-\item Assumptions \begin{itemize}
-\item Least assumptions
-\item Most realistic
-\end{itemize}
-\end{itemize}
+\paragraph*{Attacker possibilities}
+that are not accounted for are still present, the security measures taken in the solution are not adequate for the wide variety of attacks that it claimed to protect against.
 
-\section{Future Improvements}
+\paragraph*{Desired guarantees}
+the solution should be able to provide are not entirely met.
 
-\begin{itemize}
-\item Best approach \begin{itemize}
-\item Overview
-\item Reasoning
-\end{itemize}
-\item Weaknesses
-\item Possible improvements \begin{itemize}
-\item inspiration from Lightweight and Flexible Trust Assessment Modules for the Internet of Things
-\end{itemize}
-\item Different solutions
-\end{itemize}
+\subsection*{Positives}
 
-To allow the user to attest their device it is important that Trusted I/O is used to inform the user about the outcome of the attestation process.
-\medskip
+\paragraph*{Code}
+for this thesis is made available as open source code to make it easier to reproduce the experiments and continue work on this research topic by other researchers.
 
-The attestation application can be seen as one module that can be accompanied with a variety of different modules to increase the amount of checks that can be executed to check more possible attacks/ vulnerabilities.
+\paragraph*{Thorough comparison}
+has been executed on the provided solution and solutions of related work to give an overview of what direction is most promising to achieve the security goals.
 
 \end{document}
