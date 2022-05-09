@@ -1,6 +1,7 @@
 #define _XOPEN_SOURCE 700
 
 #include "virt_to_phys_user.h"
+#include "attestation_ta.h"
 
 /* Parse the pagemap entry for the given virtual address.
  *
@@ -11,6 +12,7 @@
  */
 int pagemap_get_entry(PagemapEntry *entry, int pagemap_fd, uintptr_t vaddr)
 {
+    fprintf(stderr, "pagemap_get_entry\n");
     size_t nread;
     ssize_t ret;
     uint64_t data;
@@ -43,6 +45,7 @@ int pagemap_get_entry(PagemapEntry *entry, int pagemap_fd, uintptr_t vaddr)
  */
 int virt_to_phys_user(uintptr_t *paddr, pid_t pid, uintptr_t vaddr)
 {
+    fprintf(stderr, "virt_to_phys_user\n");
     char pagemap_file[BUFSIZ];
     int pagemap_fd;
 
@@ -60,60 +63,8 @@ int virt_to_phys_user(uintptr_t *paddr, pid_t pid, uintptr_t vaddr)
     return 0;
 }
 
-void get_proc_address(uint64_t *startadress, size_t *size){
-    fprintf(stdout, "getprocpages started\n");
-    char proc[255];
-    char buff[255];
-    char pagestart[13];
-    char pageend[13];
-    FILE *fp;
-
-    //Find the first PID in the /proc folder and put the path to the page file (maps) in the proc variable
-    DIR *d;
-    struct dirent *dir;
-    fprintf(stdout, "opendir(/proc)\n");
-    d = opendir("/proc");
-    if (d) {
-        fprintf(stdout, "readdir\n");
-        while ((dir = readdir(d)) != NULL) {
-            fprintf(stdout, "%s\n", dir->d_name);
-            if (isdigit(dir->d_name[0]) && strtol(dir->d_name, NULL, 10) > 100) {
-                strcpy(proc, "/proc/");
-                strcat(proc, dir->d_name);
-                strcat(proc, "/maps");
-                break;
-            }
-            fprintf(stdout, "endwhile\n");
-        }
-        closedir(d);
-    }
-    fprintf(stdout, "proc = %s\n", proc);
-
-    //Find the first executable page from the proc
-    fp = fopen(proc, "r");
-    bool found = false;
-    while (!found) {
-        if (fgets(buff, 255, (FILE*)fp) != NULL)
-            fprintf(stdout, "%s", buff);
-        else
-            fprintf(stdout, "fgets(buff, fp) == NULL");
-        if (buff[28] == 'x') {
-            found = true;
-            strncpy(pagestart, buff, 12);
-            pagestart[12] = '\0';
-            strncpy(pageend, &buff[13], 12);
-            pageend[12] = '\0';
-            *startadress = (uint64_t ) strtol(pagestart, NULL, 16);
-            *size = strtol(pageend, NULL, 16) - strtol(pagestart, NULL, 16);
-            fprintf(stdout, "pagestart = %s\n", pagestart);
-            fprintf(stdout, "pageend = %s\n", pageend);
-            fprintf(stdout, "startadress = %ld\n", *startadress);
-            fprintf(stdout, "size = %ld\n", *size);
-        }
-    }
-}
-
 pid_t get_proc_pid() {
+    fprintf(stderr, "get_proc_pid\n");
     pid_t pid = 1;
     /*
     char proc[255];
@@ -142,14 +93,18 @@ pid_t get_proc_pid() {
     return pid;
 }
 
-uintptr_t get_proc_vaddr() {
-    uintptr_t vaddr;
+void get_proc_vaddr(uintptr_t *vaddr, size_t *size) {
+    fprintf(stderr, "get_proc_vaddr\n");
     char buff[255];
+    char proc[255] = "/proc/1/maps";
     char pagestart[13];
+    char pageend[13];
     FILE *fp;
     //Find the first executable page from the init_proc
-    fp = fopen("1", "r");
+    fprintf(stderr, "fopen(proc)\n");
+    fp = fopen(proc, "r");
     bool found = false;
+    fprintf(stderr, "start while(!found)\n");
     while (!found) {
         if (fgets(buff, 255, (FILE*)fp) != NULL)
             fprintf(stdout, "%s", buff);
@@ -159,9 +114,12 @@ uintptr_t get_proc_vaddr() {
             found = true;
             strncpy(pagestart, buff, 12);
             pagestart[12] = '\0';
-            vaddr = (uintptr_t) strtol(pagestart, NULL, 16);
-            fprintf(stdout, "vaddr = %ld\n", vaddr);
+            strncpy(pageend, &buff[13], 12);
+            pageend[12] = '\0';
+            *vaddr = (uintptr_t) strtol(pagestart, NULL, 16);
+            fprintf(stdout, "vaddr = %ld\n", *vaddr);
+            *size = (strtol(pageend, NULL, 16) - strtol(pagestart, NULL, 16))/PAGE_SIZE;//Size needs to be in amount of pages and a page is 2KB
+            fprintf(stdout, "size = %ld\n", *size);
         }
     }
-    return vaddr;
 }

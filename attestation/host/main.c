@@ -6,8 +6,8 @@
  */
 
 #include <err.h>
-//#include <stdio.h>
-//#include <string.h>
+#include <stdio.h>
+#include <string.h>
 
 #include <dirent.h>
 
@@ -81,6 +81,7 @@ int main(void)
 	op.params[0].tmpref.size = sizeof(K);
 
 	fprintf(stdout, "Register the shared key: %s\n", K);
+    fprintf(stdout, "TEEC_InvokeCommand(TA_ATTESTATION_CMD_REGISTER_SHARED_KEY)\n");
 	res = TEEC_InvokeCommand(&sess, TA_ATTESTATION_CMD_REGISTER_SHARED_KEY,
 				 &op, &err_origin);
 	if (res != TEEC_SUCCESS) {
@@ -89,7 +90,6 @@ int main(void)
 			res, err_origin);
 		goto exit;
 	}
-    fprintf(stdout, "TEEC_InvokeCommand(TA_ATTESTATION_CMD_REGISTER_SHARED_KEY)\n");
 
 	/* 2. Get HMAC based One Time Passwords */
     /*
@@ -119,33 +119,58 @@ int main(void)
     //TODO: make function which checks whether a certain memref has already been initialized or not and test it before executing the initialize command.
 
     pid_t pid = get_proc_pid();
-    uintptr_t vaddr = get_proc_vaddr();
+    uint64_t vaddr;
+    size_t size;
+    get_proc_vaddr(&vaddr, &size);
+    fprintf(stdout, "vaddr = %lu\n", vaddr);
+    //fprintf(stdout, "vaddr content = ");
+    /*uint8_t (*vaddrlist)[8] = &vaddr;
+    for (int i = 0; i < 16; i++)
+    {
+        //fprintf(stdout,"%02X", (*vaddrlist)[i]);
+
+        //char *p = (char *)vaddr + i;
+        //fprintf(stdout, "%02X\n", *p);
+
+        if (i % 8 == 7) fprintf(stdout, "\n");
+    }*/
     uintptr_t paddr;
     virt_to_phys_user(&paddr, pid, vaddr);
-    op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT, TEEC_NONE, TEEC_NONE, TEEC_NONE);
-    //op.params[0].tmpref.buffer = (void *) pagestart; //TODO: put memory pages of a program here.
-    //op.params[0].tmpref.size = size;
-    op.params[0].tmpref.buffer = paddr; //TODO: put memory pages of a program here.
-    op.params[0].tmpref.size = sizeof(&paddr);
+    fprintf(stdout, "paddr %lu\n", paddr);
+    fprintf(stdout, "sizeof(paddr) %lu\n", sizeof(paddr));
+    op.paramTypes = TEEC_PARAM_TYPES(TEEC_VALUE_INPUT, TEEC_NONE, TEEC_NONE, TEEC_NONE);
+    op.params[0].value.a = paddr; //TODO: put memory pages of a program here.
+    op.params[0].value.b = size;
+    fprintf(stdout, "op.params[0].value.a = %lu\n", op.params[0].value.a);
+    fprintf(stdout, "op.params[0].value.b = %lu\n", op.params[0].value.b);
     fprintf(stdout, "TEEC_InvokeCommand(TA_ATTESTATION_CMD_INITIALIZE)\n");
     res = TEEC_InvokeCommand(&sess, TA_ATTESTATION_CMD_INITIALIZE, &op, &err_origin);
+    /*for (uint8_t i = 0; i < 2; i++) {
+        fprintf(stdout, "i = %lu\n", i);
+        res = TEEC_InvokeCommand(&sess, TA_ATTESTATION_CMD_INITIALIZE, &op, &err_origin);
+        op.params[0].tmpref.buffer = vaddr + i*PAGE_SIZE;
+    }*/
+    //res = TEEC_InvokeCommand(&sess, TA_ATTESTATION_CMD_INITIALIZE, &op, &err_origin);
     if (res != TEEC_SUCCESS) {
         fprintf(stderr, "TEEC_InvokeCommand failed with code "
                         "0x%x origin 0x%x\n", res, err_origin);
         goto exit;
     }
-    fprintf(stdout, "MAC initialization successful!");
+    fprintf(stdout, "MAC initialization successful!\n");
 
-    op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT, TEEC_NONE, TEEC_NONE, TEEC_NONE);
-    op.params[0].tmpref.buffer = K; //TODO: put memory pages of a program here.
-    op.params[0].tmpref.size = sizeof(K);
+    //op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT, TEEC_NONE, TEEC_NONE, TEEC_NONE);
+    //op.params[0].tmpref.buffer = &vaddr; //TODO: put memory pages of a program here.
+    //op.params[0].tmpref.size = size;
     res = TEEC_InvokeCommand(&sess, TA_ATTESTATION_CMD_ATTEST, &op, &err_origin);
     if (res != TEEC_SUCCESS) {
         fprintf(stderr, "TEEC_InvokeCommand failed with code "
                         "0x%x origin 0x%x\n", res, err_origin);
         goto exit;
     }
-    fprintf(stderr, "Attestation successful!");
+    else {
+        fprintf(stderr, "Attestation successful!\n");
+    }
+
 
 exit:
 	TEEC_CloseSession(&sess);

@@ -18,8 +18,10 @@
 
 /* The function ID(s) implemented in this TA */
 #define TA_ATTESTATION_CMD_REGISTER_SHARED_KEY	0
-#define TA_ATTESTATION_CMD_GET_HOTP		1
-#define TA_ATTESTATION_CMD_INITIALIZE      2
-#define TA_ATTESTATION_CMD_ATTEST          3
+#define TA_ATTESTATION_CMD_INITIALIZE      1
+#define TA_ATTESTATION_CMD_ATTEST          2
+
+#define PAGE_SIZE 1024 //In the paper this is 4096 but hmac_sha1 complains when this number is used so it is kept at 1024 right now.
+
 
 #endif

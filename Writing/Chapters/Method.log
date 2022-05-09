@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  21 APR 2022 18:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  4 MAY 2022 09:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -39,35 +39,157 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 
 Chapter 1.
+
+LaTeX Warning: Citation `FerragMohamedAmine2018Sf4a' on page 1 undefined on inp
+ut line 12.
+
+
+LaTeX Warning: Citation `ZakiRanaM20214NSA' on page 1 undefined on input line 1
+2.
+
+
+LaTeX Warning: Citation `JasimKhalidFadhil2022AoEA' on page 1 undefined on inpu
+t line 12.
+
+
+LaTeX Warning: Citation `FangKaiming2020Psaa' on page 1 undefined on input line
+ 12.
+
+
+LaTeX Warning: Citation `LuYu-Han2020Gcfo' on page 1 undefined on input line 12
+.
+
+
+LaTeX Warning: Citation `ClaverieTristan2021BRoB' on page 1 undefined on input 
+line 12.
+
+
+LaTeX Warning: Citation `CayreRomain2021CaWa' on page 1 undefined on input line
+ 12.
+
+
+LaTeX Warning: Citation `PatelNishitkumar2021IBVt' on page 1 undefined on input
+ line 12.
+
+
+LaTeX Warning: Citation `AntonioliDaniele2020KNDA' on page 1 undefined on input
+ line 12.
+
+
+LaTeX Warning: Citation `ZhuYe2021TSOS' on page 1 undefined on input line 12.
+
+
+LaTeX Warning: Citation `JavedAbdulRehman2020Adms' on page 1 undefined on input
+ line 15.
+
+
+LaTeX Warning: Citation `SongWenna2020ADAv' on page 1 undefined on input line 1
+5.
+
+
+LaTeX Warning: Citation `SetyawanRico2020Abro' on page 1 undefined on input lin
+e 15.
+
+
+LaTeX Warning: Citation `GRAVELLIERJoseph2021RHAo' on page 1 undefined on input
+ line 15.
+
+
+LaTeX Warning: Citation `KumarSudesh2020AoAS' on page 1 undefined on input line
+ 15.
+
 [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 74.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
- [2] [3] (./Method.aux) ) 
+LaTeX Warning: Citation `AmacherJulien2019Otpo' on page 2 undefined on input li
+ne 20.
+
+
+LaTeX Warning: Citation `HuaZhichao2021Tpcf' on page 2 undefined on input line 
+20.
+
+
+LaTeX Warning: Citation `mobian' on page 2 undefined on input line 25.
+
+
+LaTeX Warning: Citation `OPTEEgit' on page 2 undefined on input line 25.
+
+
+LaTeX Warning: Citation `u-boot' on page 2 undefined on input line 25.
+
+
+LaTeX Warning: Citation `ARMfirmware' on page 2 undefined on input line 25.
+
+
+LaTeX Warning: Citation `QEMU' on page 2 undefined on input line 25.
+
+[2]
+
+LaTeX Warning: Citation `GrossMathieu2021BTmi' on page 3 undefined on input lin
+e 30.
+
+
+LaTeX Warning: Citation `RyanKeegan2019HHEE' on page 3 undefined on input line 
+30.
+
+
+LaTeX Warning: Citation `BukasaSebanjilaKevin2018HTCB' on page 3 undefined on i
+nput line 30.
+
+[3]
+
+LaTeX Warning: Citation `HuaZhichao2021Tpcf' on page 4 undefined on input line 
+33.
+
+
+LaTeX Warning: Citation `SalmanAmmarS2021SMSG' on page 4 undefined on input lin
+e 33.
+
+
+LaTeX Warning: Citation `GuanLe2017TSEo' on page 4 undefined on input line 33.
+
+
+LaTeX Warning: Citation `ZhangDiming2020iIfs' on page 4 undefined on input line
+ 36.
+
+
+LaTeX Warning: Citation `KawadaTomoaki2020TRCI' on page 4 undefined on input li
+ne 36.
+
+
+LaTeX Warning: Citation `BenYehudaRaz2019Pare' on page 4 undefined on input lin
+e 36.
+
+
+LaTeX Warning: Citation `PintoSandro2019DATA' on page 4 undefined on input line
+ 41.
+
+
+LaTeX Warning: Citation `JiangHang2017IaAS' on page 4 undefined on input line 4
+1.
+
+[4] [5] (./Method.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 248 strings out of 492615
- 2787 string characters out of 6131391
- 62959 words of memory out of 5000000
- 4240 multiletter control sequences out of 15000+600000
+ 231 strings out of 492615
+ 2495 string characters out of 6131391
+ 66959 words of memory out of 5000000
+ 4226 multiletter control sequences out of 15000+600000
  6071 words of font info for 22 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,4n,19p,203b,225s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-
-Output written on Method.pdf (3 pages, 57958 bytes).
+ 23i,4n,18p,2815b,115s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on Method.pdf (5 pages, 54675 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 32 PDF objects out of 1000 (max. 8388607)
+ 21 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

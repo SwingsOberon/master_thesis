@@ -8,15 +8,14 @@
 #include <string.h>
 #include <tee_internal_api_extensions.h>
 #include <tee_internal_api.h>
+#include <measurement.h>
 
 /* The size of a SHA1 hash in bytes. */
-#define SHA1_HASH_SIZE 20
+#define SHA1_HASH_SIZE 24
 
 /* GP says that for HMAC SHA-1, max is 512 bits and min 80 bits. */
 #define MAX_KEY_SIZE 64 /* In bytes */
 #define MIN_KEY_SIZE 10 /* In bytes */
-
-#define PAGE_SIZE 2048
 
 /* Dynamic Binary Code 2 Modulo, which is 10^6 according to the spec. */
 #define DBC2_MODULO 1000000
@@ -28,9 +27,6 @@
  */
 static uint8_t K[MAX_KEY_SIZE];
 static uint32_t K_len;
-
-/* The counter as defined by RFC4226. */
-static uint8_t counter[] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
 
 /**
  *  HMAC a block of memory to produce the authentication tag
@@ -45,6 +41,14 @@ static TEE_Result hmac_sha1(const uint8_t *key, const size_t keylen,
 			    const uint8_t *in, const size_t inlen,
 			    uint8_t *out, uint32_t *outlen)
 {
+    DMSG("hmac_sha1 started");
+    DMSG("inlen = %lu", inlen);
+    DMSG("in = %lu", in);
+    /*DMSG("in content = ");
+    for (int i = 0; i < 2; i++)
+    {
+        DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", in[i*8], in[i*8+1], in[i*8+2], in[i*8+3], in[i*8+4], in[i*8+5], in[i*8+6], in[i*8+7]);
+    }*/
 	TEE_Attribute attr = { 0 };
 	TEE_ObjectHandle key_handle = TEE_HANDLE_NULL;
 	TEE_OperationHandle op_handle = TEE_HANDLE_NULL;
@@ -110,22 +114,38 @@ exit:
 	/* It is OK to call this when key_handle is TEE_HANDLE_NULL */
 	TEE_FreeTransientObject(key_handle);
 
+    DMSG("hmac_sha1 ending");
 	return res;
 }
 
-/**
- * Truncate function working as described in RFC4226.
- */
-static void truncate(uint8_t *hmac_result, uint32_t *bin_code)
-{
-	int offset = hmac_result[19] & 0xf;
+static TEE_Result measure_pta_call(uint32_t param_types, TEE_Param params[4]){
+    // ------------ Call PTA ---------**************************************************
+    DMSG("measure_pta_call started");
+    TEE_Result res = TEE_SUCCESS;
+    TEE_TASessionHandle pta_session = TEE_HANDLE_NULL;
+    TEE_UUID uuid = MEASUREMENT_UUID;
+    uint32_t ret_origin = 0;
 
-	*bin_code = (hmac_result[offset] & 0x7f) << 24 |
-		(hmac_result[offset+1] & 0xff) << 16 |
-		(hmac_result[offset+2] & 0xff) <<  8 |
-		(hmac_result[offset+3] & 0xff);
 
-	*bin_code %= DBC2_MODULO;
+    // ------------ Open Session to PTA ---------
+    DMSG("opening session for PTA");
+    res = TEE_OpenTASession(&uuid, 0, 0, NULL, &pta_session,
+                            &ret_origin);
+    if (res != TEE_SUCCESS)
+        return res;
+
+    // ------------ Invoke command at PTA (get_module key) ---------
+    DMSG("invoking command at PTA");
+    //return res;
+    res = TEE_InvokeTACommand(pta_session, 0, MEASUREMENT_CMD_MEASURE,
+                              &param_types, &params, &ret_origin);
+    if (res != TEE_SUCCESS)
+        return res;
+    DMSG("params[1].value.a = %lu", params[1].value.a);
+    // ------------ Close Session to PTA ---------
+    DMSG("closing session for PTA");
+    TEE_CloseTASession(pta_session);
+    return res;
 }
 
 static TEE_Result register_shared_key(uint32_t param_types, TEE_Param params[4])
@@ -154,39 +174,6 @@ static TEE_Result register_shared_key(uint32_t param_types, TEE_Param params[4])
 	return res;
 }
 
-static TEE_Result get_hotp(uint32_t param_types, TEE_Param params[4])
-{
-	TEE_Result res = TEE_SUCCESS;
-	uint32_t hotp_val;
-	uint8_t mac[SHA1_HASH_SIZE];
-	uint32_t mac_len = sizeof(mac);
-	int i;
-
-	uint32_t exp_param_types = TEE_PARAM_TYPES(TEE_PARAM_TYPE_VALUE_OUTPUT,
-						   TEE_PARAM_TYPE_NONE,
-						   TEE_PARAM_TYPE_NONE,
-						   TEE_PARAM_TYPE_NONE);
-
-	if (param_types != exp_param_types) {
-		EMSG("Expected: 0x%x, got: 0x%x", exp_param_types, param_types);
-		return TEE_ERROR_BAD_PARAMETERS;
-	}
-
-	res = hmac_sha1(K, K_len, counter, sizeof(counter), mac, &mac_len);
-
-	/* Increment the counter. */
-	for (i = sizeof(counter) - 1; i >= 0; i--) {
-		if (++counter[i])
-			break;
-	}
-
-	truncate(mac, &hotp_val);
-	DMSG("HOTP is: %d", hotp_val);
-	params[0].value.a = hotp_val;
-
-	return res;
-}
-
 /**
  * The attest function should execute the hmac operation on the memory page(s) and compare the result with the
  * securely stored authentication tag that has been computed during the initialization phase.
@@ -194,7 +181,7 @@ static TEE_Result get_hotp(uint32_t param_types, TEE_Param params[4])
  */
 static TEE_Result attest(uint32_t param_types, TEE_Param params[4])
 {
-    DMSG("attest started");
+    DMSG("attest started\n");
     TEE_Result res = TEE_SUCCESS;
 
     uint8_t mac[SHA1_HASH_SIZE];
@@ -213,37 +200,61 @@ static TEE_Result attest(uint32_t param_types, TEE_Param params[4])
                                                TEE_PARAM_TYPE_NONE,
                                                TEE_PARAM_TYPE_NONE);
 
+    DMSG("checking param_types\n");
     if (param_types != exp_param_types) {
         EMSG("Expected: 0x%x, got: 0x%x", exp_param_types, param_types);
         return TEE_ERROR_BAD_PARAMETERS;
     }
 
+    DMSG("checking memref.size\n");
     if (params[0].memref.size > PAGE_SIZE)
         return TEE_ERROR_BAD_PARAMETERS;
-    return TEE_SUCCESS;
 
-    res = hmac_sha1(K, K_len, params[0].memref.buffer, params[0].memref.size, mac, &mac_len);
+    /*DMSG("translating pa to va\n");
+    paddr_t pa = *(paddr_t*)params[0].memref.buffer;
+    size_t len = PAGE_SIZE;
+    void *va = phys_to_virt(pa, MEM_AREA_RAM_NSEC, len);
+    if (va == NULL) {
+        DMSG("phys_to_virt returned NULL");
+        return res;
+    }
+    DMSG("va = %lu", va);*/
+
+    //measure_pta_call(&param_types, &params);
+
+
+    DMSG("hmac_sha1 called\n");
+    /*for(int i = 0; i < params[0].memref.size; i++){
+        uint8_t *address = params[0].memref.buffer + i*PAGE_SIZE;
+        DMSG("address = %lu", address);
+        res = hmac_sha1(K, K_len, address, PAGE_SIZE, mac, &mac_len);
+    }*/
 
     if (res != TEE_SUCCESS) {
         EMSG("hmac_sha1 didn't return TEE_SUCCES but instead the following ");
         return res;
     }
-    DMSG("mac = %s", mac);
+    DMSG("mac_len = %lu", mac_len);
+    DMSG("new mac = ");
+    for (int i = 0; i < mac_len/8; i++)
+    {
+        DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", mac[i*8], mac[i*8+1], mac[i*8+2], mac[i*8+3], mac[i*8+4], mac[i*8+5], mac[i*8+6], mac[i*8+7]);
+    }
 
-
-
-    obj_id_sz = params[0].memref.size;
+    obj_id_sz = sizeof(params[0].memref.buffer);
     obj_id = TEE_Malloc(obj_id_sz, 0);
     if (!obj_id)
         return TEE_ERROR_OUT_OF_MEMORY;
 
     TEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);
-    DMSG("obj_id = %s", obj_id);
+    DMSG("obj_id = %s\n", obj_id);
+    DMSG("obj_id_sz = %lu\n", obj_id_sz);
 
     data_sz = mac_len;
     data = TEE_Malloc(data_sz, 0);
     if (!data)
         return TEE_ERROR_OUT_OF_MEMORY;
+
     /*
 	 * Check the object exist and can be dumped into output buffer
 	 * then dump it.
@@ -253,18 +264,21 @@ static TEE_Result attest(uint32_t param_types, TEE_Param params[4])
                                    TEE_DATA_FLAG_ACCESS_READ |
                                    TEE_DATA_FLAG_SHARE_READ,
                                    &object);
+
     if (res != TEE_SUCCESS) {
         EMSG("Failed to open persistent object, res=0x%08x", res);
         TEE_Free(obj_id);
         TEE_Free(data);
         return res;
     }
+    DMSG("TEE_OpenPersistentObject succesfull");
 
     res = TEE_GetObjectInfo1(object, &object_info);
     if (res != TEE_SUCCESS) {
         EMSG("Failed to create persistent object, res=0x%08x", res);
         goto exit;
     }
+    DMSG("TEE_GetObjectInfo1 succesfull");
 
     if (object_info.dataSize > data_sz) {
         /*
@@ -278,18 +292,32 @@ static TEE_Result attest(uint32_t param_types, TEE_Param params[4])
 
     res = TEE_ReadObjectData(object, data, object_info.dataSize,
                              &read_bytes);
-    if (res == TEE_SUCCESS) {
-        if(data != mac) { //TODO: the mac may have to be translated to (and stored as) a char* to make this check work correctly
-            EMSG("MAC differs from the initial value!");
-            res = TEE_ERROR_MAC_INVALID;
-        }
-        res = TEE_SUCCESS;
-    }
-    DMSG("data = %s, mac = %s", data, mac);
     if (res != TEE_SUCCESS || read_bytes != object_info.dataSize) {
         EMSG("TEE_ReadObjectData failed 0x%08x, read %" PRIu32 " over %u",
-             res, read_bytes, object_info.dataSize);
+                res, read_bytes, object_info.dataSize);
         goto exit;
+    }
+    DMSG("TEE_ReadObjectData succesfull");
+
+    DMSG("stored mac = ");
+    for (int i = 0; i < data_sz/8; i++)
+    {
+        DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", data[i*8], data[i*8+1], data[i*8+2], data[i*8+3], data[i*8+4], data[i*8+5], data[i*8+6], data[i*8+7]);
+    }
+    if (res == TEE_SUCCESS) {
+        bool equal = true;
+        for (int i = 0; i < data_sz; i++)
+        {
+            if (data[i] != mac[i]) equal = false;
+        }
+        if(!equal) { //TODO: the mac may have to be translated to (and stored as) a char* to make this check work correctly
+            DMSG("MAC differs from the initial value!\n");
+            res = TEE_ERROR_MAC_INVALID;
+        }
+        else {
+            DMSG("MAC is the same as initial value!\n");
+            res = TEE_SUCCESS;
+        }
     }
 
     /* Return the number of byte effectively filled */
@@ -312,9 +340,19 @@ static TEE_Result initialize(uint32_t param_types, TEE_Param params[4])
 {
     DMSG("initialize started");
     TEE_Result res = TEE_SUCCESS;
-
     uint8_t mac[SHA1_HASH_SIZE];
     uint32_t mac_len = sizeof(mac);
+
+    uint32_t pta_param_types = TEE_PARAM_TYPES( TEE_PARAM_TYPE_VALUE_INPUT,
+                                                TEE_PARAM_TYPE_MEMREF_INPUT,
+                                                TEE_PARAM_TYPE_NONE, TEE_PARAM_TYPE_NONE);
+
+    TEE_Param pta_params[4];
+    pta_params[0].value.a = params[0].value.a;
+    pta_params[0].value.b = params[0].value.b;
+    uint32_t vaddr = 1;
+    pta_params[1].memref.buffer = vaddr;
+    pta_params[1].memref.size = sizeof(vaddr);
 
     TEE_ObjectHandle object;
     char *obj_id;
@@ -323,39 +361,66 @@ static TEE_Result initialize(uint32_t param_types, TEE_Param params[4])
     size_t data_sz;
     uint32_t obj_data_flag;
 
-    uint32_t exp_param_types = TEE_PARAM_TYPES(TEE_PARAM_TYPE_MEMREF_INPUT,
+    uint32_t exp_param_types = TEE_PARAM_TYPES(TEE_PARAM_TYPE_VALUE_INPUT,
                                                TEE_PARAM_TYPE_NONE,
                                                TEE_PARAM_TYPE_NONE,
                                                TEE_PARAM_TYPE_NONE);
-    DMSG("checking param_types");
+    DMSG("checking param_types\n");
     if (param_types != exp_param_types) {
         EMSG("Expected: 0x%x, got: 0x%x", exp_param_types, param_types);
         return TEE_ERROR_BAD_PARAMETERS;
     }
-    DMSG("checking memref.size");
-    if (params[0].memref.size > PAGE_SIZE)
-        return TEE_ERROR_BAD_PARAMETERS;
-    DMSG("hmac_sha1 called");
-    res = hmac_sha1(K, K_len, params[0].memref.buffer, params[0].memref.size, mac, &mac_len);
+    //DMSG("checking memref.size\n");
+    //if (params[0].memref.size > PAGE_SIZE)
+        //return TEE_ERROR_BAD_PARAMETERS;
+    DMSG("hmac_sha1 called\n");
+    DMSG("pta_params[0].value.a = %lu\n", pta_params[0].value.a);
+    DMSG("pta_params[0].value.b = %lu\n", pta_params[0].value.b);
+    DMSG("pta_params[1].memref.buffer = %lu\n", pta_params[1].memref.buffer);
+
+    uint32_t paddr = params[0].value.a;
+    size_t len = params[0].value.b;
+
+    measure_pta_call(pta_param_types, pta_params);
+
+    DMSG("pta_params[1].memref.buffer = %lu\n", pta_params[1].memref.buffer);
+    res = hmac_sha1(K, K_len, pta_params[1].memref.buffer, PAGE_SIZE, mac, &mac_len);
 
     if (res != TEE_SUCCESS) {
         EMSG("hmac_sha1 didn't return TEE_SUCCES but instead the following ");
         return res;
     }
 
-    obj_id_sz = params[0].memref.size;
+    obj_id_sz = sizeof(params[0].value.a);
+    //DMSG("memref.buffer = %lu", params[0].value.a);
+    //DMSG("memref.size = %lu", params[1].value.a);
     obj_id = TEE_Malloc(obj_id_sz, 0);
     if (!obj_id)
         return TEE_ERROR_OUT_OF_MEMORY;
-    TEE_MemMove(obj_id, params[0].memref.buffer, obj_id_sz);
-    DMSG("obj_id = %s, memref.buffer = %s", obj_id, params[0].memref.buffer);
+    TEE_MemMove(obj_id, params[0].value.a, obj_id_sz);
+    DMSG("obj_id = %s\n", obj_id);
+    DMSG("obj_id_sz = %lu\n", obj_id_sz);
 
     data_sz = mac_len;
     data = TEE_Malloc(data_sz, 0);
     if (!data)
         return TEE_ERROR_OUT_OF_MEMORY;
     TEE_MemMove(data, mac, data_sz);
-    DMSG("data = %s, mac = %s", data, mac);
+    DMSG("storing mac = ");
+    for (int i = 0; i < data_sz/8; i++)
+    {
+        DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", data[i*8], data[i*8+1], data[i*8+2], data[i*8+3], data[i*8+4], data[i*8+5], data[i*8+6], data[i*8+7]);
+    }
+    DMSG("data_sz = %lu\n", data_sz);
+    DMSG("sizeof(data) = %lu\n", sizeof(data));
+    DMSG("mac = ");
+    for (int i = 0; i < sizeof(mac)/8; i++)
+    {
+        DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", mac[i*8], mac[i*8+1], mac[i*8+2], mac[i*8+3], mac[i*8+4], mac[i*8+5], mac[i*8+6], mac[i*8+7]);
+    }
+    DMSG("mac_len = %lu\n", mac_len);
+    DMSG("sizeof(mac) = %lu\n", sizeof(mac));
+    //DMSG("data = %s, mac = %s \n", data, mac);
     /* TODO: it would be better if it cannot be written into or destroyed by overwriting with an object with same ID.
 	 * Create object in secure storage and fill with data
 	 */
@@ -376,6 +441,7 @@ static TEE_Result initialize(uint32_t param_types, TEE_Param params[4])
         TEE_Free(data);
         return res;
     }
+    DMSG("TEE_CreatePersistentObject succesfull");
 
     res = TEE_WriteObjectData(object, data, data_sz);
     if (res != TEE_SUCCESS) {
@@ -383,6 +449,7 @@ static TEE_Result initialize(uint32_t param_types, TEE_Param params[4])
         TEE_CloseAndDeletePersistentObject1(object);
     } else {
         TEE_CloseObject(object);
+        DMSG("TEE_WriteObjectData succesfull");
     }
     TEE_Free(obj_id);
     TEE_Free(data);
@@ -426,9 +493,6 @@ TEE_Result TA_InvokeCommandEntryPoint(void __unused *sess_ctx,
 	switch (cmd_id) {
 	case TA_ATTESTATION_CMD_REGISTER_SHARED_KEY:
 		return register_shared_key(param_types, params);
-
-	/*case TA_ATTEST_CMD_GET_HOTP:
-		return get_hotp(param_types, params);*/
 
     case TA_ATTESTATION_CMD_INITIALIZE:
         return initialize(param_types, params);
