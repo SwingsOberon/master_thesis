@@ -25,7 +25,7 @@ typedef struct {
     unsigned int present : 1;
 } PagemapEntry;
 
-int virt_to_phys_user(uintptr_t *paddr, pid_t pid, uintptr_t vaddr);
+int virt_to_phys_user(uintptr_t *paddr, pid_t pid, uintptr_t vaddr, size_t size);
 
 pid_t get_proc_pid();
 

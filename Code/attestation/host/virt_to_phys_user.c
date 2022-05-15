@@ -21,7 +21,7 @@ int pagemap_get_entry(PagemapEntry *entry, int pagemap_fd, uintptr_t vaddr)
     vpn = vaddr / sysconf(_SC_PAGE_SIZE);
     nread = 0;
     while (nread < sizeof(data)) {
-        ret = pread(pagemap_fd, ((uint8_t*)&data) + nread, sizeof(data) - nread,
+        ret = pread(pagemap_fd, ((uint64_t*)&data) + nread, sizeof(data) - nread,
                 vpn * sizeof(data) + nread);
         nread += ret;
         if (ret <= 0) {
@@ -43,7 +43,7 @@ int pagemap_get_entry(PagemapEntry *entry, int pagemap_fd, uintptr_t vaddr)
  * @param[in] vaddr virtual address to get entry for
  * @return 0 for success, 1 for failure
  */
-int virt_to_phys_user(uintptr_t *paddr, pid_t pid, uintptr_t vaddr)
+int virt_to_phys_user(uintptr_t *paddr, pid_t pid, uintptr_t vaddr, size_t size)
 {
     fprintf(stderr, "virt_to_phys_user\n");
     char pagemap_file[BUFSIZ];
@@ -54,12 +54,18 @@ int virt_to_phys_user(uintptr_t *paddr, pid_t pid, uintptr_t vaddr)
     if (pagemap_fd < 0) {
         return 1;
     }
-    PagemapEntry entry;
-    if (pagemap_get_entry(&entry, pagemap_fd, vaddr)) {
-        return 1;
+
+    for (int i = 0; i < size; i++){
+        PagemapEntry entry;
+        if (pagemap_get_entry(&entry, pagemap_fd, vaddr+i*PAGE_SIZE)) {
+            return 1;
+        }
+        fprintf(stderr, "vaddr = %lu\n", vaddr+i*PAGE_SIZE);
+        paddr[i] = (entry.pfn * sysconf(_SC_PAGE_SIZE)) + (vaddr % sysconf(_SC_PAGE_SIZE));
+        fprintf(stderr, "paddr = %lu\n", paddr[i]); //TODO figure out why certain vaddrs are translated to 0. temporary fix is to neglect 0 addresses during measurement.
     }
     close(pagemap_fd);
-    *paddr = (entry.pfn * sysconf(_SC_PAGE_SIZE)) + (vaddr % sysconf(_SC_PAGE_SIZE));
+
     return 0;
 }
 
@@ -118,7 +124,7 @@ void get_proc_vaddr(uintptr_t *vaddr, size_t *size) {
             pageend[12] = '\0';
             *vaddr = (uintptr_t) strtol(pagestart, NULL, 16);
             fprintf(stdout, "vaddr = %ld\n", *vaddr);
-            *size = (strtol(pageend, NULL, 16) - strtol(pagestart, NULL, 16))/PAGE_SIZE;//Size needs to be in amount of pages and a page is 2KB
+            *size = (strtol(pageend, NULL, 16) - strtol(pagestart, NULL, 16))/PAGE_SIZE;
             fprintf(stdout, "size = %ld\n", *size);
         }
     }

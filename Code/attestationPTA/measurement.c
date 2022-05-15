@@ -77,7 +77,7 @@ static TEE_Result tadb_open(struct tee_tadb_dir **db_ret)
 	return res;
 }
 
-static TEE_Result hash_nw_memory(void *va, size_t size, uint8_t *hash)
+static TEE_Result hash_nw_memory(void *va, size_t size, uint64_t *hash)
 {
 	TEE_Result res = TEE_SUCCESS;
 	void *ctx = NULL;
@@ -95,7 +95,7 @@ static TEE_Result hash_nw_memory(void *va, size_t size, uint8_t *hash)
 		goto out;
 
 	/* Hash regions in order */
-	res = crypto_hash_update(ctx, (uint8_t *)va, size);
+	res = crypto_hash_update(ctx, (uint64_t *)va, size);
 		if (res)
 			goto out;
 
@@ -103,7 +103,7 @@ static TEE_Result hash_nw_memory(void *va, size_t size, uint8_t *hash)
     
     DMSG("hash = %hhn\n", hash);    
     DMSG("hash content = \n");    
-    DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", hash[0], hash[1], hash[2], hash[3], hash[4], hash[5], hash[6], hash[7]);
+    DMSG("%02X%02X%02X%02X", hash[0], hash[1], hash[2], hash[3]);
     DMSG("hash size = %lu", sizeof hash);
 
 out:
@@ -111,24 +111,24 @@ out:
 	return res;
 }
 
-static TEE_Result store_hash(uint8_t *hash, size_t len) 
+static TEE_Result store_hash(uint64_t *hash, size_t len, uint64_t index) 
 {
     TEE_Result res = TEE_SUCCESS;
-    size_t pos = 0;
-    uint8_t buf[len];
+    size_t pos = index*TEE_SHA256_HASH_SIZE;
+    uint64_t buf[len];
     
     DMSG("store_hash started\n");
     DMSG("len = %lu", len);
 
-    //Opening or creating the tadb_dir and a file
-    DMSG("tadb_open call\n");
-    res = tadb_open(&dir);
-    if (res != TEE_SUCCESS) {
-        EMSG("tadb_open didn't return TEE_SUCCES but instead the following ");
-        return res;
-    }
+//    //Opening or creating the tadb_dir and a file
+//    DMSG("tadb_open call\n");
+//    res = tadb_open(&dir);
+//    if (res != TEE_SUCCESS) {
+//        EMSG("tadb_open didn't return TEE_SUCCES but instead the following ");
+//        return res;
+//    }
     DMSG("hash content = \n");    
-    DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", hash[0], hash[1], hash[2], hash[3], hash[4], hash[5], hash[6], hash[7]);
+    DMSG("%02X%02X%02X%02X", hash[0], hash[1], hash[2], hash[3]);
 
     //Writing to the file in the tadb_dir
     DMSG("dir->ops->write call\n");
@@ -146,26 +146,26 @@ static TEE_Result store_hash(uint8_t *hash, size_t len)
         return res;
     }
     DMSG("buf content = \n");    
-    DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5], buf[6], buf[7]);
+    DMSG("%02X%02X%02X%02X", buf[0], buf[1], buf[2], buf[3]);
 
     return res;
 }
 
-static TEE_Result read_init(uint8_t *init, size_t len) 
+static TEE_Result read_init(uint64_t *init, size_t len, int64_t index) 
 {
     TEE_Result res = TEE_SUCCESS;
-    size_t pos = 0;
+    size_t pos = index*TEE_SHA256_HASH_SIZE;
     
     DMSG("read_init started\n");
     DMSG("len = %lu", len);
 
-    //Opening or creating the tadb_dir and a file
-    DMSG("tadb_open call\n");
-    res = tadb_open(&dir);
-    if (res != TEE_SUCCESS) {
-        EMSG("tadb_open didn't return TEE_SUCCES but instead the following ");
-        return res;
-    }
+//    //Opening or creating the tadb_dir and a file
+//    DMSG("tadb_open call\n");
+//    res = tadb_open(&dir);
+//    if (res != TEE_SUCCESS) {
+//        EMSG("tadb_open didn't return TEE_SUCCES but instead the following ");
+//        return res;
+//    }
 
     //Reading from the file in the tadb_dir
     DMSG("dir->ops->read call\n");
@@ -175,7 +175,6 @@ static TEE_Result read_init(uint8_t *init, size_t len)
         return res;
     }
     
-
     return res;
 }
 
@@ -183,82 +182,118 @@ static TEE_Result read_init(uint8_t *init, size_t len)
 static TEE_Result init(uint32_t param_types, TEE_Param params[4])
 {
     TEE_Result res = TEE_SUCCESS;
-    paddr_t pa = (paddr_t)params[1].value.a;
-    size_t len = PAGE_SIZE;
-    uint8_t mac[TEE_SHA256_HASH_SIZE];
-    uint32_t mac_len = sizeof(mac);
+    size_t size = params[0].memref.size;
+    paddr_t* paddr = params[0].memref.buffer;
+    size_t len = params[1].value.a;
+    uint64_t mac[TEE_SHA256_HASH_SIZE];
+    uint64_t mac_len = sizeof(mac);
+    DMSG("size = %lu", size);
+    DMSG("memref.size = %lu", params[1].memref.size);
+    DMSG("len = %lu", len);
 
-    //Creating the memory mapping of the physical address
-    core_mmu_add_mapping(MEM_AREA_RAM_NSEC, pa, len);
-    DMSG("core_mmu_mapping executed\n");
-    //Translating the physical address into the newly created secure world virtual address
-    uint64_t* va = phys_to_virt(pa, MEM_AREA_RAM_NSEC, len);
-    DMSG("phys_to_virt executed\n");
-    if (va == NULL) {
-        DMSG("phys_to_virt returned NULL");
-        return res;
-    }
-    DMSG("va = %lu\n", va);
-    
-	//Hashing the virtual address range
-    res = hash_nw_memory(va, len, mac);
+    DMSG("tadb_open call\n");
+    res = tadb_open(&dir);
     if (res != TEE_SUCCESS) {
-        EMSG("hash_nw_memory didn't return TEE_SUCCES but instead the following ");
+        EMSG("tadb_open didn't return TEE_SUCCES but instead the following ");
         return res;
     }
 
-    DMSG("mac content = \n");    
-    DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5], mac[6], mac[7]);
-    DMSG("mac size = %lu", sizeof mac);
+    for(uint64_t i = 0; i < len; i++){
+        DMSG("init %lu\n", i);  
+        paddr_t pa = paddr[i];
+        if (pa == 0) continue;
+        //Creating the memory mapping of the physical address
+        core_mmu_add_mapping(MEM_AREA_RAM_NSEC, pa, PAGE_SIZE);
+        DMSG("core_mmu_mapping executed\n");
+        //Translating the physical address into the newly created secure world virtual address
+        uint64_t* va = phys_to_virt(pa, MEM_AREA_RAM_NSEC, PAGE_SIZE);
+        DMSG("phys_to_virt executed\n");
+        if (va == NULL) {
+            DMSG("phys_to_virt returned NULL");
+            return res;
+        }
+        DMSG("va = %lu\n", va);
+    
+        //Hashing the virtual address range
+        res = hash_nw_memory(va, PAGE_SIZE, mac);
+        if (res != TEE_SUCCESS) {
+            EMSG("hash_nw_memory didn't return TEE_SUCCES but instead the following ");
+            return res;
+        }
 
-    res = store_hash(mac, mac_len);
+        DMSG("mac content = \n");    
+        DMSG("%02X%02X%02X%02X", mac[0], mac[1], mac[2], mac[3]);
+        DMSG("mac size = %lu", sizeof mac);
+
+        res = store_hash(mac, mac_len, i);
+        core_mmu_remove_mapping(MEM_AREA_RAM_NSEC, &pa, PAGE_SIZE);
+    }
 
     return res;
 }
 
 static TEE_Result attest(uint32_t param_types, TEE_Param params[4])
 {
-    TEE_Result res = TEE_SUCCESS;
-    paddr_t pa = (paddr_t)params[1].value.a;
-    size_t len = PAGE_SIZE;
-    uint8_t mac[TEE_SHA256_HASH_SIZE];
-    uint32_t mac_len = sizeof(mac);
-    uint8_t init[TEE_SHA256_HASH_SIZE];
-    uint32_t init_len = sizeof(init);
+    TEE_Result res = TEE_SUCCESS;  
+    size_t size = params[0].memref.size;
+    paddr_t* paddr = params[0].memref.buffer;
+    size_t len = params[1].value.a;
+    uint64_t mac[TEE_SHA256_HASH_SIZE];
+    uint64_t mac_len = sizeof(mac);
+    uint64_t init[TEE_SHA256_HASH_SIZE];
+    uint64_t init_len = sizeof(init);
+    uint64_t faults = 0;
 
-    //Creating the memory mapping of the physical address
-    core_mmu_add_mapping(MEM_AREA_RAM_NSEC, pa, len);
-    DMSG("core_mmu_mapping executed\n");
-    //Translating the physical address into the newly created secure world virtual address
-    uint64_t* va = phys_to_virt(pa, MEM_AREA_RAM_NSEC, len);
-    DMSG("phys_to_virt executed\n");
-    if (va == NULL) {
-        DMSG("phys_to_virt returned NULL");
-        return res;
-    }
-    DMSG("va = %lu\n", va);
-    
-	//Hashing the virtual address range
-    res = hash_nw_memory(va, len, mac);
+    DMSG("tadb_open call\n");
+    res = tadb_open(&dir);
     if (res != TEE_SUCCESS) {
-        EMSG("hash_nw_memory didn't return TEE_SUCCES but instead the following ");
+        EMSG("tadb_open didn't return TEE_SUCCES but instead the following ");
         return res;
     }
 
-    DMSG("mac content = \n");    
-    DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5], mac[6], mac[7]);
-    DMSG("mac size = %lu", sizeof mac);
+    for (uint64_t i = 0; i < len; i++){
+        DMSG("attest %lu\n", i);  
+        paddr_t pa = paddr[i];
+        if (pa == 0) continue;
+        //Creating the memory mapping of the physical address
+        core_mmu_add_mapping(MEM_AREA_RAM_NSEC, pa, PAGE_SIZE);
+        DMSG("core_mmu_mapping executed\n");
+        //Translating the physical address into the newly created secure world virtual address
+        uint64_t* va = phys_to_virt(pa, MEM_AREA_RAM_NSEC, PAGE_SIZE);
+        DMSG("phys_to_virt executed\n");
+        if (va == NULL) {
+            DMSG("phys_to_virt returned NULL");
+            return res;
+        }
+        DMSG("va = %lu\n", va);
+    
+        //Hashing the virtual address range
+        res = hash_nw_memory(va, PAGE_SIZE, mac);
+        if (res != TEE_SUCCESS) {
+            EMSG("hash_nw_memory didn't return TEE_SUCCES but instead the following ");
+            return res;
+        }
 
-    res = read_init(init, init_len);
-    DMSG("init content = \n");    
-    DMSG("%02X%02X%02X%02X%02X%02X%02X%02X", init[0], init[1], init[2], init[3], init[4], init[5], init[6], init[7]);
+        DMSG("mac content = \n");    
+        DMSG("%02X%02X%02X%02X", mac[0], mac[1], mac[2], mac[3]);
+        DMSG("mac size = %lu", sizeof mac);
 
-    bool equal = true;
-    for (int i = 0; i < init_len; i++) {
-        if (init[i] != mac[i]) equal = false;
+        res = read_init(init, init_len, i);
+        DMSG("init content = \n");    
+        DMSG("%02X%02X%02X%02X", init[0], init[1], init[2], init[3]);
+
+        bool equal = true;
+        for (uint64_t j = 0; j < 4; j++) { //4 because the Hash is 256 long but we are comparing 64 bits at a time because of the uint64_t datatype.
+            DMSG("j = %lu, init[j] = %lu, mac[j] = %lu", j, init[j], mac[j]);
+            if (init[j] != mac[j]) faults += 1;
+        }
+//        if (!equal) {
+//            res = TEE_ERROR_MAC_INVALID; //0xFFFF3071
+//            return res;
+//        }
+        core_mmu_remove_mapping(MEM_AREA_RAM_NSEC, &pa, PAGE_SIZE);
     }
-    if (!equal) res = TEE_ERROR_MAC_INVALID; //0xFFFF3071
-
+    DMSG("Number of attestation faults (in bytes) = %lu", faults);
     return res;
 }
 
