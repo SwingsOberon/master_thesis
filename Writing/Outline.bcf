@@ -2065,6 +2065,18 @@
     <bcf:citekey order="69">BenYehudaRaz2019Pare</bcf:citekey>
     <bcf:citekey order="70">PintoSandro2019DATA</bcf:citekey>
     <bcf:citekey order="71">JiangHang2017IaAS</bcf:citekey>
+    <bcf:citekey order="72">cirosantilli</bcf:citekey>
+    <bcf:citekey order="73">ARMfirmware</bcf:citekey>
+    <bcf:citekey order="74">EskandarianSaba2018FPUS</bcf:citekey>
+    <bcf:citekey order="75">LiWenhao2014Btpo</bcf:citekey>
+    <bcf:citekey order="76">MuhlbergJanTobias2016LaFT</bcf:citekey>
+    <bcf:citekey order="77">OPTEE3.17</bcf:citekey>
+    <bcf:citekey order="78">LingZhen2021Sbtb</bcf:citekey>
+    <bcf:citekey order="79">ZhaoShijun2019SASA</bcf:citekey>
+    <bcf:citekey order="80">HuberManuel2016Afff</bcf:citekey>
+    <bcf:citekey order="81">TPMGenie</bcf:citekey>
+    <bcf:citekey order="82">GuanLe2017TSEo</bcf:citekey>
+    <bcf:citekey order="83">QiangChenyi2018CCAD</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">

@@ -1,0 +1,39 @@
+\babel@toc {dutch}{}
+\babel@toc {dutch}{}
+\babel@toc {dutch}{}
+\babel@toc {dutch}{}
+\babel@toc {dutch}{}
+\babel@toc {dutch}{}
+\babel@toc {dutch}{}
+\contentsline {chapter}{Voorwoord}{i}{chapter*.1}% 
+\contentsline {chapter}{Samenvatting}{v}{chapter*.3}% 
+\contentsline {chapter}{L"yst van figuren}{vi}{section*.4}% 
+\contentsline {chapter}{List of Abbreviations}{vii}{chapter*.5}% 
+\contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}% 
+\contentsline {chapter}{\chapternumberline {2}Background}{3}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Remote Attestation}{3}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Trusted Execution Environment}{4}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}ARM TrustZone}{6}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}PinePhone}{7}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}OP-TEE}{7}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Secure boot, trusted boot and remote attestation for ARM TrustZone-based IoT Nodes \cite {LingZhen2021Sbtb}}{8}{section.2.6}% 
+\contentsline {chapter}{\chapternumberline {3}Method}{13}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Detailed Problem}{13}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}System Model}{14}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Attacker Model}{15}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}Solution}{16}{section.3.4}% 
+\contentsline {chapter}{\chapternumberline {4}Implementation}{19}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}NW application}{19}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Attestation PTA}{20}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Improvements and extensions}{21}{section.4.3}% 
+\contentsline {chapter}{\chapternumberline {5}Experiments}{23}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Performance}{23}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Performance Evaluation}{24}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Security Properties}{27}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Security Evaluation}{27}{section.5.4}% 
+\contentsline {chapter}{\chapternumberline {6}Discussion}{29}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Related work}{29}{section.6.1}% 
+\contentsline {section}{\numberline {6.2}Comparison of Approaches}{33}{section.6.2}% 
+\contentsline {section}{\numberline {6.3}Future Work}{35}{section.6.3}% 
+\contentsline {chapter}{\chapternumberline {7}Conclusion}{37}{chapter.7}% 
+\contentsline {chapter}{Bibliografie}{41}{appendix*.125}% 

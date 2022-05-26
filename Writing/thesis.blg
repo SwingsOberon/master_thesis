@@ -1,0 +1,83 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: Chapters/Introduction.aux
+A level-1 auxiliary file: Chapters/Background.aux
+A level-1 auxiliary file: Chapters/Method.aux
+A level-1 auxiliary file: Chapters/Implementation.aux
+A level-1 auxiliary file: Chapters/Experiments.aux
+A level-1 auxiliary file: Chapters/Discussion.aux
+A level-1 auxiliary file: Chapters/Conclusion.aux
+The style file: ieeetr.bst
+Database file #1: references.bib
+Warning--entry type for "PinePhone" isn't style-file defined
+--line 150 of file references.bib
+Warning--entry type for "OP-TEE" isn't style-file defined
+--line 158 of file references.bib
+Warning--entry type for "TrustZone" isn't style-file defined
+--line 465 of file references.bib
+Warning--entry type for "KNOX" isn't style-file defined
+--line 473 of file references.bib
+Warning--entry type for "KeyStore" isn't style-file defined
+--line 481 of file references.bib
+Warning--entry type for "PineSoft" isn't style-file defined
+--line 489 of file references.bib
+Warning--entry type for "QEMU" isn't style-file defined
+--line 761 of file references.bib
+Warning--entry type for "mobian" isn't style-file defined
+--line 769 of file references.bib
+Warning--entry type for "u-boot" isn't style-file defined
+--line 777 of file references.bib
+Warning--entry type for "ARMfirmware" isn't style-file defined
+--line 785 of file references.bib
+Warning--entry type for "OPTEEgit" isn't style-file defined
+--line 793 of file references.bib
+Warning--entry type for "OPTEE3.17" isn't style-file defined
+--line 950 of file references.bib
+Warning--entry type for "cirosantilli" isn't style-file defined
+--line 958 of file references.bib
+Warning--entry type for "TPMGenie" isn't style-file defined
+--line 1014 of file references.bib
+Warning--empty journal in EskandarianSaba2018FPUS
+You've used 73 entries,
+            1876 wiz_defined-function locations,
+            970 strings with 19734 characters,
+and the built_in function-call counts, 21819 in all, are:
+= -- 2099
+> -- 954
+< -- 0
++ -- 348
+- -- 275
+* -- 1592
+:= -- 3015
+add.period$ -- 88
+call.type$ -- 73
+change.case$ -- 72
+chr.to.int$ -- 0
+cite$ -- 74
+duplicate$ -- 1086
+empty$ -- 2095
+format.name$ -- 275
+if$ -- 5318
+int.to.chr$ -- 0
+int.to.str$ -- 73
+missing$ -- 59
+newline$ -- 237
+num.names$ -- 73
+pop$ -- 308
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 787
+stack$ -- 0
+substring$ -- 1430
+swap$ -- 451
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 215
+width$ -- 75
+write$ -- 745
+(There were 15 warnings)

@@ -681,6 +681,36 @@
       \range{pages}{13}
       \keyw{Analysis ; Article ; Automation ; B method ; Communities ; Computer Communication Networks ; Computer memory ; Computer Science ; Computer Science,Information Systems ; Computer Science,Theory & Methods ; Computer security ; Design analysis ; Design engineering ; Electronic devices ; Embedded systems ; Feasibility ; Formal method ; Hardware ; Integrity ; Internet of Things ; Memory ; Memory integrity protection ; Methods ; Operating Systems ; Processor Architectures ; Promotion ; Proving ; Science & Technology ; Technology ; Threat tree model ; Trusted execution environment ; TrustZone}
     \endentry
+    \entry{cirosantilli}{online}{}
+      \name{author}{1}{}{%
+        {{hash=5fd9b8882df30d697c435609cf0450f0}{%
+           family={{cirosantilli}},
+           familyi={c\bibinitperiod}}}%
+      }
+      \strng{namehash}{5fd9b8882df30d697c435609cf0450f0}
+      \strng{fullhash}{5fd9b8882df30d697c435609cf0450f0}
+      \strng{bibnamehash}{5fd9b8882df30d697c435609cf0450f0}
+      \strng{authorbibnamehash}{5fd9b8882df30d697c435609cf0450f0}
+      \strng{authornamehash}{5fd9b8882df30d697c435609cf0450f0}
+      \strng{authorfullhash}{5fd9b8882df30d697c435609cf0450f0}
+      \field{labelalpha}{cir22}
+      \field{sortinit}{c}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{common\_userland.h}
+      \field{urlday}{16}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/chang0224/linux-kernel-module-cheat/blob/550897ce1766e8df0b4ffcfdc17206f788d9f67f/userland/common\_userland.h
+      \endverb
+      \verb{url}
+      \verb https://github.com/chang0224/linux-kernel-module-cheat/blob/550897ce1766e8df0b4ffcfdc17206f788d9f67f/userland/common%5C_userland.h
+      \endverb
+    \endentry
     \entry{CokerGeorge2011Pora}{article}{}
       \name{author}{10}{}{%
         {{hash=cedc023c9cd067f4a90e482979581451}{%
@@ -1480,6 +1510,38 @@
       \range{pages}{14}
       \keyw{Arm TrustZone ; Cache architecture ; Cache attacks ; Secure isolation ; TEE}
     \endentry
+    \entry{OPTEE3.17}{online}{}
+      \name{author}{1}{}{%
+        {{hash=19791e79177f55401b051cdc8c7e3013}{%
+           family={Harbin},
+           familyi={H\bibinitperiod},
+           given={Don},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{19791e79177f55401b051cdc8c7e3013}
+      \strng{fullhash}{19791e79177f55401b051cdc8c7e3013}
+      \strng{bibnamehash}{19791e79177f55401b051cdc8c7e3013}
+      \strng{authorbibnamehash}{19791e79177f55401b051cdc8c7e3013}
+      \strng{authornamehash}{19791e79177f55401b051cdc8c7e3013}
+      \strng{authorfullhash}{19791e79177f55401b051cdc8c7e3013}
+      \field{labelalpha}{Har22}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Trusted Firmware OP TEE} v3.17.0 Release}
+      \field{urlday}{16}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.trustedfirmware.org/blog/Trusted-Firmware-OPTEE-Release-3-17-0/
+      \endverb
+      \verb{url}
+      \verb https://www.trustedfirmware.org/blog/Trusted-Firmware-OPTEE-Release-3-17-0/
+      \endverb
+    \endentry
     \entry{HuaZhichao2021Tpcf}{article}{}
       \name{author}{6}{}{%
         {{hash=12d594acbdd29ecc6d4db1eb20943566}{%
@@ -1541,6 +1603,65 @@
       \field{volume}{64}
       \field{year}{2021}
       \keyw{Analysis ; ARM ; ARM TrustZone ; Cloud computing ; Computer Science ; Computer Science,Information Systems ; Containers ; Engineering ; Engineering,Electrical & Electronic ; Information Systems and Communication Service ; Linux container ; Operating systems ; Research Paper ; Science & Technology ; Security ; Semantics ; system security ; system software ; Technology ; Virtual computer systems ; Virtual environments}
+    \endentry
+    \entry{HuberManuel2016Afff}{article}{}
+      \name{author}{5}{}{%
+        {{hash=3cbe6b261c726025eae5f6d033e13e2f}{%
+           family={Huber},
+           familyi={H\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=82b3bb4e8bfa309c42cac4d950298d37}{%
+           family={Taubmann},
+           familyi={T\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=2fa7e359282e7ba39c459e9d52c742d5}{%
+           family={Wessel},
+           familyi={W\bibinitperiod},
+           given={Sascha},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f19f0fc8a0492944f45db8c4de403d5a}{%
+           family={Reiser},
+           familyi={R\bibinitperiod},
+           given={Hans\bibnamedelima P},
+           giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=e667bb75f672d6b53b669f117a54dc64}{%
+           family={Sigl},
+           familyi={S\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{c277da2c7a6b9e7641615cc684ec8a47}
+      \strng{fullhash}{57e9d9e6dcb97368b66fe4ed31a10dc9}
+      \strng{bibnamehash}{c277da2c7a6b9e7641615cc684ec8a47}
+      \strng{authorbibnamehash}{c277da2c7a6b9e7641615cc684ec8a47}
+      \strng{authornamehash}{c277da2c7a6b9e7641615cc684ec8a47}
+      \strng{authorfullhash}{57e9d9e6dcb97368b66fe4ed31a10dc9}
+      \field{labelalpha}{Hub+16}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mobile devices, like tablets and smartphones, are common place in everyday life. Thus, the degree of security these devices can provide against digital forensics is of particular interest. A common method to access arbitrary data in main memory is the cold boot attack. The cold boot attack exploits the remanence effect that causes data in DRAM modules not to lose the content immediately in case of a power cut-off. This makes it possible to restart a device and extract the data in main memory. In this paper, we present a novel framework for cold boot-based data acquisition with a minimal bare metal application on a mobile device. In contrast to other cold boot approaches, our forensics tool overwrites only a minimal amount of data in main memory. This tool requires no more than three kilobytes of constant data in the kernel code section. We hence sustain all of the data relevant for the analysis of the previously running system. This makes it possible to analyze the memory with data acquisition tools. For this purpose, we extend the memory forensics tool Volatility in order to request parts of the main memory dynamically from our bare metal application. We show the feasibility of our approach on the Samsung Galaxy S4 and Nexus 5 mobile devices along with an extensive evaluation. First, we compare our framework to a traditional memory dump-based analysis. In the next step, we show the potential of our framework by acquiring sensitive user data.}
+      \field{issn}{1687-417X}
+      \field{journaltitle}{EURASIP Journal on Multimedia and Information Security}
+      \field{number}{1}
+      \field{title}{A flexible framework for mobile device forensics based on cold boot attacks}
+      \field{volume}{2016}
+      \field{year}{2016}
+      \field{pages}{1\bibrangedash 13}
+      \range{pages}{13}
+      \keyw{Android ; ARES 2015 ; Boots ; Cold boot attack ; Communications Engineering ; Computer information security ; Cyber-Physical Systems ; Data acquisition ; Devices ; Digital forensics ; Dynamical systems ; Engineering ; Forensic computing ; Forensic engineering ; Mobile communication systems ; Mobile device security ; Networks ; Research ; Security Science and Technology ; SignalImage and Speech Processing ; Smartphones ; Systems and Data Security ; Tablet computers ; Virtual machine introspection}
     \endentry
     \entry{JavedAbdulRehman2020Adms}{article}{}
       \name{author}{5}{}{%
@@ -1965,6 +2086,70 @@
       \field{pages}{1\bibrangedash 13}
       \range{pages}{13}
     \endentry
+    \entry{LiWenhao2014Btpo}{inproceedings}{}
+      \name{author}{7}{}{%
+        {{hash=f61d280d0ccef8b64bf5fae966ddbe55}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Wenhao},
+           giveni={W\bibinitperiod}}}%
+        {{hash=67e4b23852a614b17c848c108ad8332c}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Mingyang},
+           giveni={M\bibinitperiod}}}%
+        {{hash=56230c7bc5beef6eb88bcfd29c7923a1}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Jinchen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e2e386d1b28bbed49baff57c429fbaad}{%
+           family={Xia},
+           familyi={X\bibinitperiod},
+           given={Yubin},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=4dff1f859954eb57862d7ccccf24d6d9}{%
+           family={Zang},
+           familyi={Z\bibinitperiod},
+           given={Binyu},
+           giveni={B\bibinitperiod}}}%
+        {{hash=68cb68b21c6a8ee29cc3f80530a3b0a5}{%
+           family={Chu},
+           familyi={C\bibinitperiod},
+           given={Cheng-Kang},
+           giveni={C\bibinithyphendelim K\bibinitperiod}}}%
+        {{hash=accdef39280dc4f5c2c5854675c2886a}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Tieyan},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{a4ca27c65a61dd0d61ef7be2f6cff445}
+      \strng{fullhash}{eed93dbbf00ad83688899ce7bcc8a933}
+      \strng{bibnamehash}{a4ca27c65a61dd0d61ef7be2f6cff445}
+      \strng{authorbibnamehash}{a4ca27c65a61dd0d61ef7be2f6cff445}
+      \strng{authornamehash}{a4ca27c65a61dd0d61ef7be2f6cff445}
+      \strng{authorfullhash}{eed93dbbf00ad83688899ce7bcc8a933}
+      \field{labelalpha}{Li+14}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mobile devices are frequently used as terminals to interact with many security-critical services such as mobile payment and online banking. However, the large client software stack and the continuous proliferation of malware expose such interaction under various threats, including passive attacks like phishing and active ones like direct code manipulation. This paper proposes TrustUI, a new trusted path design for mobile devices that enables secure interaction between end users and services based on ARM's TrustZone technology. TrustUI is built with a combination of key techniques including cooperative randomization of the trusted path and secure delegation of network interaction. With such techniques, TrustUI not only requires no trust of the commodity software stack, but also takes a step further by excluding drivers for user-interacting devices like touch screen from its trusted computing base (TCB). Hence, TrustUI has a much smaller TCB, requires no access to device driver code, and may easily adapt to many devices. A prototype of TrustUI has been implemented on a Samsung Exynos 4412 board and evaluation shows that TrustUI provides strong protection of users interaction.}
+      \field{booktitle}{Proceedings of 5th Asia-Pacific Workshop on Systems, APSYS 2014}
+      \field{isbn}{9781450330244}
+      \field{series}{APSys '14}
+      \field{title}{Building trusted path on untrusted device drivers for mobile devices}
+      \field{year}{2014}
+      \field{pages}{1\bibrangedash 7}
+      \range{pages}{7}
+    \endentry
     \entry{LingZhen2021Sbtb}{article}{}
       \name{author}{7}{}{%
         {{hash=73604273129014220e3864b9c87ff067}{%
@@ -2308,6 +2493,36 @@
       \range{pages}{18}
       \keyw{Internet of Things ; Protected software modules ; Trust assessment ; Trust management ; Wireless sensor networks}
     \endentry
+    \entry{TPMGenie}{online}{}
+      \name{author}{1}{}{%
+        {{hash=71a0ba155ec76bf92510a05a68fda748}{%
+           family={{ncc group}},
+           familyi={n\bibinitperiod}}}%
+      }
+      \strng{namehash}{71a0ba155ec76bf92510a05a68fda748}
+      \strng{fullhash}{71a0ba155ec76bf92510a05a68fda748}
+      \strng{bibnamehash}{71a0ba155ec76bf92510a05a68fda748}
+      \strng{authorbibnamehash}{71a0ba155ec76bf92510a05a68fda748}
+      \strng{authornamehash}{71a0ba155ec76bf92510a05a68fda748}
+      \strng{authorfullhash}{71a0ba155ec76bf92510a05a68fda748}
+      \field{labelalpha}{ncc18}
+      \field{sortinit}{n}
+      \field{sortinithash}{f7242c3ed3dc50029fca1be76c497c7c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{TPM Genie: Interposer Attacks Against the Trusted Platform Module Serial Bus}
+      \field{urlday}{25}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.nccgroup.com/globalassets/about-us/us/documents/tpm-genie.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.nccgroup.com/globalassets/about-us/us/documents/tpm-genie.pdf
+      \endverb
+    \endentry
     \entry{OP-TEE}{online}{}
       \name{author}{1}{}{%
         {{hash=a7bf116b613ba9b819e01e5b66084ad8}{%
@@ -2466,61 +2681,6 @@
       \verb https://wiki.pine64.org/wiki/PinePhone_Software_Releases
       \endverb
     \endentry
-    \entry{PotharajuRahul2012PSAA}{incollection}{}
-      \name{author}{4}{}{%
-        {{hash=443f7d80eecdc8234449131255636829}{%
-           family={Potharaju},
-           familyi={P\bibinitperiod},
-           given={Rahul},
-           giveni={R\bibinitperiod}}}%
-        {{hash=f54329c3506f940e9c9155e286dd72dd}{%
-           family={Newell},
-           familyi={N\bibinitperiod},
-           given={Andrew},
-           giveni={A\bibinitperiod}}}%
-        {{hash=9ca21e3b717efa95b7d03eed92fcad48}{%
-           family={Nita-Rotaru},
-           familyi={N\bibinithyphendelim R\bibinitperiod},
-           given={Cristina},
-           giveni={C\bibinitperiod}}}%
-        {{hash=5e72bc22dbcf0984c6d113d280e36990}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Xiangyu},
-           giveni={X\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {eng}%
-      }
-      \list{location}{1}{%
-        {Berlin, Heidelberg}%
-      }
-      \list{publisher}{1}{%
-        {Springer Berlin Heidelberg}%
-      }
-      \strng{namehash}{855ef0ad43a3a711e1c6ad9626ceef68}
-      \strng{fullhash}{b9b6864388c86c5547c0a6ab4104ac97}
-      \strng{bibnamehash}{855ef0ad43a3a711e1c6ad9626ceef68}
-      \strng{authorbibnamehash}{855ef0ad43a3a711e1c6ad9626ceef68}
-      \strng{authornamehash}{855ef0ad43a3a711e1c6ad9626ceef68}
-      \strng{authorfullhash}{b9b6864388c86c5547c0a6ab4104ac97}
-      \field{labelalpha}{Pot+12}
-      \field{sortinit}{P}
-      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{In this paper, we show how an attacker can launch malware onto a large number of smartphone users by plagiarizing Android applications and by using elements of social engineering to increase infection rate. Our analysis of a dataset of 158,000 smartphone applications meta-information indicates that 29.4\% of the applications are more likely to be plagiarized. We propose three detection schemes that rely on syntactic fingerprinting to detect plagiarized applications under different levels of obfuscation used by the attacker. Our analysis of 7,600 smartphone application binaries shows that our schemes detect all instances of plagiarism from a set of real-world malware incidents with 0.5\% false positives and scale to millions of applications using only commodity servers.}
-      \field{booktitle}{Engineering Secure Software and Systems}
-      \field{isbn}{9783642281655}
-      \field{issn}{0302-9743}
-      \field{series}{Lecture Notes in Computer Science}
-      \field{title}{Plagiarizing Smartphone Applications: Attack Strategies and Defense Techniques}
-      \field{volume}{7159}
-      \field{year}{2012}
-      \field{pages}{106\bibrangedash 120}
-      \range{pages}{15}
-      \keyw{Abstract Syntax ; Android Application ; Clone Detection ; Feature Vector ; Malicious Code}
-    \endentry
     \entry{PintoSandro2019DATA}{article}{}
       \name{author}{2}{}{%
         {{hash=044295238f729256d31cbc3528d70729}{%
@@ -2611,6 +2771,61 @@
       \field{pages}{549\bibrangedash 554}
       \range{pages}{6}
       \keyw{Audio equipment ; Bluejacking ; bluesmacking ; bluesnarfing ; Bluetooth ; Bluetooth attacks ; Computer hacking ; Eavesdropping ; Linux ; Multidisciplinary research ; Optimized production technology ; Protocols ; Smartphones ; social engineering ; Tools ; Usability ; vulnerabilities}
+    \endentry
+    \entry{QiangChenyi2018CCAD}{incollection}{}
+      \name{author}{4}{}{%
+        {{hash=13013758912f31af2811478c6e02f71d}{%
+           family={Qiang},
+           familyi={Q\bibinitperiod},
+           given={Chenyi},
+           giveni={C\bibinitperiod}}}%
+        {{hash=9e73bc01610cf5c214895f05456ae613}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Weijie},
+           giveni={W\bibinitperiod}}}%
+        {{hash=60aee30f9eb08411d7caa34701641b21}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Lina},
+           giveni={L\bibinitperiod}}}%
+        {{hash=8285e18477ce0e0be97420da31a28505}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Rongwei},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{ba4482a799cab4a58c94e248233a79ee}
+      \strng{fullhash}{c8c3fd1987dfbca6a386fd7b711db5fd}
+      \strng{bibnamehash}{ba4482a799cab4a58c94e248233a79ee}
+      \strng{authorbibnamehash}{ba4482a799cab4a58c94e248233a79ee}
+      \strng{authornamehash}{ba4482a799cab4a58c94e248233a79ee}
+      \strng{authorfullhash}{c8c3fd1987dfbca6a386fd7b711db5fd}
+      \field{labelalpha}{Qia+18}
+      \field{sortinit}{Q}
+      \field{sortinithash}{d257e420984a3a5c57a3330114cd646a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Controlled-channel attack is a novel side-channel attack that uses page faults (\#PF) to infer process-sensitive information of guest-VMs. Existing protection schemes focus on restricting malicious OS of virtual machine access to page number information. They need to copy memory page content frequently or manually mark and recompile sensitive programs, which takes a lot of time and labor overhead. This paper introduces a hardware-based detection method against it in a different way. The Hypervisor monitors the modification of the guest page table entry (PTE) and the Interrupt Descriptor Table (IDT) entries to find the trace of adversary’s operations. As there is a semantic gap between VMs and Hypervisor, we take advantage of VMI (Virtual Machine Introspection) to convert important data. To overcome the challenge of changeable page tables, we grasp the feature of the target attack and filter out required records. Experiments show that this method can effectively detect controlled-channel attacks. In general, the performance overhead of the operations related to context switching will increase but within an acceptable range.}
+      \field{booktitle}{Algorithms and Architectures for Parallel Processing}
+      \field{isbn}{3030050505}
+      \field{issn}{0302-9743}
+      \field{series}{Lecture Notes in Computer Science}
+      \field{title}{Controlled Channel Attack Detection Based on Hardware Virtualization}
+      \field{volume}{11334}
+      \field{year}{2018}
+      \field{pages}{406\bibrangedash 420}
+      \range{pages}{15}
+      \keyw{Extended page table ; Side channel attack ; Virtualization security}
     \endentry
     \entry{QinYu2020RRIP}{article}{}
       \name{author}{5}{}{%
@@ -3100,6 +3315,63 @@
       \range{pages}{6}
       \keyw{Article ; Behavior-based access control ; Biomedical and Life Sciences ; Computer Science ; Computer Science,general ; general ; Integrity measurement ; Life Sciences ; Life Sciences,general ; Materials Science ; Mathematics ; Mathematics,general ; Physics,general ; Remote a0ttestation ; remote attestation ; TN 918.4 ; Trusted computing ; trusted platform module (TPM)}
     \endentry
+    \entry{ZhaoShijun2019SASA}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=0c20f3cbabb98f0112de019b50feba9b}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Shijun},
+           giveni={S\bibinitperiod}}}%
+        {{hash=020d985ce7e8fcdb9ddda01d5c0de40f}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Qianying},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=846bf706a6df7abd68b6af013a376cf7}{%
+           family={Qin},
+           familyi={Q\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5100c76ef1e2288a5166eab4fce15e60}{%
+           family={Feng},
+           familyi={F\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+        {{hash=a6605ee3f651348e7288be8bb3ff86c3}{%
+           family={Feng},
+           familyi={F\bibinitperiod},
+           given={Dengguo},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{cd1a3e969fc4edb6d6c08aae4bac73de}
+      \strng{fullhash}{3cc0b298c02f71ed9f294bb272785122}
+      \strng{bibnamehash}{cd1a3e969fc4edb6d6c08aae4bac73de}
+      \strng{authorbibnamehash}{cd1a3e969fc4edb6d6c08aae4bac73de}
+      \strng{authornamehash}{cd1a3e969fc4edb6d6c08aae4bac73de}
+      \strng{authorfullhash}{3cc0b298c02f71ed9f294bb272785122}
+      \field{extraname}{1}
+      \field{labelalpha}{Zha+19}
+      \field{sortinit}{Z}
+      \field{sortinithash}{156173bd08b075d7295bc3e0f4735a04}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Secure enclaves provide a practical solution to secure computation, and current approaches to secure enclaves are implemented by extending hardware security mechanisms to the CPU architecture. Therefore, it is hard for a platform to offer secure computation if its CPU architecture is not equipped with any secure enclave features. Unfortunately, ARM CPUs, dominating mobile devices and having increasing momentum in cloud markets, do not provide any security mechanisms achieving the security equivalent to modern secure enclave architectures. In this paper, we propose SecTEE, a software-based secure enclave architecture which is based on the CPU's isolation mechanism and does not require specialized security hardware of the CPU architecture such as memory encryption engines. SecTEE achieves a high level of security even compared with hardware-based secure enclave architectures: resistance to privileged host software attacks, lightweight physical attacks, and memory access based side-channel attacks. Besides, SecTEE provides rich trusted computing primitives for enclaves: integrity measurement, remote attestation, data sealing, secrets provisioning, and life cycle management. We implement a SecTEE prototype based on the ARM TrustZone technology, but our approach can be applied to other CPU architectures with isolation mechanisms. The evaluation results show that most overhead comes from the software encryption and the runtime overhead imposed by trusted computing primitives is acceptable.}
+      \field{booktitle}{Proceedings of the 2019 ACM SIGSAC Conference on computer and communications security}
+      \field{isbn}{9781450367479}
+      \field{issn}{1543-7221}
+      \field{series}{CCS '19}
+      \field{title}{SecTEE: A Software-based Approach to Secure Enclave Architecture Using TEE}
+      \field{year}{2019}
+      \field{pages}{1723\bibrangedash 1740}
+      \range{pages}{18}
+      \keyw{ARM TrustZone ; Board-level physical attacks ; Memory access based side-channel attacks ; Secure enclave ; TEE}
+    \endentry
     \entry{ZhaoShijun2021RoRo}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=0c20f3cbabb98f0112de019b50feba9b}{%
@@ -3138,6 +3410,7 @@
       \strng{authorbibnamehash}{cd1a3e969fc4edb6d6c08aae4bac73de}
       \strng{authornamehash}{cd1a3e969fc4edb6d6c08aae4bac73de}
       \strng{authorfullhash}{d6c2a95c915052b473a684f284500fc1}
+      \field{extraname}{2}
       \field{labelalpha}{Zha+21}
       \field{sortinit}{Z}
       \field{sortinithash}{156173bd08b075d7295bc3e0f4735a04}

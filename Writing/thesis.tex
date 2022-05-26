@@ -1,0 +1,106 @@
+\documentclass[master=cws,masteroption=vs]{kulemt}
+\setup{% Remove the "%" on the next line when using UTF-8 character encoding
+  %inputenc=utf8,
+  title={User attestation for the PinePhone},
+  %Securing the PinePhone using ARM TrustZone while preserving the openness of the platform},
+  author={Oberon Swings},
+  promotor={Prof.\,dr.\,ir.\ F. Piessens},
+  assessor={Prof.\,dr.\ D. Hughes \and Ir.\ P. Totis},
+  assistant={Dr.\ J. M\"uhlberg \and Ir. F. Alder \and Ir. S. Pouyanrad}}
+% Remove the "%" on the next line for generating the cover page
+%\setup{coverpageonly}
+% Remove the "%" before the next "\setup" to generate only the first pages
+% (e.g., if you are a Word user).
+%\setup{frontpagesonly}
+
+% Choose the main text font (e.g., Latin Modern)
+\setup{font=lm}
+
+% If you want to include other LaTeX packages, do it here. 
+\usepackage{csquotes}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize[mode=graphics if exists, figure list=true, prefix=TikzFigures/]
+\graphicspath{{Figures/}}
+% Finally the hyperref package is used for pdf files.
+% This can be commented out for printed versions.
+\usepackage[pdfusetitle,colorlinks,plainpages=false]{hyperref}
+
+%\includeonly{chap-n}
+\begin{document}
+
+\begin{preface}
+  TODO
+\end{preface}
+
+\tableofcontents*
+
+\chapter*{Abstract}
+TODO
+
+\begin{abstract}
+  TODO
+
+\end{abstract}
+
+% A list of figures and tables is optional
+\listoffigures
+%\listoftables
+% If you only have a few figures and tables you can use the following instead
+%\listoffiguresandtables
+% The list of symbols is also optional.
+% This list must be created manually, e.g., as follows:
+\chapter{List of Abbreviations}
+\section*{Abbreviations}
+\begin{flushleft}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabularx}{\textwidth}{@{}p{12mm}X@{}}
+    IoT   	& Internet of Things \\
+    TEE   	& Trusted Execution Environment \\
+    I/O   	& Input and Output \\
+    	OS		& Operating System
+    	
+  \end{tabularx}
+\end{flushleft}
+%\section*{Symbols}
+%\begin{flushleft}
+%  \renewcommand{\arraystretch}{1.1}
+%  \begin{tabularx}{\textwidth}{@{}p{12mm}X@{}}
+%    $c$   & Speed of light \\
+%    $E$   & Energy \\
+%    $m$   & Mass \\
+%    $\pi$ & The number pi \\
+%  \end{tabularx}
+%\end{flushleft}
+
+% Now comes the main text
+\mainmatter
+
+\include{Chapters/Introduction}
+\include{Chapters/Background}
+\include{Chapters/Method}
+\include{Chapters/Implementation}
+\include{Chapters/Experiments}
+\include{Chapters/Discussion}
+\include{Chapters/Conclusion}
+
+
+% If you have appendices:
+\appendixpage*          % if wanted
+\appendix
+%\include{app-A}
+
+
+\backmatter
+% The bibliography comes after the appendices.
+% You can replace the standard "abbrv" bibliography style by another one.
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

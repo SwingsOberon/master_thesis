@@ -1,9 +1,3 @@
-\documentclass{report}
-
-\raggedright
-
-\begin{document}
-
 \chapter{Background}
 
 \section{Remote Attestation}
@@ -137,5 +131,3 @@ of the boot procedures is measured by comparing the mean time of 30 iterations w
 
 \paragraph*{Security analysis}
 is executed on the hybrid booting approach and the page-based process attestation. In the booting method a Chain of Trust (CoT) is constructed from the Root of Trust (RoT) residing in the eFuse and OCROM. A successful secure boot ensures that the secure world can be seen as the secure base from which the normal world can be booted. If the normal world image is tampered with the remote attestation server will pick up on this threat. The execution of the measurement TA and the results it generates are both secure because of the isolation in the secure world. The results pass through the normal world but they are encrypted at this stage, the encryption key is also securely stored in the secure world giving the normal world no opportunity to get hold of the information. The main drawback of this approach is that the method relies on the rich OS to access the paging structure and process management kernel objects.
-
-\end{document}

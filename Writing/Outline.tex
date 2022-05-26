@@ -1,6 +1,10 @@
 \documentclass{report}
 
 \usepackage{csquotes}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize[mode=graphics if exists, figure list=true, prefix=TikzFigures/]
 \usepackage{hyperref}
 \usepackage{subfiles} % Best loaded last in the preamble
 

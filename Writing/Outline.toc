@@ -28,24 +28,28 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Implementation}{17}{chapter.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Attestation TA}{17}{section.4.1}% 
+\contentsline {section}{\numberline {4.1}NW application}{17}{section.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Experiments}{19}{chapter.5}% 
+\contentsline {section}{\numberline {4.2}Attestation PTA}{18}{section.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Performance}{19}{section.5.1}% 
+\contentsline {section}{\numberline {4.3}Improvements and extensions}{19}{section.4.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Performance Evaluation}{19}{section.5.2}% 
+\contentsline {chapter}{\numberline {5}Experiments}{21}{chapter.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Security Properties}{20}{section.5.3}% 
+\contentsline {section}{\numberline {5.1}Performance}{21}{section.5.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Security Evaluation}{20}{section.5.4}% 
+\contentsline {section}{\numberline {5.2}Performance Evaluation}{22}{section.5.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Discussion}{21}{chapter.6}% 
+\contentsline {section}{\numberline {5.3}Security Properties}{25}{section.5.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Related work}{21}{section.6.1}% 
+\contentsline {section}{\numberline {5.4}Security Evaluation}{26}{section.5.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Comparison of Approaches}{21}{section.6.2}% 
+\contentsline {chapter}{\numberline {6}Discussion}{27}{chapter.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Future Improvements}{22}{section.6.3}% 
+\contentsline {section}{\numberline {6.1}Related work}{27}{section.6.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion}{23}{chapter.7}% 
+\contentsline {section}{\numberline {6.2}Comparison of Approaches}{31}{section.6.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}Future Improvements}{31}{section.6.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusion}{33}{chapter.7}% 

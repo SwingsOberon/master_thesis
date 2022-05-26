@@ -1,69 +1,87 @@
-\documentclass{report}
-
-\raggedright
-
-\begin{document}
-
 \chapter{Discussion}
 
 \section{Related work}
 
-\paragraph*{Secure boot, Trusted boot and remote attestation for ARM TrustZone-based IoT Nodes}
-is the paper on which the implementation and experiments are based.
+\paragraph*{}
+The paper on remote attestation, secure and trusted boot on IoT Nodes \cite{LingZhen2021Sbtb} is the paper on which the implementation and experiments of this thesis are based and is extensively explained in the background section. To provide a better understanding of the effectiveness of the solution it is compared to three related works. Before this comparison these three papers are briefly explained while still providing in depth explanations on the parts that are most relevant for the comparison. The main focus of this comparison will be on the added security guarantees and the assumptions that have been made with respect to the remote attestation. After these comparisons trade offs, weaknesses and possible improvements will be discussed in the future work.
 
-\paragraph*{DAA-TZ: An Efficient DAA Scheme for Mobile Devices Using ARM TrustZone}
-implements Direct Anonymous Attestation on a mobile ARM TrustZone device.
+\subsection*{SecTEE: A Software-based Approach to Secure Enclave Architecture Using TEE}
 
-\paragraph*{SecTEE: A Software-based Approach to Secure Enclave Architecture Using TEE}
-implements enclaves on a CPU with ARM TrustZone technology. 
+\paragraph*{}
+The solution described in the paper about SecTEE \cite{ZhaoShijun2019SASA} aims to implement a framework using ARM TrustZone to achieve similar security guarantees as a hardware-based secure enclave architecture. The writers provide the following contributions with their paper. First of all SecTEE the new secure enclave architecture which achieves 'the hightest level of security' for ARM platforms using ARM TrustZone. Secondly a locking mechanism is introduced which makes sure enclave pages cannot be accessed while the enclave is running to prevent cross-core side channel attacks. The TEE OS is also extended to provide functionality like identification, remote attestation and sealing sensitive data. Lastly an implementation of SecTEE based on OP-TEE is provided along with experiments showing the performance. 
 
-\paragraph*{TZ-MRAS: A Remote Attestation Scheme for the Mobile Terminal Based on ARM TrustZone}
-uses ARM TrustZone to protect the attestation service on the mobile device from being tampered with.
+\paragraph*{}
+Their wording of 'the highest level of security' means that it should be resistant to privileged host software attacks, board-level physical attacks, page fault based side-channel attacks and cache based side-channel attacks. The hardware attacks on which is focused are cold boot attacks \cite{HuberManuel2016Afff}, bus monitoring attacks \cite{TPMGenie} and Direct Memory Access (DMA) attacks. Attacks against the internal state of the SoC are not considered because those are assumed to be very sophisticated and require expensive equipment. For these goals to be achieved certain requirements are listed. For one thing a Device Sealing Key (DSK) needs to be present, this is a symmetric key only known by the device itself and used to protect secrets related to the device. As follows a Device Root Key (DRK) which is an asymmetric key pair and is necessary to identify and authenticate the device. Lastly the Manufacturer's Public Key needs to be hard coded on the device to make sure it is able to verify the signature on software updates from the manufacturer. 
 
-\paragraph*{TrustShadow: Secure Execution of Unmodified Applications with ARM TrustZone}
-utilizes the functionality of the secure world to shield applications from untrusted OSes.
+\paragraph*{}
+An important aspect of the SecTEE architecture is the method that is applied for memory protection. SecTEE protects enclaves from physical attacks by using a similar approach as the OP-TEE pager. It is an on-demand paging system which runs the entire TEE system on On Chip Memory (OCM). Whenever a page leaves this OCM it is encrypted to ensure confidentiality and integrity of the data while it is stored on the DRAM. Another key feature of SecTEE is it's side-channel resistance. Side-channel attacks from the secure world are avoided by using a page coloring mechanism. Different enclaves can never share the same cache set which ensures that one enclave will never be able to evict cache lines of another one. Of course side-channel attacks can also come from the Normal World (NW) especially because the NW and Secure World (SW) share the same cache in the ARM TrustZone architecture. In the NW there are of course certain limitations to what is possible with the cache lines due to privileges, the prime and probe method is still relevant in this case though. SecTEE cleans and invalidates all cache levels when the CPU switches from the SW to the NW. This however is not sufficient because cross-core side-channel attacks can launch the attack while the CPU is still executing in the SW. To handle this problem the cache set of the enclave is locked which guarantees that the cache of the enclave cannot be probed or manipulated by the NW. Some final aspects that deserve some highlighting are enclave identification, measurement and remote attestation in SecTEE. Enclaves are published along with the public key of the author and the signed integrity value of the image. With this information the enclave can be verified and identified before it is run. During run-time the enclave keeps track of important aspects like enclave ID, integrity and a flag indicating whether it is privileged. For the remote attestation a specific Quoting Enclave is created, this is a privileged enclave which is able to make the system calls related to the management of attestation keys, other enclaves are not allowed to do this. These keys are used to sign the report data of the attestation together with the run-time measurement to provide proof to the verifier that it comes from the correct enclave.
+
+\paragraph*{}
+First of all the number of lines of code are measured because these implementations extend the TEE kernel which is the Trusted Computing Base (TCB) and this needs to be kept minimal because bugs could easily introduce security vulnerabilities. Next the overhead of the trusted computing features is identified and discussed. This overhead is acceptable in case (Eliptic Curve Cryptography) ECC with keys of 256 bits are used, in case RSA keys are used of 2048 bits certain system calls take too long to be usable. The performance of certain enclaves was measured and the xtest benchmark of OP-TEE were executed. SecTEE was about 4 times slower than OP-TEE on the benchmark and 40 times slower than OP-TEE on the enclave execution. It is argued that the memory protection mechanism is the cause of the greatest performance overhead in SecTEE. Finally to test the effectiveness of the side channel defense the effectiveness of the attack on plain OP-TEE is compared to the case of SecTEE. In the case of a NW attack there is a clear difference between prime and probe timings in OP-TEE while both memory accesses take an equal amount of time in case of SecTEE which makes it impossible for an attacker to learn anything about the cache behavior of the victim enclave. For the SW attack an AES key could be recovered after 256,000 encryptions in OP-TEE while in SecTEE the attacker could not learn any information about the used key.
+
+\subsection*{TrustShadow: Secure Execution of Unmodified Applications with ARM TrustZone}
+
+\paragraph*{}
+TrustShadow \cite{GuanLe2017TSEo} is designed to protect existing applications from untrusted Operating Systems (OS) without the need to modify the applications themselves. This is achieved by using TrustShadow as a lightweight runtime system that shields the sensitive information of the application from the OS. This system does not provide system services itself but requests them from the OS, it does however guarantee security through encryption, context switching and verifying return values. To ensure that the OS cannot get hold of the encryption keys, sensitive data or interfere with the security verification TrustShadow runs in the Secure World of the ARM TrustZone processor.
+
+\paragraph*{}
+The solution described in the paper about TrustShadow is mainly focused on protecting applications from an untrusted OS. This means that the attacker is able to launch Direct Memory Access (DMA) attacks, modify interrupted process states, change program execution control flow, hijack system services and control communication channels \cite{QiangChenyi2018CCAD}. Denial of Service (DoS) attacks and side-channel attacks such as timing and power analysis are not taken into account in the solution.
+
+\paragraph*{}
+To make sure the rich OS is not able to tamper with the memory of the applications and the runtime system the memory of the different stakeholders is isolated from each other. TrustShadow utilizes the Trust Zone Address Space Controller (TZASC) to make three partitions in memory, one unprotected for the applications, one protected for the applications and one for the runtime system itself. The virtual memory space is equally distributed between the OS and the runtime system TrustShadow, and the runtime system also maps the physical address space holding the OS to efficiently locate shared memory. Another aspect that needs to be taken into account is that the OS is used to handle exceptions. When an exception is thrown the state of the application is stored and the state for the OS is restored. The runtime system then reproduces the exception in this OS state to allow the OS to handle it without having to get sensitive details about the application. There are two exceptions that the runtime system implemented in the secure world and those are the random number generation and floating point operations. These two exceptions are security critical because the used cryptography relies on the security of these operations. Similar to exceptions are system calls, the OS needs some information about the application requesting the system call but TrustShadow sanitizes this information to make sure only the necessary data is received by the OS. After receiving the result from the system call the runtime system also checks this result on correctness before forwarding it to the application. Another example of sensitive information about an application that an untrusted OS should not have access to is the memory mapping from virtual to physical address space. This information is stored in the page tables, TrustShadow makes use of the OS page fault handler to update and retrieve the page table entries that are stored in the secure world. This ensures that the rich OS does not require the information because it is controlled by the runtime system. After the memory location of a page has been found this can be loaded for execution, before this loading is finished however the page is checked on it's integrity. TrustShadow verifies the executable pages of an application and the executable pages of the shared libraries based on a manifest file related to the application. 
+
+\paragraph*{}
+TrustShadow was evaluated with a variety of measuring methods. Microbenchmarks using LMBench, file operations using Sysbench, HTTP and HTTPS request handling using Nginx and finally the performance overhead on data analytic applications. The performance overhead caused by the runtime system was negligible across all tests. In terms of security the OS still has a lot of control, it could for instance invoke a system call with the original \textit{execve} instead of the new \textit{tz\_execve} which largely bypasses TrustShadow. Another concern is the possibility to manipulate or forge manifest files which could allow an attacker to tamper with the code of an application without the runtime system being able to detect it. 
+
+\subsection*{TZ-MRAS: A Remote Attestation Scheme for the Mobile Terminal Based on ARM TrustZone}  
+
+\paragraph*{}
+In the paper \cite{WangZiwang2020TARA} a TrustZone based Mobile Remote Attestation Scheme (TZ-MRAS) is proposed. There are three main challenges the writers tackle, the first one is building a root of trust for measuring, storage and reporting of the attestation results. The second challenge is to execute binary-based attestation on hardware constrained devices while defending against Time Of Check to Time Of Use (TOC-TOU) attacks. The last challenge consists of the performance optimization of storing measurement logs in a hash tree which has considerable overhead during the construction and updating phases. 
+
+\paragraph*{}
+The assumptions of the TrustZone model are followed meaning that the processor is trusted and a chain of trust is achieved to trusted applications. The secure world is the trusted computing base (TCB) and it provides features to attest the integrity of the normal world. The attacker on the other hand is assumed to have kernel level access meaning they can tamper with the REE kernel and applications in any way they desire. DoS and side-channel attacks are not considered in this paper.
+
+\paragraph*{}
+To tackle the first challenge related to the root of trust, the functionality of a TPM chip is provided by the TEE of TrustZone. These functionalities are implemented in TA's running in the secure world to ensure isolation from the normal world. The measurement module keeps track of REE and dynamically detects integrity changes in the kernel but can also update the Secure Measurement Log (SML). Secondly the TOC-TOU attacks are protected against by updating the SML with a dynamic update mechanism, namely ProbeIMA. Probes are added to all operations that are able to modify the code pages of the kernel meaning that any attempt to execute any of these operations will be detected. Lastly the structure of the SML is optimized by storing the root node in a hardware protected register and the rest of the hash tree in secure memory. On top of the storage also the design is related to the construction, insertion and revocation algorithms avoid too frequent construction and update operations.
+
+\paragraph*{}
+The performance overhead in terms of execution time difference is only touched on shortly but it is less than 10\% in the worst case so seems to be very acceptable. Besides the performance overhead the security analysis is backed up with experiments that show the solution works and is able to detect the attacks used. The simulated attacks are a rootkit that hijacks the kernel function of the system call table and a TOC-TOU attacks that modifies the code pages and restores them again in between integrity checks. Lastly the depth of the hash tree is measured for a varying amount of updated nodes, this is mainly to provide proof that the construction and updates on those trees have a limited impact on performance.
 
 \section{Comparison of Approaches}
 
 \subsection*{Effectiveness}
 
-\paragraph*{The goal}
-of these papers are all a little different but it is important to evaluate which ones actually realized their goal and how this compares to the goal set out by this thesis.
+\paragraph*{}
+All solutions focus on measuring the binaries of the executable files to verify the integrity of the runtime system. This is achieved by having a TA in the secure world which does the measurements, stores the results and encrypts them before sending it to the remote attestation server. Running the attestation shields the attestation process from being tampered with by the normal world as they all claim but it does not guarantee that the execution control flow of the attested applications cannot be tampered with. SecTEE seems to keep track of more data for the attestation process but nothing is said about the integrity of data structures or other critical parts of the system. 
 
-\paragraph*{Most variety of attacks}
-that the solution defends against is a clear measure on how effective the solution is in the field.
+\paragraph*{}
+Except for the paper on SecTEE all solutions have a very similar goal and their solutions are also very comparable. All three other solutions (TrustShadow, TZ-MRAS and the one described in this paper) mainly focus on the attestation of normal world processes but these are not very well shielded or isolated from the rich OS. SecTEE uses remote attestation as one of the many tools to protect the applications or at least identify violations thereof. Due to the effort the writers of SecTEE put into the memory protection scheme, the page coloring mechanism and the way enclaves need to be implemented it achieves better security guarantees for the enclaves. An enclave has to be implemented as a TA, which in and of itself introduces additional security guarantees like it being infeasible for the rich OS to tamper with the execution control flow of the enclave.
 
-\paragraph*{The strongest security guarantees}
-that were made and achieved also indicate how well the solution works.
+\paragraph*{}
+None of the solutions mentioned give much attention to the openness of the secured system which is one of the main aspects at the beginning of this thesis. The solution in this thesis differs from \cite{LingZhen2021Sbtb} in the sense that the initial measurement results are stored in the secure memory of the secure world instead of at a remote attestation server. Storing these values on the device itself allow for the solution to be extended to allow the user to attest the device. This should provide the same security guarantees because all solutions described here rely on the secure memory of ARM TrustZone. On top of that it avoids the trusted third party that needs to be convinced the integrity of the software running on the device is not violated. The only party that needs to be assured that the integrity of the system is preserved is the user who can be notified through trusted I/O. If software providers also need this guarantee the attestation solution could shut down applications automatically for which the attestation fails instead of giving the user the choice.
 
 \subsection*{Assumptions}
 
-\paragraph*{The least assumptions}
-that were made by the authors of the paper the more widely applicable the solution is because there is enormous hetergeneity among devices and assumptions put restrictions on the devices for which the paper is usefull.
-
-\paragraph*{The most realistic assumptions}
-are of course also important to look at, if the assumptions are not realistic they are not practical to adhere to and the solution will be worthless if it can't be applied to the real world.
-
-\section{Future Improvements}
-
-\subsection*{Tradeoffs}
+\paragraph*{}
+All solutions assume an IoT device or smartphone device meaning the solutions need to be adapted to devices with limited hardware specifications. Based on this assumption all compared solutions chose for ARM SoC with TrustZone capabilities. In this context the secure world of ARM TrustZone along with its TA's are all assumed to be trusted and secure and isolated from the rich OS. In the case of SecTEE the additional assumption is made that the enclaves (isolated applications) are written as Trusted Applications which may be feasible for an open platform but when these enclaves need to be signed by a manufacturer's private key it achieves an entirely different goal. On the other hand the other solutions claim to attest the normal world and provide similar protection against the rich OS which is unfeasible if only the code pages of an application are measured for integrity violations. 
 
 \paragraph*{}
-\begin{itemize}
-\item a hash for every page vs one hash for the entire process
-\end{itemize}
+SecTEE claims to protect against certain side-channel attacks and hardware attacks like DMA and cold boot attack. These claims seem to be met due to the secure world being instantiated in a trusted manner with secure boot and the protected code running in the secure world. The papers about TrustShadow and TZ-MRAS acknowledge that side-channel attacks are not dealt with but DMA attacks are prevented by protecting the address space mapping and encrypting the stored data. The reproduced solution does not give specific details about side-channel attacks or DMA attacks it only mentions hardware, software and OS attacks. These claims seem excessive because only the attestation TA itself is protected against these kinds of attacks, due to the TEE and trusted boot. The applications in the normal world are still vulnerable to many attacks of which only a few (changing the executable code of the application) are detected by the solution. Last but not least OS attacks cannot be prevented using this method, an attack can in some cases (depending on what is modified) be detected with remote attestation but none of the solutions make an effort to make attacking the OS harder because it is in most cases not considered when discussing the applications running in the normal world.
+
+\section{Future Work}
+
+\subsection*{Trade offs}
+
+\paragraph*{}
+One important sensitivity point is to decide whether every page in an executable memory region gets its own hash value or all the pages in this memory region get one combined hash value. The fine-grained option allows to only measure the code pages that are currently loaded into the RAM memory while otherwise these unused pages also need to be loaded to measure them. The downside to this is of course that more initial values need to be stored to allow the comparison during the attestation to take place.
+
+\paragraph*{}
+Another trade off that could be put forth is the hashing algorithm that is used to measure the memory pages. Of course the hashing algorithm needs to adhere to certain standards to avoid collisions,... but a Hash-based Message Authentication Code (HMAC) algorithm that uses a key during the hashing process is definitely excessive. The hashing mainly needs to be fast because lots of memory pages need to be attested and this needs to happen relatively often to guarantee improved security. The hash digests do not need to be secure in the sense that they are merely used to detect whether the hashed information has changed or not.
 
 \subsection*{Weaknesses}
 
-\paragraph*{Rich OS dependency}
-is very undesirable, it is thus important to look at different solutions that achieve similar outcomes to avoid this aspect of the current solution.
+\paragraph*{}
+In the proposed solution there is still a strong dependency upon the rich OS. This dependency mainly comes from the files that are used to determine the physical addresses of pages related to the processes that are measured. These files are part of the data structures the rich OS owns, a solution to this problem could be to move the responsibility of the memory mapping into the secure world. The downside to this is that it increases the TCB because the secure world is often seen as the Trusted Computing Base. This can be achieved in a relatively light weight fashion as demonstrated in the TrustShadow paper where the page table is stored inside the secure world and the secure world handles page faults that are generated in the rich OS. 
 
-\paragraph*{Uncomplete attestation}
-introduces a fake sense of security because not all possible attacks are checked, for instance modified data structures that influence the control flow of a program. (inspiration from Lightweight and Flexible Trust Assessment Modules for the Internet of Things)
-
-\subsection*{Additional features}
-
-\paragraph*{•}
-Based on the related work papers some additional features could be stated or solutions could be combined to achieve protection against a wider variety of attacks.
-
-\end{document}
+\paragraph*{}
+Partial attestation introduces a fake sense of security because not all possible attacks are checked. We have mentioned that the execution control flow of an application can be tampered with through the manipulation of data structures. There are lots of ways similar attacks can be achieved to make applications behave differently than intended. Some of these attacks are protected against better than others in the last few solutions like checking the results of a system call executed by the rich (untrusted) OS. \cite{MuhlbergJanTobias2016LaFT} describes a variety of possible aspects for which integrity checks are useful to increase the level of trust one can have in an application. This is probably harder to achieve when trying to protect against a rich OS like Linux compared to the Contiki OS that was used but it looks like a promising direction for future work.
