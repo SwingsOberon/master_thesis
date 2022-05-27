@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  26 MAY 2022 21:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.2.8)  27 MAY 2022 13:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -995,7 +995,6 @@ Now handling font encoding PD1 ...
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
 Package hyperref Info: Option `pdfusetitle' set `true' on input line 4393.
-Package hyperref Info: Option `colorlinks' set `true' on input line 4393.
 Package hyperref Info: Option `plainpages' set `false' on input line 4393.
 Package hyperref Info: Hyper figures OFF on input line 4519.
 Package hyperref Info: Link nesting OFF on input line 4524.
@@ -1019,7 +1018,7 @@ Package hyperref Info: Hyper figures OFF on input line 6380.
 Package hyperref Info: Link nesting OFF on input line 6385.
 Package hyperref Info: Hyper index ON on input line 6388.
 Package hyperref Info: backreferencing OFF on input line 6395.
-Package hyperref Info: Link coloring ON on input line 6398.
+Package hyperref Info: Link coloring OFF on input line 6400.
 Package hyperref Info: Link coloring with OCG OFF on input line 6405.
 Package hyperref Info: PDF/A mode OFF on input line 6410.
 LaTeX Info: Redefining \ref on input line 6450.
@@ -1051,7 +1050,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
-Package csquotes Info: Redefining alias 'default' -> 'dutch'.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
 
 (./thesis.aux (./Chapters/Introduction.aux) (./Chapters/Background.aux)
 (./Chapters/Method.aux) (./Chapters/Implementation.aux)
@@ -1146,7 +1145,7 @@ Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.16} (current compat level: 1.9).
 
 \AtBeginShipoutBox=\box45
-Package hyperref Info: Link coloring ON on input line 31.
+Package hyperref Info: Link coloring OFF on input line 31.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1169,7 +1168,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `kulemtfpf' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<Figures/logokuleng.pdf, id=135, 216.81042pt x 99.9737pt>
+<Figures/logokuleng.pdf, id=139, 216.81042pt x 99.9737pt>
 File: Figures/logokuleng.pdf Graphic file (type pdf)
 <use Figures/logokuleng.pdf>
 Package pdftex.def Info: Figures/logokuleng.pdf  used on input line 31.
@@ -1207,27 +1206,28 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 ] (./thesis.toc
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 8.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 10.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 8.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 10.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 8.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 10.
+
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 8.
+(Font)              <10.95> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 8.
+(Font)              <8> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 8.
+(Font)              <6> on input line 10.
  [2
 
 
@@ -1238,6 +1238,7 @@ Package microtype Info: Character `029' is missing
  [3] [4
 
 ] [5
+
 
 ] (./thesis.lof)
 [6
@@ -1342,42 +1343,41 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] [38
 
 
-] [39] [40] (./thesis.bbl
+] (./thesis.bbl
 bibitemlist
-[41
+[39
 
-
-] [42] [43] [44] [45] [46])
+] [40] [41] [42] [43] [44])
 
 Class memoir Warning: The material used in the headers is too large
 (27.2pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 101.
+(in both cases you will find help in the memoir manual). on input line 128.
 
-[47]
+[45]
 \tf@toc=\write7
 \openout7 = `thesis.toc'.
 
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
  (./thesis.aux (./Chapters/Introduction.aux) (./Chapters/Background.aux)
 (./Chapters/Method.aux) (./Chapters/Implementation.aux)
 (./Chapters/Experiments.aux) (./Chapters/Discussion.aux)
 (./Chapters/Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9A5DA5BF33B4F99BD1938C1427F61425;1913.
+(rerunfilecheck)             Checksum: 8B547D924E8DF518491DEC14D7370C4D;1955.
  ) 
 Here is how much of TeX's memory you used:
- 33393 strings out of 492615
- 763349 string characters out of 6131391
- 1056949 words of memory out of 5000000
- 36275 multiletter control sequences out of 15000+600000
- 73824 words of font info for 122 fonts, out of 8000000 for 9000
+ 33384 strings out of 492615
+ 763257 string characters out of 6131391
+ 1056900 words of memory out of 5000000
+ 36265 multiletter control sequences out of 15000+600000
+ 73954 words of font info for 123 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,12n,96p,3028b,1920s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
@@ -1391,10 +1391,10 @@ mri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
 /helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh
 vr8a.pfb>
-Output written on thesis.pdf (57 pages, 355268 bytes).
+Output written on thesis.pdf (55 pages, 360026 bytes).
 PDF statistics:
- 818 PDF objects out of 1000 (max. 8388607)
- 737 compressed objects within 8 object streams
- 283 named destinations out of 1000 (max. 500000)
- 18706 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 815 PDF objects out of 1000 (max. 8388607)
+ 736 compressed objects within 8 object streams
+ 282 named destinations out of 1000 (max. 500000)
+ 18714 words of extra memory for PDF output out of 20736 (max. 10000000)
 

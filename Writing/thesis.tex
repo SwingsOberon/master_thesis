@@ -1,4 +1,4 @@
-\documentclass[master=cws,masteroption=vs]{kulemt}
+\documentclass[master=cws,masteroption=vs,english]{kulemt}
 \setup{% Remove the "%" on the next line when using UTF-8 character encoding
   %inputenc=utf8,
   title={User attestation for the PinePhone},
@@ -25,24 +25,51 @@
 \graphicspath{{Figures/}}
 % Finally the hyperref package is used for pdf files.
 % This can be commented out for printed versions.
-\usepackage[pdfusetitle,colorlinks,plainpages=false]{hyperref}
+\usepackage[pdfusetitle,plainpages=false]{hyperref}
 
 %\includeonly{chap-n}
 \begin{document}
 
 \begin{preface}
-  TODO
+
+\paragraph*{}
+First and foremost I would like to thank my daily mentors Jan-Tobias M\"uhlberg, Fritz Alder and Sepideh Pouyanrad. The countless hours they were present to guide me, discuss possible solutions or give feedback are immensely appreciated. I really enjoyed working on my thesis but this could have been very different if my mentors were not as enthusiastic as they were. They gave me a lot of motivation and inspiration during our weekly meetings which kept me going the entire year.
+
+\paragraph*{}
+I also want to thank my promotor prof. Frank Piessens. My interest in software security was elevated to a new level during one of his courses I attended and this was the stepping stone to chosing one of his thesis topics. During my research endeavor he gave some very interesting and valuable pointers towards my progress which had a strong positive influence on the end result.
+
+\paragraph*{}
+Last but not least I am very grateful towards my family, friends and especially my life partner to whom I kept on about my research topic and its progress. It was really nice to have so many people listen to my day to day struggles and accomplishments. I felt very appreciated when they tried to understand what I was saying and gave me the feeling it was interesting.
+ 
 \end{preface}
 
 \tableofcontents*
 
-\chapter*{Abstract}
-TODO
-
 \begin{abstract}
-  TODO
+
+\paragraph*{}
+Smartphone devices are used for tasks that rely on more and more sensitive data, online banking, e-health and so on. While this is a natural evolution with respect to the functionality the security features of a smartphone is not as extensive as that of a personal computer. Many smartphone devices have an ARM System on Chip (SoC), with ARM TrustZone the manufacturer attempts to increase the security of these devices. ARM TrustZone is a hardware security solution which provides a Trusted Execution Environment (TEE), with this capability features like secure memory, trusted Input and Output (I/O) and process execution isolation are available. 
+
+\paragraph*{}
+Smartphone manufacturers like Samsung utilize this ARM TrustZone framework to build up a security solution like Samsung KNOX. The downside of these solutions is that the manufacturer stays in control of the smartphone even after it has been sold, they decide which software is allowed to run on the device and which is not. To return the control and ownership to the users the PinePhone has been introduced, an open smartphone with ARM TrustZone features. To access these TEE functionalities a kernel is required, for this there are also open source solutions like OP-TEE. The tools to obtain a secure open smartphone device exist, but they need to be put together along with security implementations to become a complete product.
+
+\paragraph*{}
+In this work a crucial part of remote attestation has been looked at, namely the measuring of applications running in the normal world of the ARM TrustZone framework. Lots of research has been done to isolate applications in the secure world from the rich Operating System (OS) or secure the data storage or the I/O channels related to these applications. Of course the security of these applications is of utmost importance but this secure world could also increase the security guarantees that can be provided for the normal world. One way of doing this is by allowing the secure world to attest the processes in the normal world.
 
 \end{abstract}
+
+\begin{abstract*}
+
+\paragraph*{}
+Smartphone apparaten worden gebruikt om taken uit te voeren die berusten op meer en meer sensitieve gegevens zoals online bankieren of raadplegen van gezondheids rapporten. Alhoewel dit een natuurlijke evolutie is ten opzichte van de functionaliteit, de veiligheid van een smartphone is niet zo uitgebreid als die van een persoonlijke computer. Vele smartphone apparaten hebben een processor van ARM die uitgerust is met TrustZone mogenlijkheden. ARM TrustZone is een veiligheids mechanisme toegepast in de hardware dat een vertrouwde uitvoerings omgeving tot stand brengt. Deze omgeving zorgt voor functionaliteiten zoals veilig geheugen, vertrouwde invoer en uitvoer en de isolatie van de uitvoering van processen.
+
+\paragraph*{}
+Smartphone producenten zoals Samsung gebruiken de ARM TrustZone technologie om een veiligheidsoplossing zoals Samsung KNOX te maken. De keerzijde hiervan is dat de producenten de controle over de smartphone behouden zelfs nadat deze verkocht is. Zei beslissen welke software mag draaien op het apparaat en welke niet. Om deze controle en eigenaarschap terug naar de gebruiker te brengen is de PinePhone ge\"introduceerd. Dit is een open smartphone met ARM TrustZone mogenlijkheden. Om toegang te hebben tot deze functionaliteiten is er nood aan een besturingssysteem. OP-TEE is een voorbeeld van zo een besturingssysteem waarvan de code vrij beschikbaar is gemaakt. De benodigdheden om een veilige en open smartphone te verkrijgen bestaan, deze moeten samengebracht worden met implementaties van beveiligende software om een compleet product te verkrijgen.
+
+\paragraph*{}
+In dit werk is er vooral aandacht besteed aan het meten van uitvoerende processen in de normale wereld van de ARM TrustZone technologie. Er is al veel onderzoek gedaan naar de isolatie van applicaties in de veilige wereld om ze te beschermen tegen de besturingssystemen van de normale wereld of het veilig opslagen van gegevens of het vertrouwen in de invoer en uitvoer kanalen geassocieerd met de applicatie. Natuurlijk is de veiligheid van de applicaties in de veilige wereld zeer belangrijk maar deze veilige wereld kan ook de garanties in verband met veiligheid van de normale wereld verbeteren. \'E\'en manier om dit aan te pakken is om de integriteit van de processen in de normale wereld te testen. 
+
+\end{abstract*}
 
 % A list of figures and tables is optional
 \listoffigures
@@ -87,8 +114,8 @@ TODO
 
 
 % If you have appendices:
-\appendixpage*          % if wanted
-\appendix
+%\appendixpage*          % if wanted
+%\appendix
 %\include{app-A}
 
 

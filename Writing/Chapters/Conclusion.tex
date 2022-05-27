@@ -1,25 +1,4 @@
 \chapter{Conclusion}
 
-\subsection*{Solution overview}
-
-\paragraph*{Reproduction}
-of the solution provided in the paper is the starting point of this thesis.
-
-\paragraph*{Extensions}
-on this reproduced solution are necessary because the original solution does not achieve all goals.
-
-\subsection*{Shortcomings}
-
-\paragraph*{Attacker possibilities}
-that are not accounted for are still present, the security measures taken in the solution are not adequate for the wide variety of attacks that it claimed to protect against.
-
-\paragraph*{Desired guarantees}
-the solution should be able to provide are not entirely met.
-
-\subsection*{Positives}
-
-\paragraph*{Code}
-for this thesis is made available as open source code to make it easier to reproduce the experiments and continue work on this research topic by other researchers.
-
-\paragraph*{Thorough comparison}
-has been executed on the provided solution and solutions of related work to give an overview of what direction is most promising to achieve the security goals.
+\paragraph*{}
+The reproduction of the solution proposed by \cite{LingZhen2021Sbtb} is not complete or exact because the main focus here lies on the measuring aspect of the remote attestation described there. It is also very hard to get an identical result when no code is available so lots of details had to be figured out and probably differ from the original. As described in the discussion certain extensions are necessary to make a functioning solution based on this work. With this work this has been made easier due to all the source code being available at TODO. The result of this work has been elaborately compared to related work to provide insight in the shortcomings and advantages compared to existing solutions. It is clear that the attestation needs to measure more than just the executable code pages of a process to make claims about it behaving as expected. On top of extending the the attestation, there are certain defense mechanisms to limit the amount of damage the untrusted OS can do. Some of these mechanisms are storing the page tables in the secure memory and checking what data the rich OS requires to do its task or sanitizing the input and checking the result for system calls. These examples show that the attacker model of the paper this work is based on was defined in an excessively broad manner which made it really hard to meet all the requirements. In this work it was attempted to narrow this attacker model down to be specific about which types of attacks are prevented and which are still feasible. Based on the related work the assumptions made seem to be realistic in this field of research.

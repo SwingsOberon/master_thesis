@@ -1,14 +1,19 @@
+\babel@toc {english}{}
 \babel@toc {dutch}{}
+\babel@toc {english}{}
 \babel@toc {dutch}{}
+\babel@toc {english}{}
+\babel@toc {english}{}
 \babel@toc {dutch}{}
+\babel@toc {english}{}
+\babel@toc {english}{}
+\contentsline {chapter}{Preface}{i}{chapter*.1}% 
+\contentsline {chapter}{Abstract}{iv}{chapter*.5}% 
 \babel@toc {dutch}{}
-\babel@toc {dutch}{}
-\babel@toc {dutch}{}
-\babel@toc {dutch}{}
-\contentsline {chapter}{Voorwoord}{i}{chapter*.1}% 
-\contentsline {chapter}{Samenvatting}{v}{chapter*.3}% 
-\contentsline {chapter}{L"yst van figuren}{vi}{section*.4}% 
-\contentsline {chapter}{List of Abbreviations}{vii}{chapter*.5}% 
+\contentsline {chapter}{Samenvatting}{v}{chapter*.9}% 
+\babel@toc {english}{}
+\contentsline {chapter}{List of Figures}{vi}{section*.13}% 
+\contentsline {chapter}{List of Abbreviations}{vii}{chapter*.14}% 
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}% 
 \contentsline {chapter}{\chapternumberline {2}Background}{3}{chapter.2}% 
 \contentsline {section}{\numberline {2.1}Remote Attestation}{3}{section.2.1}% 
@@ -36,4 +41,4 @@
 \contentsline {section}{\numberline {6.2}Comparison of Approaches}{33}{section.6.2}% 
 \contentsline {section}{\numberline {6.3}Future Work}{35}{section.6.3}% 
 \contentsline {chapter}{\chapternumberline {7}Conclusion}{37}{chapter.7}% 
-\contentsline {chapter}{Bibliografie}{41}{appendix*.125}% 
+\contentsline {chapter}{Bibliography}{39}{chapter*.126}% 
