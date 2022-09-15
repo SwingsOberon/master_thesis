@@ -5,7 +5,7 @@ A level-1 auxiliary file: Chapters/Introduction.aux
 A level-1 auxiliary file: Chapters/Background.aux
 A level-1 auxiliary file: Chapters/Method.aux
 A level-1 auxiliary file: Chapters/Implementation.aux
-A level-1 auxiliary file: Chapters/Experiments.aux
+A level-1 auxiliary file: Chapters/Evaluation.aux
 A level-1 auxiliary file: Chapters/Discussion.aux
 A level-1 auxiliary file: Chapters/Conclusion.aux
 The style file: ieeetr.bst
@@ -38,46 +38,69 @@ Warning--entry type for "cirosantilli" isn't style-file defined
 --line 958 of file references.bib
 Warning--entry type for "TPMGenie" isn't style-file defined
 --line 1014 of file references.bib
+Warning--entry type for "CCC" isn't style-file defined
+--line 1115 of file references.bib
+Warning--entry type for "TCG" isn't style-file defined
+--line 1123 of file references.bib
+Warning--entry type for "OP-TEE_structure" isn't style-file defined
+--line 1131 of file references.bib
+Warning--entry type for "TEEClientAPI" isn't style-file defined
+--line 1139 of file references.bib
+Warning--entry type for "TEECoreAPI" isn't style-file defined
+--line 1147 of file references.bib
+Warning--entry type for "trust" isn't style-file defined
+--line 1155 of file references.bib
+Warning--entry type for "smartphones" isn't style-file defined
+--line 1163 of file references.bib
+Warning--entry type for "people" isn't style-file defined
+--line 1171 of file references.bib
+Warning--entry type for "internet" isn't style-file defined
+--line 1179 of file references.bib
+Warning--entry type for "blog" isn't style-file defined
+--line 1236 of file references.bib
+Warning--entry type for "RoT" isn't style-file defined
+--line 1244 of file references.bib
+Warning--empty booktitle in IMA
 Warning--empty journal in EskandarianSaba2018FPUS
-You've used 73 entries,
+You've used 74 entries,
             1876 wiz_defined-function locations,
-            970 strings with 19734 characters,
-and the built_in function-call counts, 21819 in all, are:
-= -- 2099
-> -- 954
+            937 strings with 17765 characters,
+and the built_in function-call counts, 19874 in all, are:
+= -- 1905
+> -- 867
 < -- 0
-+ -- 348
-- -- 275
-* -- 1592
-:= -- 3015
-add.period$ -- 88
-call.type$ -- 73
-change.case$ -- 72
++ -- 323
+- -- 249
+* -- 1394
+:= -- 2772
+add.period$ -- 99
+call.type$ -- 74
+change.case$ -- 74
 chr.to.int$ -- 0
-cite$ -- 74
-duplicate$ -- 1086
-empty$ -- 2095
-format.name$ -- 275
-if$ -- 5318
+cite$ -- 76
+duplicate$ -- 950
+empty$ -- 1955
+format.name$ -- 249
+if$ -- 4860
 int.to.chr$ -- 0
-int.to.str$ -- 73
-missing$ -- 59
-newline$ -- 237
-num.names$ -- 73
-pop$ -- 308
+int.to.str$ -- 74
+missing$ -- 48
+newline$ -- 250
+num.names$ -- 74
+pop$ -- 341
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 787
+skip$ -- 694
 stack$ -- 0
-substring$ -- 1430
-swap$ -- 451
+substring$ -- 1161
+swap$ -- 382
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 1
-while$ -- 215
-width$ -- 75
-write$ -- 745
-(There were 15 warnings)
+warning$ -- 2
+while$ -- 186
+width$ -- 76
+write$ -- 738
+(There were 27 warnings)

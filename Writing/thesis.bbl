@@ -5,22 +5,39 @@ Z.~Ling, H.~Yan, X.~Shao, J.~Luo, Y.~Xu, B.~Pearson, and X.~Fu, ``Secure boot,
   trusted boot and remote attestation for arm trustzone-based iot nodes,'' {\em
   Journal of systems architecture}, vol.~119, p.~102240, 2021.
 
-\bibitem{CokerGeorge2011Pora}
-G.~Coker, J.~Guttman, P.~Loscocco, A.~Herzog, J.~Millen, B.~O'Hanlon,
-  J.~Ramsdell, A.~Segall, J.~Sheehy, and B.~Sniffen, ``Principles of remote
-  attestation,'' {\em International journal of information security}, vol.~10,
-  no.~2, pp.~63--81, 2011.
+\bibitem{smartphones}
+S.~O'Dea, ``{Number of smartphone subscriptions worldwide} from 2016 to 2027,''
+  2022.
+\newblock Last accessed on 30th of May 2022.
 
-\bibitem{YuAimin2008BAti}
-A.~Yu and D.~Feng, ``Bbacima: A trustworthy integrity measurement architecture
-  through behavior-based tpm access control,'' {\em Wuhan University journal of
-  natural sciences}, vol.~13, no.~5, pp.~513--518, 2008.
+\bibitem{people}
+A.~O'Neill, ``{World Total population} from 2010 to 2020,'' 2022.
+\newblock Last accessed on 30th of May 2022.
 
-\bibitem{JaegerTrent2006Ppim}
-T.~Jaeger, R.~Sailer, and U.~Shankar, ``Prima: policy-reduced integrity
-  measurement architecture,'' in {\em Proceedings of the eleventh ACM symposium
-  on access control models and technologies}, SACMAT '06, pp.~19--28, ACM,
-  2006.
+\bibitem{internet}
+statista, ``{Mobile internet usage worldwide},'' 2022.
+\newblock Last accessed on 30th of May 2022.
+
+\bibitem{LitoussiMohamed2020Isca}
+M.~Litoussi, N.~Kannouf, K.~El~Makkaoui, A.~Ezzati, and M.~Fartitchou, ``Iot
+  security: challenges and countermeasures,'' in {\em Procedia Computer
+  Science}, vol.~177, pp.~503--508, Elsevier B.V, 2020.
+
+\bibitem{KNOX}
+{Samsung}, ``{KNOX} stay connected, protected, and productive,'' 2022.
+\newblock Last accessed on 26th of May 2022.
+
+\bibitem{PinePhone}
+{PINE64}, ``{PINE64} pinephone,'' 2021.
+\newblock Last accessed on 26th of May 2022.
+
+\bibitem{OP-TEE}
+{OP-TEE}, ``{OP-TEE} about op-tee,'' 2022.
+\newblock Last accessed on 26th of May 2022.
+
+\bibitem{IMA}
+R.~Sailer, X.~Zhang, T.~Jaeger, and L.~van Doorn, ``Design and implementation
+  of a tcg-based integrity measurement architecture.,'' pp.~223--238, 01 2004.
 
 \bibitem{DuanJialiang2020IMBo}
 J.~Duan, G.~Cai, K.~Xu, and S.~Guo, ``Integrity measurement based on tee
@@ -39,6 +56,17 @@ M.~Alam, T.~Ali, S.~Khan, S.~Khan, M.~Ali, M.~Nauman, A.~Hayat,
   techniques,'' {\em Security and communication networks}, vol.~5, no.~9,
   pp.~1062--1082, 2012.
 
+\bibitem{AnkergardSigurdFrejJoelJorgensen2021Ssra}
+S.~F. J.~J. Ankerg\r{a}rd, E.~Dushku, and N.~Dragoni, ``State-of-the-art
+  software-based remote attestation: Opportunities and open issues for internet
+  of things,'' {\em Sensors (Basel, Switzerland)}, vol.~21, no.~5, pp.~1--23,
+  2021.
+
+\bibitem{SpinellisDiomidis2000Raam}
+D.~Spinellis, ``Reflection as a mechanism for software integrity
+  verification,'' {\em ACM transactions on information and system security},
+  vol.~3, no.~1, pp.~51--62, 2000.
+
 \bibitem{GuLiang2008Raop}
 L.~Gu, X.~Ding, R.~Deng, B.~Xie, and H.~Mei, ``Remote attestation on program
   execution,'' in {\em Proceedings of the 3rd ACM workshop on scalable trusted
@@ -53,12 +81,6 @@ Y.~Qin, J.~Liu, S.~Zhao, D.~Feng, and W.~Feng, ``Ripte: Runtime integrity
 T.~Ali, R.~Ismail, S.~Musa, M.~Nauman, and S.~Khan, ``Design and implementation
   of an attestation protocol for measured dynamic behavior,'' {\em The Journal
   of supercomputing}, vol.~74, no.~11, pp.~5746--5773, 2017.
-
-\bibitem{StelteB2010Timi}
-B.~Stelte, R.~Koch, and M.~Ullmann, ``Towards integrity measurement in
-  virtualized environments - a hypervisor based sensory integrity measurement
-  architecture (sima),'' in {\em 2010 IEEE International Conference on
-  Technologies for Homeland Security (HST)}, pp.~106--112, IEEE, 2010.
 
 \bibitem{BaHaihe2017RMAf}
 H.~Ba, H.~Zhou, J.~Ren, and Z.~Wang, ``Runtime measurement architecture for
@@ -76,6 +98,16 @@ J.~T. M\"uhlberg, J.~Noorman, and F.~Piessens, ``Lightweight and flexible trust
   assessment modules for the internet of things,'' in {\em Computer Security --
   ESORICS 2015}, vol.~9326 of {\em Lecture Notes in Computer Science},
   pp.~503--520, Cham: Springer International Publishing, 2016.
+
+\bibitem{TCG}
+{Trusted Computing Group}, ``Tpm mobile with trusted execution environment for
+  comprehensive mobile device security,'' 2012.
+\newblock Last accessed on 28th of May 2022.
+
+\bibitem{CCC}
+{Confidential Computing Consortium}, ``Confidential computing: Hardware-based
+  trusted execution for applications and data,'' 2021.
+\newblock Last accessed on 28th of May 2022.
 
 \bibitem{SabtMohamed2015TEEW}
 M.~Sabt, M.~Achemlal, and A.~Bouabdallah, ``Trusted execution environment: What
@@ -96,15 +128,15 @@ G.~Fotiadis, J.~Moreira, T.~Giannetsos, L.~Chen, P.~B. R\o~nne, M.~D. Ryan, and
   Computer Science}, pp.~163--184, Cham: Springer International Publishing,
   2021.
 
-\bibitem{2006Tpmb}
-S.~Kinney, {\em Trusted platform module basics: using TPM in embedded systems}.
-\newblock Mbedded technology series, Amsterdam ; Boston: Elsevier Newnes, 2006.
-
 \bibitem{ZhaoShijun2021RoRo}
 S.~Zhao, J.~Lin, W.~Li, and B.~Qi, ``Research on root of trust for embedded
   devices based on on-chip memory,'' in {\em 2021 International Conference on
   Computer Engineering and Application (ICCEA)}, (Piscataway), pp.~501--505,
   IEEE, 2021.
+
+\bibitem{TEEClientAPI}
+{GlobalPlatform}, ``Tee client api specification,'' 2010.
+\newblock Last accessed on 28th of May 2022.
 
 \bibitem{VanBulckJo2019AToT}
 J.~Van~Bulck, D.~Oswald, E.~Marin, A.~Aldoseri, F.~Garcia, and F.~Piessens, ``A
@@ -120,21 +152,19 @@ P.~Guo, Y.~Yan, C.~Zhu, and J.~Wang, ``Research on arm trustzone and
   {\em Lecture Notes in Computer Science}, pp.~200--213, Cham: Springer
   International Publishing, 2021.
 
-\bibitem{KhalidFatima2020HITS}
-F.~Khalid and A.~Masood, ``Hardware-assisted isolation technologies: Security
-  architecture and vulnerability analysis,'' in {\em 1st Annual International
-  Conference on Cyber Warfare and Security, ICCWS 2020 - Proceedings},
-  pp.~1--8, IEEE, 2020.
-
 \bibitem{Machiry2017BOOMERANGET}
 A.~Machiry, E.~Gustafson, C.~Spensky, C.~Salls, N.~Stephens, R.~Wang,
   A.~Bianchi, Y.~R. Choe, C.~Kr{\"u}gel, and G.~Vigna, ``Boomerang: Exploiting
   the semantic gap in trusted execution environments,'' in {\em NDSS}, ndss
   symposium, 2017.
 
+\bibitem{trust}
+{Common Criteria}, ``Security assurance components,'' 2017.
+\newblock Last accessed on 28th of May 2022.
+
 \bibitem{TrustZone}
 {ARM Ltd.}, ``{TrustZone} trustzone for cortex-a,'' 2022.
-\newblock Last accessed on 26th of April 2022.
+\newblock Last accessed on 26th of May 2022.
 
 \bibitem{PintoSandro2019DATA}
 S.~Pinto and N.~Santos, ``Demystifying arm trustzone: A comprehensive survey,''
@@ -163,81 +193,42 @@ A.~Ferraiuolo, A.~Baumann, C.~Hawblitzel, and B.~Parno, ``Komodo: Using
   Proceedings of the 26th Symposium on operating systems principles}, SOSP '17,
   pp.~287--305, ACM, 2017.
 
-\bibitem{KNOX}
-{Samsung}, ``{KNOX} stay connected, protected, and productive,'' 2022.
-\newblock Last accessed on 26th of April 2022.
+\bibitem{AmacherJulien2019Otpo}
+J.~Amacher and V.~Schiavoni, ``On the performance of arm trustzone: (practical
+  experience report),'' in {\em Lecture Notes in Computer Science}, vol.~11534
+  of {\em Distributed Applications and Interoperable Systems}, pp.~133--151,
+  Springer International Publishing, 2019.
+
+\bibitem{HuaZhichao2021Tpcf}
+Z.~Hua, Y.~Yu, J.~Gu, Y.~Xia, H.~Chen, and B.~Zang, ``Tz-container: protecting
+  container from untrusted os with arm trustzone,'' {\em Science China.
+  Information sciences}, vol.~64, no.~9, 2021.
 
 \bibitem{KeyStore}
 {Google}, ``{Android} keystore system,'' 2022.
-\newblock Last accessed on 26th of April 2022.
-
-\bibitem{PinePhone}
-{PINE64}, ``{PINE64} pinephone,'' 2021.
-\newblock Last accessed on 26th of April 2022.
+\newblock Last accessed on 26th of May 2022.
 
 \bibitem{PineSoft}
 {PINE64}, ``{PinePhone} software releases,'' 2022.
-\newblock Last accessed on 26th of April 2022.
+\newblock Last accessed on 26th of May 2022.
 
-\bibitem{OP-TEE}
-{OP-TEE}, ``{OP-TEE} about op-tee,'' 2022.
-\newblock Last accessed on 26th of April 2022.
+\bibitem{OP-TEE_structure}
+{STMicroelectronics}, ``run time sequences in op-tee,'' 2022.
+\newblock Last accessed on 28th of May 2022.
 
-\bibitem{FerragMohamedAmine2018Sf4a}
-M.~A. Ferrag, L.~Maglaras, A.~Argyriou, D.~Kosmanos, and H.~Janicke, ``Security
-  for 4g and 5g cellular networks: A survey of existing authentication and
-  privacy-preserving schemes,'' {\em Journal of network and computer
-  applications}, vol.~101, pp.~55--82, 2018.
+\bibitem{TEECoreAPI}
+{GlobalPlatform}, ``Tee internal core api specification,'' 2016.
+\newblock Last accessed on 28th of May 2022.
 
-\bibitem{ZakiRanaM20214NSA}
-R.~M. Zaki and H.~B.~A. Wahab, ``4g network security algorithms: Overview,''
-  {\em International journal of interactive mobile technologies}, vol.~15,
-  no.~16, pp.~127--143, 2021.
+\bibitem{RajasekharaiahK.M2020CSCa}
+K.~M. Rajasekharaiah, C.~S. Dule, and E.~Sudarshan, ``Cyber security challenges
+  and its emerging trends on latest technologies,'' {\em IOP Conference Series:
+  Materials Science and Engineering}, vol.~981, no.~2, p.~22062, 2020.
 
-\bibitem{JasimKhalidFadhil2022AoEA}
-J.~K. Fadhil, G.~K. Zrar, and M.~H. S, ``Analysis of encryption algorithms
-  proposed for data security in 4g and 5g generations,'' in {\em ITM web of
-  conferences}, vol.~42, p.~01004, EDP Sciences, 2022.
-
-\bibitem{FangKaiming2020Psaa}
-K.~Fang and G.~Yan, ``Paging storm attacks against 4g/lte networks from
-  regional android botnets: rationale, practicality, and implications,'' in
-  {\em Proceedings of the 13th ACM Conference on security and privacy in
-  wireless and mobile networks}, WiSec '20, pp.~295--305, ACM, 2020.
-
-\bibitem{LuYu-Han2020Gcfo}
-Y.-H. Lu, C.-Y. Li, Y.-Y. Li, S.~Hsiao, T.~Xie, G.-H. Tu, and W.-X. Chen,
-  ``Ghost calls from operational 4g call systems: Ims vulnerability, call dos
-  attack, and countermeasure,'' in {\em Proceedings of the 26th Annual
-  International Conference on mobile computing and networking}, MobiCom '20,
-  pp.~1--14, ACM, 2020.
-
-\bibitem{ClaverieTristan2021BRoB}
-T.~Claverie and J.~L. Esteves, ``Bluemirror: Reflections on bluetooth pairing
-  and provisioning protocols,'' in {\em 2021 IEEE Security and Privacy
-  Workshops (SPW)}, pp.~339--351, IEEE, 2021.
-
-\bibitem{CayreRomain2021CaWa}
-R.~Cayre, G.~Marconato, F.~Galtier, M.~Ka\^aniche, V.~Nicomette, and G.~Auriol,
-  ``Cross-protocol attacks: Weaponizing a smartphone by diverting its bluetooth
-  controller,'' in {\em WiSec 2021 - Proceedings of the 14th ACM Conference on
-  Security and Privacy in Wireless and Mobile Networks}, pp.~386--388, 2021.
-
-\bibitem{PatelNishitkumar2021IBVt}
-N.~Patel, H.~Wimmer, and C.~M. Rebman, ``Investigating bluetooth
-  vulnerabilities to defend from attacks,'' in {\em 2021 5th International
-  Symposium on Multidisciplinary Studies and Innovative Technologies (ISMSIT)},
-  (Piscataway), pp.~549--554, IEEE, 2021.
-
-\bibitem{AntonioliDaniele2020KNDA}
-D.~Antonioli, N.~Tippenhauer, and K.~Rasmussen, ``Key negotiation downgrade
-  attacks on bluetooth and bluetooth low energy,'' {\em ACM transactions on
-  privacy and security}, vol.~23, no.~3, pp.~1--28, 2020.
-
-\bibitem{ZhuYe2021TSOS}
-Y.~Zhu, N.~Ruffing, J.~Gurary, Y.~Guan, and R.~Bettati, ``Towards smartphone
-  operating system identification,'' {\em IEEE transactions on dependable and
-  secure computing}, vol.~18, no.~1, pp.~411--425, 2021.
+\bibitem{LakhdharYosra2021PSfS}
+Y.~Lakhdhar, S.~Rekhis, and N.~Boudriga, ``Proactive security for safety and
+  sustainability of mission critical systems,'' {\em IEEE transactions on
+  sustainable computing}, vol.~6, no.~2, pp.~257--273, 2021.
 
 \bibitem{JavedAbdulRehman2020Adms}
 A.~R. Javed, M.~O. Beg, M.~Asim, T.~Baker, and A.~H. Al-Bayatti, ``Alphalogger:
@@ -264,36 +255,29 @@ S.~Kumar, L.~J. Kittur, and A.~R. Pais, ``Attacks on android-based smartphones
   Information Systems Security}, vol.~12553 of {\em Lecture Notes in Computer
   Science}, pp.~241--252, Cham: Springer International Publishing, 2020.
 
-\bibitem{AmacherJulien2019Otpo}
-J.~Amacher and V.~Schiavoni, ``On the performance of arm trustzone: (practical
-  experience report),'' in {\em Lecture Notes in Computer Science}, vol.~11534
-  of {\em Distributed Applications and Interoperable Systems}, pp.~133--151,
-  Springer International Publishing, 2019.
-
-\bibitem{HuaZhichao2021Tpcf}
-Z.~Hua, Y.~Yu, J.~Gu, Y.~Xia, H.~Chen, and B.~Zang, ``Tz-container: protecting
-  container from untrusted os with arm trustzone,'' {\em Science China.
-  Information sciences}, vol.~64, no.~9, 2021.
+\bibitem{blog}
+mquaresma, ``{Setting up OP-TEE and Linux for the Pine A64},'' 2020.
+\newblock Last accessed on 30th of May 2022.
 
 \bibitem{mobian}
 {Linux community}, ``{Mobian} sunxi64-linux,'' 2022.
-\newblock Last accessed on 29th of April 2022.
+\newblock Last accessed on 29th of May 2022.
 
 \bibitem{OPTEEgit}
 {OP-TEE}, ``{OP-TEE} optee\_os, optee\_client,'' 2022.
-\newblock Last accessed on 29th of April 2022.
+\newblock Last accessed on 29th of May 2022.
 
 \bibitem{u-boot}
 {DENX Software Engineering}, ``{Pine64} u-boot,'' 2022.
-\newblock Last accessed on 29th of April 2022.
+\newblock Last accessed on 29th of May 2022.
 
 \bibitem{ARMfirmware}
 {ARM-Software}, ``{ARM Software} arm trusted firmware,'' 2022.
-\newblock Last accessed on 29th of April 2022.
+\newblock Last accessed on 29th of May 2022.
 
 \bibitem{QEMU}
 {OP-TEE}, ``{OP-TEE} qemu v8,'' 2022.
-\newblock Last accessed on 29th of April 2022.
+\newblock Last accessed on 29th of May 2022.
 
 \bibitem{GrossMathieu2021BTmi}
 M.~Gross, N.~Jacob, A.~Zankl, and G.~Sigl, ``Breaking trustzone memory
@@ -340,11 +324,9 @@ R.~Ben~Yehuda and N.~J. Zaidenberg, ``Protection against reverse engineering in
   arm,'' {\em International journal of information security}, vol.~19, no.~1,
   pp.~39--51, 2019.
 
-\bibitem{JiangHang2017IaAS}
-H.~Jiang, R.~Chang, L.~Ren, and W.~Dong, ``Implementing a arm-based secure boot
-  scheme for the isolated execution environment,'' in {\em 2017 13th
-  International Conference on Computational Intelligence and Security (CIS)},
-  vol.~2018-, pp.~336--340, IEEE, 2017.
+\bibitem{RoT}
+D.~Durst, ``{The Endless Conundrum of creating a secure PinePhone},'' 2021.
+\newblock Last accessed on 30th of May 2022.
 
 \bibitem{cirosantilli}
 {cirosantilli}, ``common\_userland.h,'' 2022.
@@ -356,9 +338,11 @@ W.~Li, M.~Ma, J.~Han, Y.~Xia, B.~Zang, C.-K. Chu, and T.~Li, ``Building trusted
   5th Asia-Pacific Workshop on Systems, APSYS 2014}, APSys '14, pp.~1--7, ACM,
   2014.
 
-\bibitem{OPTEE3.17}
-D.~Harbin, ``{Trusted Firmware OP TEE} v3.17.0 release,'' 2022.
-\newblock Last accessed on 16th of May 2022.
+\bibitem{SafaryanOlga2021MHCC}
+O.~Safaryan, L.~Cherckesova, N.~Lyashenko, P.~Razumov, V.~Chumakov, B.~Akishin,
+  and A.~Lobodenko, ``Modern hash collision cyberattacks and methods of their
+  detection and neutralization,'' {\em Journal of Physics: Conference Series},
+  vol.~2131, no.~2, p.~22099, 2021.
 
 \bibitem{ZhaoShijun2019SASA}
 S.~Zhao, Q.~Zhang, Y.~Qin, W.~Feng, and D.~Feng, ``Sectee: A software-based
@@ -387,5 +371,9 @@ C.~Qiang, W.~Liu, L.~Wang, and R.~Yu, ``Controlled channel attack detection
 Z.~Wang, Y.~Zhuang, and Z.~Yan, ``Tz-mras: A remote attestation scheme for the
   mobile terminal based on arm trustzone,'' {\em Security and communication
   networks}, vol.~2020, 2020.
+
+\bibitem{OPTEE3.17}
+D.~Harbin, ``{Trusted Firmware OP TEE} v3.17.0 release,'' 2022.
+\newblock Last accessed on 16th of May 2022.
 
 \end{thebibliography}

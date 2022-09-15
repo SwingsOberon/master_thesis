@@ -1,12 +1,14 @@
 \documentclass[master=cws,masteroption=vs,english]{kulemt}
 \setup{% Remove the "%" on the next line when using UTF-8 character encoding
   %inputenc=utf8,
-  title={User attestation for the PinePhone},
+  title={Software integrity checks on open platforms},
+  subtitle={Performing process attestation on user-controlled ARM TrustZone devices},
+  %User attestation for the PinePhone},
   %Securing the PinePhone using ARM TrustZone while preserving the openness of the platform},
   author={Oberon Swings},
-  promotor={Prof.\,dr.\,ir.\ F. Piessens},
+  promotor={Prof.\,dr.\,ir.\ F. Piessens \and Dr.\ J.T. M\"uhlberg},
   assessor={Prof.\,dr.\ D. Hughes \and Ir.\ P. Totis},
-  assistant={Dr.\ J. M\"uhlberg \and Ir. F. Alder \and Ir. S. Pouyanrad}}
+  assistant={Ir. S. Pouyanrad \and Ir. F. Alder}}
 % Remove the "%" on the next line for generating the cover page
 %\setup{coverpageonly}
 % Remove the "%" before the next "\setup" to generate only the first pages
@@ -18,10 +20,13 @@
 
 % If you want to include other LaTeX packages, do it here. 
 \usepackage{csquotes}
+\usepackage{ltablex}
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm,compat=1.9}
 \usepgfplotslibrary{external}
 \tikzexternalize[mode=graphics if exists, figure list=true, prefix=TikzFigures/]
+\usepackage{graphicx}
+\usepackage{caption}
 \graphicspath{{Figures/}}
 % Finally the hyperref package is used for pdf files.
 % This can be commented out for printed versions.
@@ -33,13 +38,13 @@
 \begin{preface}
 
 \paragraph*{}
-First and foremost I would like to thank my daily mentors Jan-Tobias M\"uhlberg, Fritz Alder and Sepideh Pouyanrad. The countless hours they were present to guide me, discuss possible solutions or give feedback are immensely appreciated. I really enjoyed working on my thesis but this could have been very different if my mentors were not as enthusiastic as they were. They gave me a lot of motivation and inspiration during our weekly meetings which kept me going the entire year.
+First and foremost I would like to thank my co-promotor Jan-Tobias M\"uhlberg, and my daily mentors Fritz Alder and Sepideh Pouyanrad. The countless hours they were present to guide me, discuss possible solutions or give feedback are immensely appreciated. I really enjoyed working on my thesis but this could have been very different if my mentors were not as enthusiastic as they were. They gave me a lot of motivation and inspiration during our weekly meetings which kept me going the entire year.
 
 \paragraph*{}
-I also want to thank my promotor prof. Frank Piessens. My interest in software security was elevated to a new level during one of his courses I attended and this was the stepping stone to chosing one of his thesis topics. During my research endeavor he gave some very interesting and valuable pointers towards my progress which had a strong positive influence on the end result.
+I also want to thank my promotor prof. Frank Piessens. My interest in software security was elevated to a new level during one of his courses I attended. This was the stepping stone to choose one of his thesis topics. During my research endeavor he gave some very interesting and valuable pointers towards my progress which had a strong positive influence on the end result.
 
 \paragraph*{}
-Last but not least I am very grateful towards my family, friends and especially my life partner to whom I kept on about my research topic and its progress. It was really nice to have so many people listen to my day to day struggles and accomplishments. I felt very appreciated when they tried to understand what I was saying and gave me the feeling it was interesting.
+Last but not least I am very grateful towards my family, friends and especially my life partner to whom I kept on talking about my research topic and its progress. It was really nice to have so many people listen to my day to day struggles and accomplishments. I felt very appreciated when they tried to understand what I was doing and gave me the feeling it was interesting.
  
 \end{preface}
 
@@ -48,26 +53,26 @@ Last but not least I am very grateful towards my family, friends and especially 
 \begin{abstract}
 
 \paragraph*{}
-Smartphone devices are used for tasks that rely on more and more sensitive data, online banking, e-health and so on. While this is a natural evolution with respect to the functionality the security features of a smartphone is not as extensive as that of a personal computer. Many smartphone devices have an ARM System on Chip (SoC), with ARM TrustZone the manufacturer attempts to increase the security of these devices. ARM TrustZone is a hardware security solution which provides a Trusted Execution Environment (TEE), with this capability features like secure memory, trusted Input and Output (I/O) and process execution isolation are available. 
+Smartphone devices are used more and more for tasks that rely on sensitive data, online banking, e-health and so on. While this is a natural evolution with respect to functionality, the security features of a smartphone are not as extensive as those of a personal computer. Many smartphone devices have an ARM System on Chip, equipped with ARM TrustZone by which the manufacturer attempts to increase the security of these devices. ARM TrustZone is a hardware security solution which provides a Trusted Execution Environment. With this capability, features like secure memory, trusted Input and Output, and process execution isolation are available. 
 
 \paragraph*{}
-Smartphone manufacturers like Samsung utilize this ARM TrustZone framework to build up a security solution like Samsung KNOX. The downside of these solutions is that the manufacturer stays in control of the smartphone even after it has been sold, they decide which software is allowed to run on the device and which is not. To return the control and ownership to the users the PinePhone has been introduced, an open smartphone with ARM TrustZone features. To access these TEE functionalities a kernel is required, for this there are also open source solutions like OP-TEE. The tools to obtain a secure open smartphone device exist, but they need to be put together along with security implementations to become a complete product.
+Smartphone manufacturers like Samsung utilize this ARM TrustZone framework to build up a security solution like Samsung KNOX. The downside of these solutions is that the manufacturer stays in control of the smartphone even after it has been sold. They decide which software is allowed to run on the device and which is not. To return the control and ownership to the users, the PinePhone has been introduced, an open smartphone with ARM TrustZone features. To access these Trusted Execution Environment functionalities a kernel is required. For this, there are also open source solutions like OP-TEE. The tools to obtain a secure open smartphone device exist, but they need to be put together along with security implementations to become a complete product.
 
 \paragraph*{}
-In this work a crucial part of remote attestation has been looked at, namely the measuring of applications running in the normal world of the ARM TrustZone framework. Lots of research has been done to isolate applications in the secure world from the rich Operating System (OS) or secure the data storage or the I/O channels related to these applications. Of course the security of these applications is of utmost importance but this secure world could also increase the security guarantees that can be provided for the normal world. One way of doing this is by allowing the secure world to attest the processes in the normal world.
+In this work, a crucial part of Remote Attestation has been looked at, namely measuring the integrity of applications running in the Normal World of the ARM TrustZone framework. Lots of research has been done to isolate applications in the Secure World from the rich Operating System. Also securing the data storage or the Input and Output channels related to these applications are common practice and well understood. Of course, the security of these applications is of utmost importance but this Secure World could also increase the security guarantees for the Normal World. One way of doing this is by allowing the Secure World to attest processes in the Normal World.
 
 \end{abstract}
 
 \begin{abstract*}
 
 \paragraph*{}
-Smartphone apparaten worden gebruikt om taken uit te voeren die berusten op meer en meer sensitieve gegevens zoals online bankieren of raadplegen van gezondheids rapporten. Alhoewel dit een natuurlijke evolutie is ten opzichte van de functionaliteit, de veiligheid van een smartphone is niet zo uitgebreid als die van een persoonlijke computer. Vele smartphone apparaten hebben een processor van ARM die uitgerust is met TrustZone mogenlijkheden. ARM TrustZone is een veiligheids mechanisme toegepast in de hardware dat een vertrouwde uitvoerings omgeving tot stand brengt. Deze omgeving zorgt voor functionaliteiten zoals veilig geheugen, vertrouwde invoer en uitvoer en de isolatie van de uitvoering van processen.
+Smartphones worden steeds vaker gebruikt om taken uit te voeren die gebruik maken van sensitieve gegevens zoals online bankieren of het raadplegen van gezondheidsrapporten. Alhoewel dat een natuurlijke evolutie is van de functionaliteit, moet men zich ervan vergewissen dat de veiligheid van een smartphone niet zo uitgebreid is als die van een persoonlijke computer. Vele smartphones hebben een processor van ARM die uitgerust is met TrustZone-mogelijkheden. ARM TrustZone is een veiligheidsmechanisme toegepast in de hardware dat een vertrouwde uitvoeringsomgeving tot stand brengt. Deze omgeving zorgt voor functionaliteiten zoals veilig geheugen, vertrouwde in- en uitvoer en het isoleren van de uitvoering van processen.
 
 \paragraph*{}
-Smartphone producenten zoals Samsung gebruiken de ARM TrustZone technologie om een veiligheidsoplossing zoals Samsung KNOX te maken. De keerzijde hiervan is dat de producenten de controle over de smartphone behouden zelfs nadat deze verkocht is. Zei beslissen welke software mag draaien op het apparaat en welke niet. Om deze controle en eigenaarschap terug naar de gebruiker te brengen is de PinePhone ge\"introduceerd. Dit is een open smartphone met ARM TrustZone mogenlijkheden. Om toegang te hebben tot deze functionaliteiten is er nood aan een besturingssysteem. OP-TEE is een voorbeeld van zo een besturingssysteem waarvan de code vrij beschikbaar is gemaakt. De benodigdheden om een veilige en open smartphone te verkrijgen bestaan, deze moeten samengebracht worden met implementaties van beveiligende software om een compleet product te verkrijgen.
+Smartphoneproducenten zoals Samsung gebruiken de ARM TrustZone-technologie om een veiligheidsoplossing zoals Samsung KNOX te maken. De keerzijde hiervan is dat de producenten de controle over de smartphone behouden zelfs nadat die verkocht is. Zij beslissen welke software mag draaien op het apparaat en welke niet. Om de controle en het eigenaarschap terug te geven aan de gebruiker is de PinePhone ge\"introduceerd. Dat is een open smartphone met ARM TrustZone-mogelijkheden. Om toegang te hebben tot deze functionaliteiten is er nood aan een besturingssysteem. OP-TEE is een voorbeeld van zo'n besturingssysteem waarvan de code vrij beschikbaar is gemaakt. De benodigdheden om een veilige en open smartphone te verkrijgen bestaan. Deze moeten nog samengebracht worden met implementaties van beveiligende software om een compleet product te verkrijgen.
 
 \paragraph*{}
-In dit werk is er vooral aandacht besteed aan het meten van uitvoerende processen in de normale wereld van de ARM TrustZone technologie. Er is al veel onderzoek gedaan naar de isolatie van applicaties in de veilige wereld om ze te beschermen tegen de besturingssystemen van de normale wereld of het veilig opslagen van gegevens of het vertrouwen in de invoer en uitvoer kanalen geassocieerd met de applicatie. Natuurlijk is de veiligheid van de applicaties in de veilige wereld zeer belangrijk maar deze veilige wereld kan ook de garanties in verband met veiligheid van de normale wereld verbeteren. \'E\'en manier om dit aan te pakken is om de integriteit van de processen in de normale wereld te testen. 
+In dit werk is er vooral aandacht besteed aan het meten van uitvoerende processen in de normale wereld van de ARM TrustZone-technologie. Er is al veel onderzoek gedaan naar het isoleren van applicaties in de veilige wereld om ze te beschermen tegen de besturingssystemen van de normale wereld. Daarnaast wordt het veilig opslaan van gegevens of vertrouwelijk maken van de in- en uitvoerkanalen geassocieerd met de applicatie ook zeer vaak toegepast. Natuurlijk is de veiligheid van de applicaties in de veilige wereld zeer belangrijk maar deze veilige wereld kan ook de veiligheidsgaranties van de normale wereld verbeteren. \'E\'en manier om dat aan te pakken is door de integriteit van de processen in de normale wereld te testen. 
 
 \end{abstract*}
 
@@ -82,12 +87,68 @@ In dit werk is er vooral aandacht besteed aan het meten van uitvoerende processe
 \section*{Abbreviations}
 \begin{flushleft}
   \renewcommand{\arraystretch}{1.1}
-  \begin{tabularx}{\textwidth}{@{}p{12mm}X@{}}
-    IoT   	& Internet of Things \\
-    TEE   	& Trusted Execution Environment \\
-    I/O   	& Input and Output \\
-    	OS		& Operating System
-    	
+  \begin{tabularx}{\textwidth}{@{}p{23mm}X@{}}
+  	AES		& Advanced Encryption Standard \\
+    API		& Application Programming Interface \\
+    AST		& Abstract Syntax Tree \\
+    BKEK		& Blob Key Encryption Key \\
+    CAAM		& Cryptographic Acceleration and Assurance Module \\
+    CC		& Common Criteria \\
+    CCC		& Confidential Computing Consortium \\
+    CoT		& Chain of Trust \\
+    CPU		& Central Processing Unit \\
+    	DoS		& Denial of Service \\
+    	DMA		& Direct Memory Access \\
+    DRAM		& Dynamic Random Access Memory \\
+    	DRK		& Device Root Key \\
+    	DSK		& Device Sealing Key \\
+    	ECC		& Elliptic Curve Cryptography \\
+    	GIC		& Generic Interrupt Controller \\
+    	HMAC		& Hash-based Message Authentication Code \\
+    	IMA		& Integrity Measurement Architecture \\
+    	IoT   	& Internet of Things \\
+    	I/O   	& Input and Output \\
+    	JVM		& Java Virtual Machine \\
+    	LED		& Light Emitting Diode \\
+    	MAC		& Message Authentication Code \\
+    	MBA		& Model-based Behavior Attestation \\
+    	MK		& Master Key \\
+    	NW		& Normal World \\
+    	OCM		& On Chip Memory \\
+    	OCROM	& On Chip Read Only Memory \\
+    	OP-TEE	& Open Portable Trusted Execution Environment \\
+    	OS		& Operating System \\
+    	PDG		& Program Dependency Graph \\
+    	PID		& Process IDentifier \\
+    	PTA		& Pseudo Trusted Application \\
+    	PUF		& Physically Uncloneable Function \\
+    	RA		& Remote Attestation \\
+    	RAM		& Random Access Memory \\
+    	REE		& Rich Execution Environment \\
+    	ROM		& Read Only Memory \\
+    	RoT		& Root of Trust \\
+    	RSA		& Rivest-Shamir-Adleman \\
+    	SCR		& Secure Configuration Register \\
+    	SCU		& Secure Cryptographic Unit \\
+    	SGX		& Secure Guard eXtension \\
+    	SMC		& Secure Monitor Call \\
+    	SML		& Secure Measurement Log \\
+    	SNVS		& Secure Non-Volatile Memory \\
+  	SoC		& System on Chip \\
+  	SRAM		& Static Random Access Memory \\
+  	SW		& Secure World \\
+  	TA		& Trusted Application \\
+  	TCB		& Trusted Computing Base \\
+  	TCG		& Trusted Computing Group \\
+  	TEE   	& Trusted Execution Environment \\
+  	TFA		& Trusted Firmware-A \\
+  	TLS		& Transport Layer Security \\
+  	TOC-TOU	& Time Of Check to Time Of Use \\
+    TPM		& Trusted Platform Module \\
+    	TZASC	& TrustZone Address Space Controller \\
+    	TZMA		& TrustZone Memory Adapter \\
+    	TZPC		& TrustZone Protection Controller \\
+    	VM		& Virtual Machine \\
   \end{tabularx}
 \end{flushleft}
 %\section*{Symbols}
@@ -108,7 +169,7 @@ In dit werk is er vooral aandacht besteed aan het meten van uitvoerende processe
 \include{Chapters/Background}
 \include{Chapters/Method}
 \include{Chapters/Implementation}
-\include{Chapters/Experiments}
+\include{Chapters/Evaluation}
 \include{Chapters/Discussion}
 \include{Chapters/Conclusion}
 

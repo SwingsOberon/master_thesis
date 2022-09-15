@@ -1,0 +1,85 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{article}{article}{}
+      \name{author}{7}{}{%
+        {{hash=73604273129014220e3864b9c87ff067}{%
+           family={Ling},
+           familyi={L\bibinitperiod},
+           given={Zhen},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=d933d178a0ca21a79679ebfb68948b4d}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Huaiyu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=280ca7bdc4f58d25d3a53d5f14db4ed2}{%
+           family={Shao},
+           familyi={S\bibinitperiod},
+           given={Xinhui},
+           giveni={X\bibinitperiod}}}%
+        {{hash=0f1e44ccbada12be99eca2ea3f83bae8}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Junzhou},
+           giveni={J\bibinitperiod}}}%
+        {{hash=45846a0169edd81eaf04fe38a9de80ce}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Yiling},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=37e770a6afcd99ed0478fcf5cbf93194}{%
+           family={Pearson},
+           familyi={P\bibinitperiod},
+           given={Bryan},
+           giveni={B\bibinitperiod}}}%
+        {{hash=dcaf50e6bb3672848bcaa6f4f32f33e2}{%
+           family={Fu},
+           familyi={F\bibinitperiod},
+           given={Xinwen},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{5161add0c45c47e78940ebf625f4e4bb}
+      \strng{fullhash}{e5e46c012d2a0558d32b62d04f3f088d}
+      \strng{bibnamehash}{5161add0c45c47e78940ebf625f4e4bb}
+      \strng{authorbibnamehash}{5161add0c45c47e78940ebf625f4e4bb}
+      \strng{authornamehash}{5161add0c45c47e78940ebf625f4e4bb}
+      \strng{authorfullhash}{e5e46c012d2a0558d32b62d04f3f088d}
+      \field{labelalpha}{Lin+21}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Systems Architecture}
+      \field{month}{07}
+      \field{title}{Secure boot, trusted boot and remote attestation for ARM TrustZone-based IoT Nodes}
+      \field{volume}{119}
+      \field{year}{2021}
+      \field{pages}{102240}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.sysarc.2021.102240
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -15,8 +15,19 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Trusted Execution Environment structure (Decomposition)\relax }}{8}{figure.caption.32}% 
+\contentsline {figure}{\numberline {2.2}{\ignorespaces ARM TrustZone architecture (Decomposition)\relax }}{11}{figure.caption.44}% 
+\contentsline {figure}{\numberline {2.3}{\ignorespaces OP-TEE structure (Process)\relax }}{13}{figure.caption.49}% 
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Secure boot process sequence\relax }}{15}{figure.caption.57}% 
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Trusted boot process sequence\relax }}{16}{figure.caption.60}% 
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Process measurement sequence\relax }}{17}{figure.caption.65}% 
 \addvspace {10pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces PineA64 boot flow for OP-TEE and Linux\relax }}{22}{figure.caption.75}% 
 \addvspace {10pt}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Process measurement sequence\relax }}{28}{figure.caption.89}% 
 \addvspace {10pt}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Measurement plot for all processes\relax }}{35}{figure.caption.103}% 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Measurement plot for one process\relax }}{35}{figure.caption.105}% 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Comparison of the three measurement experiments\relax }}{36}{figure.caption.108}% 
 \addvspace {10pt}
 \addvspace {10pt}
